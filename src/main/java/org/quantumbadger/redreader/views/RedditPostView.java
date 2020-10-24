@@ -335,7 +335,7 @@ public final class RedditPostView extends FlingableItemView
 	}
 
 	@UiThread
-	public void reset(final RedditPreparedPost data) {
+	public void reset(final RedditPreparedPost data, boolean oldCached) {
 
 		if(data != post) {
 
@@ -367,6 +367,7 @@ public final class RedditPostView extends FlingableItemView
 			post.unbind(this);
 		}
 		data.bind(this);
+		data.cached = oldCached;
 
 		this.post = data;
 
