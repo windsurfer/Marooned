@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.UiThread;
 import org.quantumbadger.redreader.R;
 import org.quantumbadger.redreader.activities.BaseActivity;
@@ -351,15 +352,15 @@ public final class RedditPostView extends FlingableItemView
 				commentsText.setText(String.valueOf(data.src.getSrc().num_comments));
 			}
 
+			thumbnailView.setMinimumWidth((int)(96.0f
+					* dpScale)); // TODO remove constant, customise
 			if(data.hasThumbnail) {
 				thumbnailView.setVisibility(VISIBLE);
-				thumbnailView.setMinimumWidth((int)(64.0f
-						* dpScale)); // TODO remove constant, customise
 				thumbnailView.getLayoutParams().height =
 						ViewGroup.LayoutParams.MATCH_PARENT;
+				thumbnailView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 			} else {
-				thumbnailView.setMinimumWidth(0);
-				thumbnailView.setVisibility(GONE);
+				thumbnailView.setVisibility(INVISIBLE);
 			}
 		}
 
@@ -374,6 +375,7 @@ public final class RedditPostView extends FlingableItemView
 		updateAppearance();
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	public void updateAppearance() {
 
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -415,6 +417,9 @@ public final class RedditPostView extends FlingableItemView
 
 		} else if(post.isDownvoted()) {
 			overlayIcon.setImageResource(R.drawable.arrow_down_bold_periwinkle);
+
+		} else if(thumbnailView.getVisibility() == View.INVISIBLE){
+			overlayIcon.setImageResource(R.drawable.ic_action_link_dark);
 
 		} else {
 			overlayVisible = false;

@@ -35,7 +35,7 @@
 			android:id="@+id/reddit_post_layout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:gravity="center_vertical"
+			android:gravity="top"
 			android:background="?rrListItemBackgroundCol"
 			android:orientation="horizontal"
 			android:minHeight="64dp"
@@ -46,20 +46,21 @@
 
 		<FrameLayout
 				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
+				android:layout_height="96dp"
 				android:baselineAligned="false"
 				android:background="?rrPostThumbnailBackground">
 
 			<ImageView
 					android:id="@+id/reddit_post_thumbnail_view"
+					android:gravity="top"
 					android:layout_width="wrap_content"
-					android:layout_height="match_parent"
+					android:layout_height="wrap_content"
 					android:scaleType="center"
 					tools:ignore="ContentDescription"/>
 
 			<ImageView
 					android:id="@+id/reddit_post_overlay_icon"
-					android:layout_width="64dp"
+					android:layout_width="96dp"
 					android:layout_height="match_parent"
 					android:scaleType="center"
 					android:visibility="gone"
@@ -75,7 +76,7 @@
 				android:orientation="vertical"
 				android:paddingLeft="2dp"
 				android:paddingRight="2dp"
-				android:gravity="center_vertical"
+				android:gravity="top"
 				android:layout_weight="1">
 
 			<TextView
@@ -99,6 +100,7 @@
 					android:paddingRight="10dp"
 					android:paddingTop="1dp"
 					android:paddingBottom="5dp"
+					android:scaleType="fitStart"
 					android:textSize="11sp"
 					tools:ignore="SmallSp"/>
 
@@ -106,11 +108,12 @@
 
 		<LinearLayout
 				android:id="@+id/reddit_post_comments_button"
-				android:layout_width="50dp"
+				android:layout_width="64dp"
 				android:layout_height="match_parent"
-				android:gravity="center"
+				android:gravity="top"
 				android:background="?rrPostCommentsButtonBackCol"
 				android:orientation="vertical"
+				android:paddingTop="5dp"
 				android:nextFocusLeft="@id/reddit_post_layout">
 
 			<ImageView
