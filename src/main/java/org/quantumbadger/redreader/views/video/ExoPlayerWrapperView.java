@@ -264,7 +264,7 @@ public class ExoPlayerWrapperView extends FrameLayout {
 					updateProgress();
 
 					if(!mReleased) {
-						AndroidCommon.UI_THREAD_HANDLER.postDelayed(this, 250);
+						AndroidCommon.UI_THREAD_HANDLER.postDelayed(this, 50);
 					}
 				}
 			};
