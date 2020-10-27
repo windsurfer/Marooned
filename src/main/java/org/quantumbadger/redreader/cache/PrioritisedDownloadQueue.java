@@ -18,6 +18,8 @@
 package org.quantumbadger.redreader.cache;
 
 import android.content.Context;
+import android.util.Log;
+
 import org.quantumbadger.redreader.common.PrioritisedCachedThreadPool;
 
 import java.util.HashSet;
@@ -76,8 +78,30 @@ class PrioritisedDownloadQueue {
 
 	private class RedditQueueProcessor extends Thread {
 
+		// limits set in https://github.com/reddit-archive/reddit/wiki/API
+		// "Clients connecting via OAuth2 may make up to 60 requests per minute."
+		private final int bucket_time = 60000;
+		private final int bucket_max_items = 60;
+		private final float timeBetweenItems = (float)bucket_time / (float)bucket_max_items;
+		private final float itemsPerMili = (float)bucket_max_items / (float)bucket_time;
+		private long lastTimeAdded = -1;
+		private int numberOfItems = bucket_max_items;
+
+
 		public RedditQueueProcessor() {
 			super("Reddit Queue Processor");
+		}
+
+		private void addTokens(){
+			long now = System.currentTimeMillis();
+			long timeSinceLast = now - lastTimeAdded;
+			if (timeSinceLast >= timeBetweenItems){
+				int itemsToAdd = (int) Math.floor(timeSinceLast * itemsPerMili);
+				if (itemsToAdd > 0){
+					numberOfItems = (int) Math.min(bucket_max_items, numberOfItems + itemsToAdd);
+					lastTimeAdded = now;
+				}
+			}
 		}
 
 		@Override
@@ -85,16 +109,24 @@ class PrioritisedDownloadQueue {
 
 			while(true) {
 
+
 				synchronized(this) {
-					final CacheDownload download = getNextRedditInQueue();
-					new CacheDownloadThread(
-							download,
-							true,
-							"Cache Download Thread: Reddit");
+					if (numberOfItems > 0) {
+						numberOfItems--;
+						final CacheDownload download = getNextRedditInQueue();
+						new CacheDownloadThread(
+								download,
+								true,
+								"Cache Download Thread: Reddit");
+					}
 				}
 
 				try {
-					sleep(1200); // Delay imposed by reddit API restrictions.
+					addTokens();
+					if (numberOfItems <= 0) {
+						sleep((long) timeBetweenItems);
+						addTokens();
+					}
 				} catch(final InterruptedException e) {
 					throw new RuntimeException(e);
 				}
