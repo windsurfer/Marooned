@@ -160,7 +160,7 @@ public final class PrefsUtility {
 	}
 
 	public enum AppearanceTheme {
-		RED, GREEN, BLUE, LTBLUE, ORANGE, GRAY, NIGHT, NIGHT_LOWCONTRAST, ULTRABLACK
+		RED, GREEN, BLUE, LTBLUE, ORANGE, GRAY, NIGHT, NIGHT_LOWCONTRAST, MAROON, ULTRABLACK
 	}
 
 	public static boolean isNightMode(final Context context) {
@@ -171,7 +171,8 @@ public final class PrefsUtility {
 
 		return theme == AppearanceTheme.NIGHT
 				|| theme == AppearanceTheme.NIGHT_LOWCONTRAST
-				|| theme == AppearanceTheme.ULTRABLACK;
+				|| theme == AppearanceTheme.ULTRABLACK
+				|| theme == AppearanceTheme.MAROON;
 	}
 
 	public static AppearanceTheme appearance_theme(
@@ -236,6 +237,10 @@ public final class PrefsUtility {
 
 			case NIGHT_LOWCONTRAST:
 				activity.setTheme(R.style.RR_Dark_LowContrast);
+				break;
+
+			case MAROON:
+				activity.setTheme(R.style.RR_Dark_LowContrast_Maroon);
 				break;
 
 			case ULTRABLACK:

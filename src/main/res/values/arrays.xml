@@ -199,6 +199,7 @@
 		<item>@string/theme_name_red</item>
 		<item>@string/theme_name_night</item>
 		<item>@string/theme_name_night_lowcontrast</item>
+		<item>@string/theme_name_maroon</item>
 		<item>@string/theme_name_green</item>
 		<item>@string/theme_name_blue</item>
 		<item>@string/theme_name_ltblue</item>
@@ -212,6 +213,7 @@
 		<item>red</item>
 		<item>night</item>
 		<item>night_lowcontrast</item>
+		<item>maroon</item>
 		<item>green</item>
 		<item>blue</item>
 		<item>ltblue</item>

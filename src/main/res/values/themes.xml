@@ -178,6 +178,35 @@
 
 	</style>
 
+
+	<style name="RR.Dark.LowContrast.Maroon" parent="RR.Dark.LowContrast">
+
+		<item name="colorPrimary">#6A0000</item>
+		<item name="colorPrimaryDark">#370000</item>
+		<item name="colorAccent">#D8B0B0</item>
+
+		<item name="rrPostListHeaderBackgroundCol">#370000</item>
+
+		<item name="rrMainTextCol">#EDEDED</item>
+		<item name="rrSubTextCol">#777777</item>
+
+		<item name="rrLoadingRingForegroundCol">#AAAAAA</item>
+		<item name="rrLoadingRingBackgroundCol">#323232</item>
+
+		<item name="rrPostTitleCol">#FFFFFF</item>
+		<item name="rrPostTitleReadCol">#AC9494</item>
+
+
+		<item name="rrGoldBackCol">#6C530C</item>
+
+		<item name="rrPostCommentsButtonBackCol">#222222</item>
+		<item name="rrPostCommentsButtonHighlightCol">#444444</item>
+
+		<item name="rrCommentBodyCol">#F3F3F3</item>
+		<item name="rrCommentHeaderCol">#B8B8B8</item>
+
+	</style>
+
 	<style name="RR.Dark.UltraBlack" parent="RR.Dark">
 
 		<item name="android:actionOverflowButtonStyle">@style/RR.Base.Widget.AppCompat.ActionButton.Overflow</item>
