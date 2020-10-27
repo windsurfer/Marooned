@@ -980,11 +980,18 @@ public class PostListingFragment extends RRFragment
 												final String mimetype) {
 											Log.i(
 													TAG,
-													"Successfully precached "
+													"Successfully precached comments "
 															+ url.toString());
 										}
 									});
 						}
+
+						RedditPostListItem postItem = new RedditPostListItem(
+								preparedPost,
+								PostListingFragment.this,
+								activity,
+								leftHandedMode);
+						downloadedPosts.add(postItem);
 
 						LinkHandler.getImageInfo(
 								activity,
@@ -1014,7 +1021,7 @@ public class PostListingFragment extends RRFragment
 
 										// Don't precache huge images
 										if(info.size != null
-												&& info.size > 15 * 1024 * 1024) {
+												&& info.size > 30 * 1024 * 1024) {
 											Log.i(TAG, String.format(
 													"Not precaching '%s': too big (%d kB)",
 													post.getUrl(),
@@ -1053,25 +1060,25 @@ public class PostListingFragment extends RRFragment
 											return;
 										}
 
+
+										postItem.setCached(false, activity);
+
 										precacheImage(
 												activity,
 												info.urlOriginal,
-												positionInList);
+												positionInList,
+												postItem);
 
 										if(info.urlAudioStream != null) {
 											precacheImage(
 													activity,
 													info.urlAudioStream,
-													positionInList);
+													positionInList,
+													postItem);
 										}
 									}
 								});
 
-						downloadedPosts.add(new RedditPostListItem(
-								preparedPost,
-								PostListingFragment.this,
-								activity,
-								leftHandedMode));
 
 						mPostCount++;
 						mPostRefreshCount.decrementAndGet();
@@ -1102,7 +1109,8 @@ public class PostListingFragment extends RRFragment
 	private void precacheImage(
 			final Activity activity,
 			final String url,
-			final int positionInList) {
+			final int positionInList,
+			RedditPostListItem postItem) {
 
 		final URI uri = General.uriFromString(url);
 		if(uri == null) {
@@ -1110,6 +1118,8 @@ public class PostListingFragment extends RRFragment
 					"Not precaching '%s': failed to parse URL", url));
 			return;
 		}
+
+
 
 		CacheManager.getInstance(activity).makeRequest(new CacheRequest(
 				uri,
@@ -1124,6 +1134,7 @@ public class PostListingFragment extends RRFragment
 				false,
 				activity
 		) {
+
 			@Override
 			protected void onCallbackException(final Throwable t) {
 			}
@@ -1166,7 +1177,8 @@ public class PostListingFragment extends RRFragment
 					final UUID session,
 					final boolean fromCache,
 					final String mimetype) {
-				Log.i(TAG, "Successfully precached " + url);
+				Log.i(TAG, "Successfully precached content " + url);
+				postItem.setCached(true, activity);
 			}
 		});
 	}

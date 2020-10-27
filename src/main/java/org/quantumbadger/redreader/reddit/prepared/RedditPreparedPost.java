@@ -17,6 +17,7 @@
 
 package org.quantumbadger.redreader.reddit.prepared;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -107,6 +108,24 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 	private final boolean showSubreddit;
 
 	private RedditPostView mBoundView = null;
+
+	public boolean cached = false;
+
+	public boolean isCached() {
+		return cached;
+	}
+
+	public void setIsCached(boolean newCached, final Activity activity){
+		if (cached != newCached) {
+			cached = newCached;
+			postListDescription = rebuildSubtitle(activity);
+			activity.runOnUiThread(() -> {
+				if(mBoundView != null) {
+					mBoundView.updateAppearance();
+				}
+			});
+		}
+	}
 
 	public enum Action {
 		UPVOTE(R.string.action_upvote),
@@ -1111,6 +1130,17 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 			postListDescSb.append("(" + src.getDomain() + ")", 0);
 		}
 
+		if(isCached()) {
+			postListDescSb.append(
+				" cached ",
+				BetterSSB.BOLD
+						| BetterSSB.FOREGROUND_COLOR
+						| BetterSSB.BACKGROUND_COLOR,
+				Color.WHITE,
+				Color.rgb(15, 100, 130),
+				1f);
+		}
+
 		return postListDescSb.get();
 	}
 
@@ -1169,7 +1199,7 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 
 			@Override
 			protected void onFailure(
-					final @CacheRequest.RequestFailureType int type,
+					final @RequestFailureType int type,
 					final Throwable t,
 					final Integer status,
 					final String readableMessage) {

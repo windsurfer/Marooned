@@ -17,6 +17,7 @@
 
 package org.quantumbadger.redreader.reddit;
 
+import android.app.Activity;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.quantumbadger.redreader.activities.BaseActivity;
@@ -32,6 +33,8 @@ public class RedditPostListItem extends GroupedRecyclerViewAdapter.Item {
 
 	private final RedditPreparedPost mPost;
 	private final boolean mLeftHandedMode;
+
+	private boolean oldCached = false;
 
 	public RedditPostListItem(
 			final RedditPreparedPost post,
@@ -65,12 +68,17 @@ public class RedditPostListItem extends GroupedRecyclerViewAdapter.Item {
 
 	@Override
 	public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder) {
-		((RedditPostView)viewHolder.itemView).reset(mPost);
+		((RedditPostView)viewHolder.itemView).reset(mPost, oldCached);
 	}
 
 	@Override
 	public boolean isHidden() {
 		return false;
+	}
+
+	public void setCached(boolean cached, final Activity activity) {
+		mPost.setIsCached(cached, activity);
+		oldCached = cached;
 	}
 
 }
