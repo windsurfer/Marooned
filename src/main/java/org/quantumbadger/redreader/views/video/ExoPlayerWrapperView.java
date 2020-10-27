@@ -108,7 +108,7 @@ public class ExoPlayerWrapperView extends FrameLayout {
 
 			final LinearLayout controlBar = new LinearLayout(context);
 			mControlView.addView(controlBar);
-			controlBar.setBackgroundColor(Color.argb(127, 127, 127, 127));
+			controlBar.setBackgroundColor(Color.argb(127, 0, 0, 0));
 			controlBar.setOrientation(LinearLayout.VERTICAL);
 
 			{
@@ -271,7 +271,7 @@ public class ExoPlayerWrapperView extends FrameLayout {
 
 			updateProgressRunnable.run();
 
-			mControlView.setVisibility(GONE);
+			mControlView.setVisibility(View.VISIBLE);
 
 		} else {
 			mControlView = null;
