@@ -44,6 +44,7 @@ import org.quantumbadger.redreader.activities.BugReportActivity;
 import org.quantumbadger.redreader.activities.OptionsMenuUtility;
 import org.quantumbadger.redreader.activities.SessionChangeListener;
 import org.quantumbadger.redreader.adapters.PostListingManager;
+import org.quantumbadger.redreader.cache.CacheEntry;
 import org.quantumbadger.redreader.cache.CacheManager;
 import org.quantumbadger.redreader.cache.CacheRequest;
 import org.quantumbadger.redreader.cache.downloadstrategy.DownloadStrategy;
@@ -94,6 +95,7 @@ import java.net.URI;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -244,19 +246,8 @@ public class PostListingFragment extends RRFragment
 		if(forceDownload) {
 			downloadStrategy = DownloadStrategyAlways.INSTANCE;
 
-		} else if(session == null
-				&& savedInstanceState == null
-				&& General.isNetworkConnected(context)) {
-
-			final long maxAgeMs = PrefsUtility.pref_cache_rerequest_postlist_age_ms(
-					context,
-					mSharedPreferences);
-			downloadStrategy = new DownloadStrategyIfTimestampOutsideBounds(TimestampBound
-					.notOlderThan(
-							maxAgeMs));
-
-		} else {
-			downloadStrategy = DownloadStrategyIfNotCached.INSTANCE;
+		} else{
+			downloadStrategy = getDownloadStrategy(context);
 		}
 
 		mRequest = new PostListingRequest(
@@ -375,6 +366,23 @@ public class PostListingFragment extends RRFragment
 				}
 
 				break;
+		}
+	}
+
+	private DownloadStrategy getDownloadStrategy(Context context){
+
+		if(mSession == null
+			&& General.isNetworkConnected(context)) {
+
+			final long maxAgeMs = PrefsUtility.pref_cache_rerequest_postlist_age_ms(
+					context,
+					mSharedPreferences);
+			return new DownloadStrategyIfTimestampOutsideBounds(TimestampBound
+					.notOlderThan(
+							maxAgeMs));
+
+		} else {
+			return DownloadStrategyIfNotCached.INSTANCE;
 		}
 	}
 
@@ -993,6 +1001,8 @@ public class PostListingFragment extends RRFragment
 								leftHandedMode);
 						downloadedPosts.add(postItem);
 
+						postItem.setCached(isImageCached(activity, parsedPost.getUrl()), activity);
+
 						LinkHandler.getImageInfo(
 								activity,
 								parsedPost.getUrl(),
@@ -1014,6 +1024,8 @@ public class PostListingFragment extends RRFragment
 
 									@Override
 									public void onSuccess(final ImageInfo info) {
+
+										postItem.setCached(isImageCached(activity, info.urlOriginal), activity);
 
 										if(!precacheImages) {
 											return;
@@ -1060,9 +1072,6 @@ public class PostListingFragment extends RRFragment
 											return;
 										}
 
-
-										postItem.setCached(false, activity);
-
 										precacheImage(
 												activity,
 												info.urlOriginal,
@@ -1105,6 +1114,41 @@ public class PostListingFragment extends RRFragment
 			}
 		}
 	}
+
+	private boolean isImageCached(
+			final Activity activity,
+			final String url){
+
+		if(url == null) {
+			return false;
+		}
+		final URI uri = General.uriFromString(url);
+
+		if(uri == null) {
+			return false;
+		}
+
+		final List<CacheEntry> result = CacheManager.getInstance(activity).getSessions(uri, "");
+
+		if(!result.isEmpty()) {
+
+			CacheEntry entry = null;
+
+			for(final CacheEntry e : result) {
+				if(entry == null || entry.timestamp < e.timestamp) {
+					entry = e;
+				}
+			}
+
+			if (getDownloadStrategy(getContext()).shouldDownloadIfCacheEntryFound(entry)) {
+				return false;
+			}
+			return true;
+		}
+
+		return false;
+	}
+
 
 	private void precacheImage(
 			final Activity activity,

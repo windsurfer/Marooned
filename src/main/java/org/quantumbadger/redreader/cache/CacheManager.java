@@ -225,6 +225,11 @@ public final class CacheManager {
 		return dbManager.select(url, user.username, null);
 	}
 
+	public List<CacheEntry> getSessions(final URI url, String username) {
+		return dbManager.select(url, username, null);
+	}
+
+
 	public File getPreferredCacheLocation() {
 		return new File(
 				PrefsUtility.pref_cache_location(
