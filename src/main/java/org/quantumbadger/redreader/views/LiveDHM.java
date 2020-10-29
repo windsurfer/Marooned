@@ -26,8 +26,8 @@ public class LiveDHM {
 
 		public float startVelocity = 0;
 
-		public float accelerationCoefficient = 30;
-		public float velocityDamping = 0.87f;
+		public float accelerationCoefficient = 90;
+		public float velocityDamping = 0.77f;
 
 		public float stepLengthSeconds = 1f / 60f;
 
