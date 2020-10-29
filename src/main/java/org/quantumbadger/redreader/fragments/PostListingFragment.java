@@ -432,13 +432,14 @@ public class PostListingFragment extends RRFragment
 
 		if(mPostListingURL.getOrder() == null
 				|| mPostListingURL.getOrder() == PostSort.HOT) {
+			String subredditName = mSubreddit.display_name;
 			if(mSubreddit.subscribers == null) {
-				subtitle = getString(R.string.header_subscriber_count_unknown);
+				subtitle = getString(R.string.header_subscriber_count_unknown) + " " + subredditName;
 			} else {
 				subtitle = getContext().getString(
 						R.string.header_subscriber_count,
 						NumberFormat.getNumberInstance(Locale.getDefault())
-								.format(mSubreddit.subscribers));
+								.format(mSubreddit.subscribers))  + " " + subredditName;;
 			}
 
 		} else {
