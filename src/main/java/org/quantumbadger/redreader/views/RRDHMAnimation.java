@@ -37,7 +37,7 @@ public abstract class RRDHMAnimation extends RRAnimation {
 				/ 2))
 				/ stepLengthMicros);
 
-		while(mDHM.getCurrentStep() < desiredStepNumber) {
+		while(mDHM.getCurrentStep() <= desiredStepNumber) {
 
 			mDHM.calculateStep();
 
