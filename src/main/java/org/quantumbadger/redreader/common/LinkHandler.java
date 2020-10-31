@@ -1031,7 +1031,92 @@ public class LinkHandler {
 		}
 	}
 
-	private static ImageInfo getImageUrlPatternMatch(final String url) {
+
+	public static boolean isProbablyDisplayableInline(final String url) {
+
+		final String urlLower = StringUtils.asciiLowercase(url);
+
+		{
+			final Matcher matchRedditUploads = reddituploadsPattern.matcher(url);
+
+			if(matchRedditUploads.find()) {
+				final String imgId = matchRedditUploads.group(1);
+				if(imgId.length() > 10) {
+					return new ImageInfo(
+							url,
+							ImageInfo.MediaType.IMAGE,
+							ImageInfo.HasAudio.NO_AUDIO) != null;
+				}
+			}
+		}
+
+
+		final String[] imageExtensions = {".jpg", ".jpeg", ".png"};
+
+		for(final String ext : imageExtensions) {
+			if(urlLower.endsWith(ext)) {
+				return new ImageInfo(
+						url,
+						ImageInfo.MediaType.IMAGE,
+						ImageInfo.HasAudio.NO_AUDIO) != null;
+			}
+		}
+
+		if(url.contains("?")) {
+
+			final String urlBeforeQ = urlLower.split("\\?")[0];
+
+			for(final String ext : imageExtensions) {
+				if(urlBeforeQ.endsWith(ext)) {
+					return new ImageInfo(
+							url,
+							ImageInfo.MediaType.IMAGE,
+							ImageInfo.HasAudio.MAYBE_AUDIO) != null;
+				}
+			}
+
+		}
+
+
+		final Matcher matchQkme1 = qkmePattern1.matcher(url);
+
+		if(matchQkme1.find()) {
+			final String imgId = matchQkme1.group(1);
+			if(imgId.length() > 2) {
+				return new ImageInfo(String.format(
+						Locale.US,
+						"http://i.qkme.me/%s.jpg",
+						imgId), ImageInfo.MediaType.IMAGE, ImageInfo.HasAudio.NO_AUDIO) != null;
+			}
+		}
+
+		final Matcher matchQkme2 = qkmePattern2.matcher(url);
+
+		if(matchQkme2.find()) {
+			final String imgId = matchQkme2.group(1);
+			if(imgId.length() > 2) {
+				return new ImageInfo(String.format(
+						Locale.US,
+						"http://i.qkme.me/%s.jpg",
+						imgId), ImageInfo.MediaType.IMAGE, ImageInfo.HasAudio.NO_AUDIO) != null;
+			}
+		}
+
+		final Matcher matchLvme = lvmePattern.matcher(url);
+
+		if(matchLvme.find()) {
+			final String imgId = matchLvme.group(1);
+			if(imgId.length() > 2) {
+				return new ImageInfo(String.format(
+						Locale.US,
+						"http://www.livememe.com/%s.jpg",
+						imgId), ImageInfo.MediaType.IMAGE, ImageInfo.HasAudio.NO_AUDIO) != null;
+			}
+		}
+		return false;
+	}
+
+	public static ImageInfo getImageUrlPatternMatch(final String url) {
 
 		final String urlLower = StringUtils.asciiLowercase(url);
 

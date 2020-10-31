@@ -17,15 +17,19 @@
 
 package org.quantumbadger.redreader.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,11 +42,18 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.UiThread;
 import org.quantumbadger.redreader.R;
 import org.quantumbadger.redreader.activities.BaseActivity;
+import org.quantumbadger.redreader.cache.CacheEntry;
+import org.quantumbadger.redreader.cache.CacheManager;
+import org.quantumbadger.redreader.common.General;
 import org.quantumbadger.redreader.common.PrefsUtility;
 import org.quantumbadger.redreader.fragments.PostListingFragment;
+import org.quantumbadger.redreader.image.ThumbnailScaler;
 import org.quantumbadger.redreader.reddit.prepared.RedditPreparedPost;
 
+import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 public final class RedditPostView extends FlingableItemView
 		implements RedditPreparedPost.ThumbnailLoadedCallback {
@@ -52,7 +63,7 @@ public final class RedditPostView extends FlingableItemView
 	private RedditPreparedPost post = null;
 	private final TextView title, subtitle;
 
-	private final ImageView thumbnailView, overlayIcon;
+	private final ImageView thumbnailView, overlayIcon, postImageView;
 
 	private final LinearLayout mOuterView;
 	private final LinearLayout commentsButton;
@@ -252,7 +263,7 @@ public final class RedditPostView extends FlingableItemView
 		final View rootView =
 				LayoutInflater.from(context).inflate(R.layout.reddit_post, this, true);
 
-		mOuterView = rootView.findViewById(R.id.reddit_post_layout);
+		mOuterView = rootView.findViewById(R.id.reddit_post_wrapper);
 
 		mOuterView.setOnClickListener(v -> fragmentParent.onPostSelected(post));
 
@@ -263,6 +274,7 @@ public final class RedditPostView extends FlingableItemView
 
 		thumbnailView = rootView.findViewById(R.id.reddit_post_thumbnail_view);
 		overlayIcon = rootView.findViewById(R.id.reddit_post_overlay_icon);
+		postImageView = rootView.findViewById(R.id.reddit_post_image_view);
 
 		title = rootView.findViewById(R.id.reddit_post_title);
 		subtitle = rootView.findViewById(R.id.reddit_post_subtitle);
@@ -335,6 +347,37 @@ public final class RedditPostView extends FlingableItemView
 		}
 	}
 
+	private Uri getURIFromCache(String url, Activity activity){
+
+		if(url == null) {
+			return null;
+		}
+		final URI uri = General.uriFromString(url);
+
+		if(uri == null) {
+			return null;
+		}
+
+		CacheManager cacheMgr = CacheManager.getInstance(activity);
+
+		final List<CacheEntry> result = cacheMgr.getSessions(uri, "");
+
+		if(!result.isEmpty()) {
+
+			CacheEntry entry = null;
+
+			for(final CacheEntry e : result) {
+				if(entry == null || entry.timestamp < e.timestamp) {
+					entry = e;
+				}
+			}
+			CacheManager.ReadableCacheFile cacheFile = cacheMgr.getExistingCacheFileById(entry.id);
+			return cacheFile.getUri();
+		}
+
+		return null;
+	}
+
 	@UiThread
 	public void reset(final RedditPreparedPost data, boolean oldCached) {
 
@@ -346,6 +389,9 @@ public final class RedditPostView extends FlingableItemView
 
 			final Bitmap thumbnail = data.getThumbnail(this, usageId);
 			thumbnailView.setImageBitmap(thumbnail);
+
+			postImageView.setImageURI(null);
+			postImageView.setVisibility(GONE);
 
 			title.setText(data.src.getTitle());
 			if(mCommentsButtonPref) {
@@ -419,7 +465,11 @@ public final class RedditPostView extends FlingableItemView
 			overlayIcon.setImageResource(R.drawable.arrow_down_bold_periwinkle);
 
 		} else if(thumbnailView.getVisibility() == View.INVISIBLE){
-			overlayIcon.setImageResource(R.drawable.ic_action_link_dark);
+			if (post.isSelf()){
+				overlayIcon.setImageResource(R.drawable.ic_action_comments_dark);
+			}else {
+				overlayIcon.setImageResource(R.drawable.ic_action_link_dark);
+			}
 
 		} else {
 			overlayVisible = false;
@@ -429,6 +479,51 @@ public final class RedditPostView extends FlingableItemView
 			overlayIcon.setVisibility(VISIBLE);
 		} else {
 			overlayIcon.setVisibility(GONE);
+		}
+
+
+
+		if (post.mIsProbablyDisplayableInline){
+
+			thumbnailView.setVisibility(GONE);
+			int imageHeight = (int)(400.0f * dpScale);
+			int imageWidth = Math.max(mOuterView.getWidth(), imageHeight);
+
+			postImageView.setMinimumHeight(imageHeight);
+			postImageView.setVisibility(INVISIBLE);
+
+			Uri imageCacheUri = getURIFromCache(post.src.getUrl(), mActivity);
+			if (imageCacheUri != null){
+
+				new Thread("Image rendering thread"){
+					@Override
+					public void run() {
+
+						try {
+
+							Bitmap rawBitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), imageCacheUri);
+
+							final Bitmap scaledBitmap = ThumbnailScaler.scaleToFit(
+									rawBitmap,
+									imageWidth,
+									imageHeight);
+							final BitmapDrawable result = new BitmapDrawable(mActivity.getResources(), scaledBitmap);
+							mActivity.runOnUiThread(()->{
+								if (postImageView != null) {
+									postImageView.setImageDrawable(result);
+									postImageView.setVisibility(VISIBLE);
+								}
+							});
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+
+				}.start();
+
+			}
+
 		}
 	}
 

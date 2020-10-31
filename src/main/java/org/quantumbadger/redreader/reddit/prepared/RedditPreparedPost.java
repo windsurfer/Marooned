@@ -94,6 +94,7 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 	public final boolean isArchived;
 	public final boolean hasThumbnail;
 	public final boolean mIsProbablyAnImage;
+	public final boolean mIsProbablyDisplayableInline;
 
 	// TODO make it possible to turn off in-memory caching when out of memory
 	private volatile Bitmap thumbnailCache = null;
@@ -190,6 +191,7 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 		isArchived = post.isArchived();
 
 		mIsProbablyAnImage = LinkHandler.isProbablyAnImage(post.getUrl());
+		mIsProbablyDisplayableInline = LinkHandler.isProbablyDisplayableInline(post.getUrl());
 
 		hasThumbnail = showThumbnails && hasThumbnail(post);
 

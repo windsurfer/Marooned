@@ -50,6 +50,7 @@ public class OKHTTPBackend extends HTTPBackend {
 
 	private final OkHttpClient mClient;
 	private static HTTPBackend httpBackend;
+	private static ConnectionPool mConnectionPool;
 
 	private OKHTTPBackend() {
 		final OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -96,10 +97,13 @@ public class OKHTTPBackend extends HTTPBackend {
 		builder.followRedirects(true);
 		builder.followSslRedirects(true);
 
-		builder.connectTimeout(15000, TimeUnit.SECONDS);
-		builder.readTimeout(10000, TimeUnit.SECONDS);
+		builder.connectTimeout(6000, TimeUnit.SECONDS);
+		builder.readTimeout(4000, TimeUnit.SECONDS);
 
-		builder.connectionPool(new ConnectionPool(1, 5, TimeUnit.SECONDS));
+		if (mConnectionPool == null){
+			mConnectionPool = new ConnectionPool(5, 10, TimeUnit.SECONDS);
+		}
+		builder.connectionPool(mConnectionPool);
 
 		builder.retryOnConnectionFailure(true);
 
