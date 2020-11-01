@@ -49,7 +49,8 @@ final class CacheDbManager extends SQLiteOpenHelper {
 			FIELD_USER = "user",
 			FIELD_STATUS = "status",
 			FIELD_TYPE = "type",
-			FIELD_MIMETYPE = "mimetype";
+			FIELD_MIMETYPE = "mimetype",
+			FIELD_ALIAS = "alias";
 
 	private static final int STATUS_MOVING = 1, STATUS_DONE = 2;
 
@@ -72,6 +73,7 @@ final class CacheDbManager extends SQLiteOpenHelper {
 						"%s INTEGER," +
 						"%s INTEGER," +
 						"%s TEXT," +
+						"%s TEXT," +
 						"UNIQUE (%s, %s, %s) ON CONFLICT REPLACE)",
 				TABLE,
 				FIELD_ID,
@@ -82,6 +84,7 @@ final class CacheDbManager extends SQLiteOpenHelper {
 				FIELD_STATUS,
 				FIELD_TYPE,
 				FIELD_MIMETYPE,
+				FIELD_ALIAS,
 				FIELD_USER, FIELD_URL, FIELD_SESSION);
 
 		db.execSQL(queryString);
@@ -132,23 +135,25 @@ final class CacheDbManager extends SQLiteOpenHelper {
 		if(session == null) {
 			queryString = String.format(
 					Locale.US,
-					"%s=%d AND %s=? AND %s=?",
+					"%s=%d AND (%s=? OR %s=?) AND %s=?",
 					FIELD_STATUS,
 					STATUS_DONE,
 					FIELD_URL,
+					FIELD_ALIAS,
 					FIELD_USER);
-			queryParams = new String[] {url.toString(), user};
+			queryParams = new String[] {url.toString(), url.toString(), user};
 
 		} else {
 			queryString = String.format(
 					Locale.US,
-					"%s=%d AND %s=? AND %s=? AND %s=?",
+					"%s=%d AND (%s=? OR %s=?) AND %s=? AND %s=?",
 					FIELD_STATUS,
 					STATUS_DONE,
 					FIELD_URL,
+					FIELD_ALIAS,
 					FIELD_USER,
 					FIELD_SESSION);
-			queryParams = new String[] {url.toString(), user, session.toString()};
+			queryParams = new String[] {url.toString(), url.toString(), user, session.toString()};
 		}
 
 		try(Cursor cursor = db.query(
@@ -196,6 +201,10 @@ final class CacheDbManager extends SQLiteOpenHelper {
 		row.put(FIELD_STATUS, STATUS_MOVING);
 		row.put(FIELD_TIMESTAMP, RRTime.utcCurrentTimeMillis());
 		row.put(FIELD_MIMETYPE, mimetype);
+
+		if (request.original_url != null && !request.original_url.equals(request.url)){
+			row.put(FIELD_ALIAS, request.original_url.toString());
+		}
 
 		final long result = db.insert(TABLE, null, row);
 

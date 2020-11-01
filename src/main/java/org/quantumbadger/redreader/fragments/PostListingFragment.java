@@ -1077,7 +1077,8 @@ public class PostListingFragment extends RRFragment
 												activity,
 												info.urlOriginal,
 												positionInList,
-												postItem);
+												postItem,
+												parsedPost.getUrl());
 
 										if(info.urlAudioStream != null) {
 											precacheImage(
@@ -1149,13 +1150,20 @@ public class PostListingFragment extends RRFragment
 
 		return false;
 	}
-
-
 	private void precacheImage(
 			final Activity activity,
 			final String url,
 			final int positionInList,
 			RedditPostListItem postItem) {
+		precacheImage(activity, url, positionInList, postItem, null);
+	}
+
+	private void precacheImage(
+			final Activity activity,
+			final String url,
+			final int positionInList,
+			RedditPostListItem postItem,
+			final String originalUrl) {
 
 		final URI uri = General.uriFromString(url);
 		if(uri == null) {
@@ -1164,6 +1172,7 @@ public class PostListingFragment extends RRFragment
 			return;
 		}
 
+		final URI original_uri = General.uriFromString(originalUrl);
 
 
 		CacheManager.getInstance(activity).makeRequest(new CacheRequest(
@@ -1177,7 +1186,8 @@ public class PostListingFragment extends RRFragment
 				CacheRequest.DOWNLOAD_QUEUE_IMAGE_PRECACHE,
 				false,
 				false,
-				activity
+				activity,
+				original_uri
 		) {
 
 			@Override

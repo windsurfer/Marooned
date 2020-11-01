@@ -83,17 +83,20 @@ public abstract class CacheRequest implements Comparable<CacheRequest> {
 			= new PrioritisedCachedThreadPool(2, "JSON notify");
 
 	public final URI url;
+	public final URI original_url;
 	public final RedditAccount user;
 	public final UUID requestSession;
 
 	public final int priority;
 	public final int listId;
 
-	@NonNull public final DownloadStrategy downloadStrategy;
+	@NonNull
+	public final DownloadStrategy downloadStrategy;
 
 	public final int fileType;
 
-	public final @DownloadQueueType int queueType;
+	public final @DownloadQueueType
+	int queueType;
 	public final boolean isJson;
 	public final List<HTTPBackend.PostField> postFields;
 
@@ -106,7 +109,7 @@ public abstract class CacheRequest implements Comparable<CacheRequest> {
 
 	// Called by CacheDownload
 	synchronized boolean setDownload(final CacheDownload download) {
-		if(cancelled) {
+		if (cancelled) {
 			return false;
 		}
 		this.download = download;
@@ -118,7 +121,7 @@ public abstract class CacheRequest implements Comparable<CacheRequest> {
 
 		cancelled = true;
 
-		if(download != null) {
+		if (download != null) {
 			download.cancel();
 			download = null;
 		}
@@ -150,7 +153,71 @@ public abstract class CacheRequest implements Comparable<CacheRequest> {
 				null,
 				true,
 				cancelExisting,
-				context);
+				context,
+				null);
+	}
+
+	protected CacheRequest(
+			final URI url,
+			final RedditAccount user,
+			final UUID requestSession,
+			final int priority,
+			final int listId,
+			@NonNull final DownloadStrategy downloadStrategy,
+			final int fileType,
+			final @DownloadQueueType int queueType,
+			final boolean isJson,
+			final boolean cancelExisting,
+			final Context context,
+			final URI original_uri) {
+
+		this(
+				url,
+				user,
+				requestSession,
+				priority,
+				listId,
+				downloadStrategy,
+				fileType,
+				queueType,
+				isJson,
+				null,
+				true,
+				cancelExisting,
+				context,
+				original_uri);
+	}
+
+	protected CacheRequest(
+			final URI url,
+			final RedditAccount user,
+			final UUID requestSession,
+			final int priority,
+			final int listId,
+			@NonNull final DownloadStrategy downloadStrategy,
+			final int fileType,
+			final @DownloadQueueType int queueType,
+			final boolean isJson,
+			final List<HTTPBackend.PostField> postFields,
+			final boolean cache,
+			final boolean cancelExisting,
+			final Context context){
+		this(
+				url,
+				user,
+				requestSession,
+				priority,
+				listId,
+				downloadStrategy,
+				fileType,
+				queueType,
+				isJson,
+				postFields,
+				cache,
+				cancelExisting,
+				context,
+				null
+			);
 	}
 
 	// TODO remove this huge constructor, make mutable
@@ -167,7 +234,8 @@ public abstract class CacheRequest implements Comparable<CacheRequest> {
 			final List<HTTPBackend.PostField> postFields,
 			final boolean cache,
 			final boolean cancelExisting,
-			final Context context) {
+			final Context context,
+			final URI original_uri) {
 
 		this.context = context;
 
@@ -204,6 +272,7 @@ public abstract class CacheRequest implements Comparable<CacheRequest> {
 		this.isJson = isJson;
 		this.postFields = postFields;
 		this.cache = cache;
+		this.original_url = original_uri;
 
 		if(url == null) {
 			notifyFailure(REQUEST_FAILURE_MALFORMED_URL, null, null, "Malformed URL");
