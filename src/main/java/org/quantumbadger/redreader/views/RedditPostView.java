@@ -61,7 +61,7 @@ public final class RedditPostView extends FlingableItemView
 	private final float dpScale;
 
 	private RedditPreparedPost post = null;
-	private final TextView title, subtitle;
+	private final TextView title, subtitle, title_alternate;
 
 	private final ImageView thumbnailView, overlayIcon, postImageView;
 
@@ -277,6 +277,7 @@ public final class RedditPostView extends FlingableItemView
 		postImageView = rootView.findViewById(R.id.reddit_post_image_view);
 
 		title = rootView.findViewById(R.id.reddit_post_title);
+		title_alternate = rootView.findViewById(R.id.reddit_post_title_alternate);
 		subtitle = rootView.findViewById(R.id.reddit_post_subtitle);
 
 		final SharedPreferences sharedPreferences =
@@ -320,6 +321,9 @@ public final class RedditPostView extends FlingableItemView
 		}
 
 		title.setTextSize(
+				TypedValue.COMPLEX_UNIT_PX,
+				title.getTextSize() * titleFontScale);
+		title_alternate.setTextSize(
 				TypedValue.COMPLEX_UNIT_PX,
 				title.getTextSize() * titleFontScale);
 		subtitle.setTextSize(
@@ -389,16 +393,24 @@ public final class RedditPostView extends FlingableItemView
 
 			final Bitmap thumbnail = data.getThumbnail(this, usageId);
 			thumbnailView.setImageBitmap(thumbnail);
+			thumbnailView.setVisibility(VISIBLE);
 
 			postImageView.setImageURI(null);
 			postImageView.setVisibility(GONE);
 
+
+			title.setVisibility(VISIBLE);
+			title_alternate.setVisibility(GONE);
+
 			title.setText(data.src.getTitle());
+			title_alternate.setText(data.src.getTitle());
 			if(mCommentsButtonPref) {
 				commentsText.setText(String.valueOf(data.src.getSrc().num_comments));
 			}
 
 			thumbnailView.setMinimumWidth((int)(96.0f
+					* dpScale)); // TODO remove constant, customise
+			thumbnailView.setMinimumHeight((int)(96.0f
 					* dpScale)); // TODO remove constant, customise
 			if(data.hasThumbnail) {
 				thumbnailView.setVisibility(VISIBLE);
@@ -418,7 +430,9 @@ public final class RedditPostView extends FlingableItemView
 
 		this.post = data;
 
-		updateAppearance();
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			updateAppearance();
+		}
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -444,8 +458,10 @@ public final class RedditPostView extends FlingableItemView
 
 		if(post.isRead()) {
 			title.setTextColor(rrPostTitleReadCol);
+			title_alternate.setTextColor(rrPostTitleReadCol);
 		} else {
 			title.setTextColor(rrPostTitleCol);
+			title_alternate.setTextColor(rrPostTitleCol);
 		}
 
 		subtitle.setText(post.postListDescription);
@@ -464,7 +480,7 @@ public final class RedditPostView extends FlingableItemView
 		} else if(post.isDownvoted()) {
 			overlayIcon.setImageResource(R.drawable.arrow_down_bold_periwinkle);
 
-		} else if(thumbnailView.getVisibility() == View.INVISIBLE){
+		} else if(thumbnailView.getVisibility() == View.INVISIBLE && !post.mIsProbablyDisplayableInline){
 			if (post.isSelf()){
 				overlayIcon.setImageResource(R.drawable.ic_action_comments_dark);
 			}else {
@@ -475,25 +491,25 @@ public final class RedditPostView extends FlingableItemView
 			overlayVisible = false;
 		}
 
-		if(overlayVisible) {
-			overlayIcon.setVisibility(VISIBLE);
-		} else {
-			overlayIcon.setVisibility(GONE);
-		}
-
-
 
 		if (post.mIsProbablyDisplayableInline){
 
 			thumbnailView.setVisibility(GONE);
-			int imageHeight = (int)(400.0f * dpScale);
+			overlayVisible = false;
+			title.setVisibility(GONE);
+			title_alternate.setVisibility(VISIBLE);
+			int imageHeight = (int)(450.0f * dpScale);
 			int imageWidth = Math.max(mOuterView.getWidth(), imageHeight);
 
 			postImageView.setMinimumHeight(imageHeight);
-			postImageView.setVisibility(INVISIBLE);
 
-			Uri imageCacheUri = getURIFromCache(post.src.getUrl(), mActivity);
+			String postUrl = post.src.getUrl();
+			Uri imageCacheUri = getURIFromCache(postUrl, mActivity);
 			if (imageCacheUri != null){
+
+				postImageView.setVisibility(INVISIBLE);
+
+				RedditPreparedPost oldPost = post;
 
 				new Thread("Image rendering thread"){
 					@Override
@@ -509,8 +525,9 @@ public final class RedditPostView extends FlingableItemView
 									imageHeight);
 							final BitmapDrawable result = new BitmapDrawable(mActivity.getResources(), scaledBitmap);
 							mActivity.runOnUiThread(()->{
-								if (postImageView != null) {
+								if (postImageView != null && oldPost != null && oldPost.src == post.src) {
 									postImageView.setImageDrawable(result);
+									postImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 									postImageView.setVisibility(VISIBLE);
 								}
 							});
@@ -522,8 +539,18 @@ public final class RedditPostView extends FlingableItemView
 
 				}.start();
 
+			}else{ // not cached yet... see if it will be?
+				postImageView.setImageResource(R.drawable.ic_loading_dark);
+				postImageView.setScaleType(ImageView.ScaleType.CENTER);
+				postImageView.setVisibility(VISIBLE);
 			}
 
+		}
+
+		if(overlayVisible) {
+			overlayIcon.setVisibility(VISIBLE);
+		} else {
+			overlayIcon.setVisibility(GONE);
 		}
 	}
 
