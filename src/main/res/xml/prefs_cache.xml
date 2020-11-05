@@ -38,7 +38,7 @@
 						android:key="@string/pref_cache_precache_images_list_key"
 						android:entries="@array/list_yes_no_or_wifi_items"
 						android:entryValues="@array/list_yes_no_or_wifi_return"
-						android:defaultValue="wifionly"/>
+						android:defaultValue="always"/>
 
     </PreferenceCategory>
 

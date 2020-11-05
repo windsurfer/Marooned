@@ -31,7 +31,7 @@
                         android:key="@string/pref_behaviour_usecustomtabs_key"
 						android:dependency="@string/pref_behaviour_useinternalbrowser_key"
                         android:summary="@string/pref_behaviour_usecustomtabs_summary"
-                        android:defaultValue="false"/>
+                        android:defaultValue="true"/>
 
     <CheckBoxPreference android:title="@string/pref_behaviour_notifications_title"
                         android:key="@string/pref_behaviour_notifications_key"
@@ -180,7 +180,7 @@
 
 		<CheckBoxPreference android:title="@string/pref_behaviour_sharing_include_desc_title"
 				android:key="@string/pref_behaviour_sharing_include_desc_key"
-				android:defaultValue="true"/>
+				android:defaultValue="false"/>
 
 		<CheckBoxPreference android:title="@string/pref_behaviour_sharing_share_text_title"
 				android:key="@string/pref_behaviour_sharing_share_text_key"
@@ -198,7 +198,7 @@
 				android:key="@string/pref_behaviour_bezel_toolbar_swipezone_key"
 				android:entries="@array/pref_behaviour_bezel_toolbar_swipe_zone_array"
 				android:entryValues="@array/pref_behaviour_bezel_toolbar_swipe_zone_array_return"
-				android:defaultValue="10"/>
+				android:defaultValue="0"/>
 
 	</PreferenceCategory>
 
@@ -207,7 +207,7 @@
 
 		<CheckBoxPreference android:title="Press back twice to exit posts"
 				android:key="@string/pref_behaviour_back_again_key"
-				android:defaultValue="false"/>
+				android:defaultValue="true"/>
 
 	</PreferenceCategory>
 

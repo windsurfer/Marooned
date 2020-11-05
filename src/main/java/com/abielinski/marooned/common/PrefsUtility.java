@@ -555,7 +555,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return getBoolean(
 				R.string.pref_appearance_link_text_clickable_key,
-				true,
+				false,
 				context,
 				sharedPreferences);
 	}
@@ -585,7 +585,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return getBoolean(
 				R.string.pref_appearance_comments_show_floating_toolbar_key,
-				true,
+				false,
 				context,
 				sharedPreferences);
 	}
@@ -595,7 +595,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return getBoolean(
 				R.string.pref_appearance_indentlines_key,
-				false,
+				true,
 				context,
 				sharedPreferences);
 	}
@@ -763,7 +763,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return getBoolean(
 				R.string.pref_behaviour_usecustomtabs_key,
-				false,
+				true,
 				context,
 				sharedPreferences);
 	}
@@ -793,7 +793,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return getBoolean(
 				R.string.pref_behaviour_video_playback_controls_key,
-				false,
+				true,
 				context,
 				sharedPreferences);
 	}
@@ -823,7 +823,7 @@ public final class PrefsUtility {
 		try {
 			return Integer.parseInt(getString(
 					R.string.pref_behaviour_bezel_toolbar_swipezone_key,
-					"10",
+					"0",
 					context,
 					sharedPreferences));
 		} catch(final Throwable e) {
@@ -835,7 +835,7 @@ public final class PrefsUtility {
 			final Context context,
 			final SharedPreferences sharedPreferences) {
 			return getBoolean(R.string.pref_behaviour_back_again_key,
-					false,
+					true,
 					context,
 					sharedPreferences);
 	}
@@ -1082,7 +1082,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return getBoolean(
 				R.string.pref_behaviour_sharing_include_desc_key,
-				true,
+				false,
 				context,
 				sharedPreferences);
 	}
@@ -1372,7 +1372,7 @@ public final class PrefsUtility {
 		return CachePrecacheImages.valueOf(StringUtils.asciiUppercase(
 				getString(
 						R.string.pref_cache_precache_images_list_key,
-						"wifionly",
+						"always",
 						context,
 						sharedPreferences)));
 	}
