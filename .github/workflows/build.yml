@@ -47,5 +47,5 @@ jobs:
             -   name: Upload artifact to GitHub
                 uses: actions/upload-artifact@v2
                 with:
-                    name: RedReader-debug.apk
-                    path: build/outputs/apk/debug/RedReader-debug.apk
+                    name: Marooned-debug.apk
+                    path: build/outputs/apk/debug/Marooned-debug.apk

@@ -1,9 +1,9 @@
-package org.quantumbadger.redreader.test.markdown;
+package com.abielinski.marooned.test.markdown;
 
 import org.junit.Test;
-import org.quantumbadger.redreader.reddit.prepared.markdown.CharArrSubstring;
-import org.quantumbadger.redreader.reddit.prepared.markdown.IntArrayLengthPair;
-import org.quantumbadger.redreader.reddit.prepared.markdown.MarkdownTokenizer;
+import com.abielinski.marooned.reddit.prepared.markdown.CharArrSubstring;
+import com.abielinski.marooned.reddit.prepared.markdown.IntArrayLengthPair;
+import com.abielinski.marooned.reddit.prepared.markdown.MarkdownTokenizer;
 
 import static org.junit.Assert.assertEquals;
 

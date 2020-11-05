@@ -1,7 +1,7 @@
-RedReader
+Marooned
 =========
 
-An unofficial, open source Android client for reddit.
+An unofficial, open source Android client for reddit forked from RedReader.
 
 ![CI](https://github.com/QuantumBadger/RedReader/workflows/CI/badge.svg?branch=master)
 [![Translation status](https://hosted.weblate.org/widgets/redreader/-/svg-badge.svg)](https://hosted.weblate.org/engage/redreader/?utm_source=widget)
