@@ -38,7 +38,7 @@ import com.abielinski.marooned.account.RedditAccountManager;
 import com.abielinski.marooned.activities.OAuthLoginActivity;
 import com.abielinski.marooned.common.BetterSSB;
 import com.abielinski.marooned.common.General;
-import com.abielinski.marooned.Reddit.api.RedditOAuth;
+import com.abielinski.marooned.reddit.api.RedditOAuth;
 import com.abielinski.marooned.viewholders.VH1Text;
 
 import java.util.ArrayList;

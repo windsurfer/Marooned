@@ -22,7 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import com.abielinski.marooned.cache.CacheManager;
-import com.abielinski.marooned.Reddit.prepared.RedditChangeDataManager;
+import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
 
 public class RegularCachePruner extends BroadcastReceiver {
 

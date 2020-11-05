@@ -15,14 +15,14 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared.bodytext;
+package com.abielinski.marooned.reddit.prepared.bodytext;
 
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.common.LinkHandler;
-import com.abielinski.marooned.Reddit.prepared.html.HtmlRawElement;
+import com.abielinski.marooned.reddit.prepared.html.HtmlRawElement;
 
 public class BodyElementLinkButton extends BodyElementBaseButton {
 

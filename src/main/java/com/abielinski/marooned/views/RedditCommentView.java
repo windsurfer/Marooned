@@ -35,11 +35,11 @@ import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.RRThemeAttributes;
 import com.abielinski.marooned.fragments.CommentListingFragment;
-import com.abielinski.marooned.Reddit.RedditCommentListItem;
-import com.abielinski.marooned.Reddit.api.RedditAPICommentAction;
-import com.abielinski.marooned.Reddit.prepared.RedditChangeDataManager;
-import com.abielinski.marooned.Reddit.prepared.RedditParsedComment;
-import com.abielinski.marooned.Reddit.prepared.RedditRenderableComment;
+import com.abielinski.marooned.reddit.RedditCommentListItem;
+import com.abielinski.marooned.reddit.api.RedditAPICommentAction;
+import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
+import com.abielinski.marooned.reddit.prepared.RedditParsedComment;
+import com.abielinski.marooned.reddit.prepared.RedditRenderableComment;
 
 
 public class RedditCommentView extends FlingableItemView

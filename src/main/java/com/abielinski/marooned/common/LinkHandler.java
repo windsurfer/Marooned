@@ -59,8 +59,8 @@ import com.abielinski.marooned.image.RedditGalleryAPI;
 import com.abielinski.marooned.image.RedditVideosAPI;
 import com.abielinski.marooned.image.RedgifsAPI;
 import com.abielinski.marooned.image.StreamableAPI;
-import com.abielinski.marooned.Reddit.things.RedditPost;
-import com.abielinski.marooned.Reddit.url.RedditURLParser;
+import com.abielinski.marooned.reddit.things.RedditPost;
+import com.abielinski.marooned.reddit.url.RedditURLParser;
 
 import java.util.ArrayList;
 import java.util.EnumSet;

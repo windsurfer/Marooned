@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared;
+package com.abielinski.marooned.reddit.prepared;
 
 import android.content.Context;
 import android.view.View;

@@ -43,7 +43,7 @@ import com.abielinski.marooned.activities.BugReportActivity;
 import com.abielinski.marooned.cache.CacheRequest;
 import com.abielinski.marooned.fragments.AccountListDialog;
 import com.abielinski.marooned.fragments.ErrorPropertiesDialog;
-import com.abielinski.marooned.Reddit.APIResponseHandler;
+import com.abielinski.marooned.reddit.APIResponseHandler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;

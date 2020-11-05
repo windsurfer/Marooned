@@ -47,8 +47,8 @@ import com.abielinski.marooned.common.LinkHandler;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.RRError;
 import com.abielinski.marooned.fragments.MarkdownPreviewDialog;
-import com.abielinski.marooned.Reddit.APIResponseHandler;
-import com.abielinski.marooned.Reddit.RedditAPI;
+import com.abielinski.marooned.reddit.APIResponseHandler;
+import com.abielinski.marooned.reddit.RedditAPI;
 
 import java.util.ArrayList;
 

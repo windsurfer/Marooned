@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit;
+package com.abielinski.marooned.reddit;
 
 import android.content.Context;
 import androidx.annotation.IntDef;
@@ -34,11 +34,11 @@ import com.abielinski.marooned.http.HTTPBackend;
 import com.abielinski.marooned.io.RequestResponseHandler;
 import com.abielinski.marooned.jsonwrap.JsonBufferedArray;
 import com.abielinski.marooned.jsonwrap.JsonValue;
-import com.abielinski.marooned.Reddit.api.SubredditRequestFailure;
-import com.abielinski.marooned.Reddit.things.RedditSubreddit;
-import com.abielinski.marooned.Reddit.things.RedditThing;
-import com.abielinski.marooned.Reddit.things.RedditUser;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.api.SubredditRequestFailure;
+import com.abielinski.marooned.reddit.things.RedditSubreddit;
+import com.abielinski.marooned.reddit.things.RedditThing;
+import com.abielinski.marooned.reddit.things.RedditUser;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

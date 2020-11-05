@@ -33,8 +33,8 @@ import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.LinkHandler;
 import com.abielinski.marooned.common.PrefsUtility;
-import com.abielinski.marooned.Reddit.prepared.RedditChangeDataManager;
-import com.abielinski.marooned.Reddit.prepared.RedditPreparedPost;
+import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
+import com.abielinski.marooned.reddit.prepared.RedditPreparedPost;
 
 public class RedditPostHeaderView extends LinearLayout {
 

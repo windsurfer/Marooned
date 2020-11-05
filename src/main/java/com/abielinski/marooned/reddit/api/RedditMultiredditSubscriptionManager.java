@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.api;
+package com.abielinski.marooned.reddit.api;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

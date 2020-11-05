@@ -26,7 +26,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.NonNull;
 import com.abielinski.marooned.activities.BugReportActivity;
 import com.abielinski.marooned.common.UpdateNotifier;
-import com.abielinski.marooned.Reddit.api.RedditOAuth;
+import com.abielinski.marooned.reddit.api.RedditOAuth;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

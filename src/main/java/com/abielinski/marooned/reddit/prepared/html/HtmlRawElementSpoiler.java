@@ -15,13 +15,13 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared.html;
+package com.abielinski.marooned.reddit.prepared.html;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElement;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElementSpoilerButton;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElementVerticalSequence;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElement;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElementSpoilerButton;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElementVerticalSequence;
 
 import java.util.ArrayList;
 

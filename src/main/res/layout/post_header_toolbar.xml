@@ -24,6 +24,7 @@
 		android:layout_height="wrap_content"
 		android:background="?rrPostToolbarCol"
 		android:orientation="horizontal"
+		android:gravity="end"
 		android:visibility="visible"
 		android:paddingLeft="6dp"
 		android:paddingRight="6dp"

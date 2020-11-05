@@ -183,8 +183,8 @@
 
 	<style name="RR.Dark.LowContrast.Maroon" parent="RR.Dark.LowContrast">
 
-		<item name="colorPrimary">#6A0000</item>
-		<item name="colorPrimaryDark">#370000</item>
+		<item name="colorPrimary">#6A002c</item>
+		<item name="colorPrimaryDark">#370016</item>
 		<item name="colorAccent">#D8B0B0</item>
 
 		<item name="rrPostListHeaderBackgroundCol">#370000</item>

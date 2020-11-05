@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared.html;
+package com.abielinski.marooned.reddit.prepared.html;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.CharacterStyle;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElement;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElement;
 
 import java.util.ArrayList;
 

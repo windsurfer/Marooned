@@ -24,13 +24,13 @@ import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.fragments.PostListingFragment;
-import com.abielinski.marooned.Reddit.PostSort;
-import com.abielinski.marooned.Reddit.things.InvalidSubredditNameException;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
-import com.abielinski.marooned.Reddit.url.PostListingURL;
-import com.abielinski.marooned.Reddit.url.RedditURLParser;
-import com.abielinski.marooned.Reddit.url.SubredditPostListURL;
-import com.abielinski.marooned.Reddit.url.UserPostListingURL;
+import com.abielinski.marooned.reddit.PostSort;
+import com.abielinski.marooned.reddit.things.InvalidSubredditNameException;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.url.PostListingURL;
+import com.abielinski.marooned.reddit.url.RedditURLParser;
+import com.abielinski.marooned.reddit.url.SubredditPostListURL;
+import com.abielinski.marooned.reddit.url.UserPostListingURL;
 
 import java.util.UUID;
 

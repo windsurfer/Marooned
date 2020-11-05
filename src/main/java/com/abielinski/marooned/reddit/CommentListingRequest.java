@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit;
+package com.abielinski.marooned.reddit;
 
 import android.content.Context;
 import android.os.Handler;
@@ -37,15 +37,15 @@ import com.abielinski.marooned.fragments.CommentListingFragment;
 import com.abielinski.marooned.jsonwrap.JsonBufferedArray;
 import com.abielinski.marooned.jsonwrap.JsonBufferedObject;
 import com.abielinski.marooned.jsonwrap.JsonValue;
-import com.abielinski.marooned.Reddit.prepared.RedditChangeDataManager;
-import com.abielinski.marooned.Reddit.prepared.RedditParsedComment;
-import com.abielinski.marooned.Reddit.prepared.RedditParsedPost;
-import com.abielinski.marooned.Reddit.prepared.RedditPreparedPost;
-import com.abielinski.marooned.Reddit.prepared.RedditRenderableComment;
-import com.abielinski.marooned.Reddit.things.RedditComment;
-import com.abielinski.marooned.Reddit.things.RedditPost;
-import com.abielinski.marooned.Reddit.things.RedditThing;
-import com.abielinski.marooned.Reddit.url.RedditURLParser;
+import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
+import com.abielinski.marooned.reddit.prepared.RedditParsedComment;
+import com.abielinski.marooned.reddit.prepared.RedditParsedPost;
+import com.abielinski.marooned.reddit.prepared.RedditPreparedPost;
+import com.abielinski.marooned.reddit.prepared.RedditRenderableComment;
+import com.abielinski.marooned.reddit.things.RedditComment;
+import com.abielinski.marooned.reddit.things.RedditPost;
+import com.abielinski.marooned.reddit.things.RedditThing;
+import com.abielinski.marooned.reddit.url.RedditURLParser;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

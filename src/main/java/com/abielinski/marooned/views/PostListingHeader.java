@@ -39,12 +39,12 @@ import com.abielinski.marooned.common.AndroidCommon;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.LinkHandler;
 import com.abielinski.marooned.common.PrefsUtility;
-import com.abielinski.marooned.Reddit.api.RedditSubredditSubscriptionManager;
-import com.abielinski.marooned.Reddit.api.SubredditSubscriptionState;
-import com.abielinski.marooned.Reddit.things.InvalidSubredditNameException;
-import com.abielinski.marooned.Reddit.things.RedditSubreddit;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
-import com.abielinski.marooned.Reddit.url.PostListingURL;
+import com.abielinski.marooned.reddit.api.RedditSubredditSubscriptionManager;
+import com.abielinski.marooned.reddit.api.SubredditSubscriptionState;
+import com.abielinski.marooned.reddit.things.InvalidSubredditNameException;
+import com.abielinski.marooned.reddit.things.RedditSubreddit;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.url.PostListingURL;
 
 
 public final class PostListingHeader extends LinearLayout

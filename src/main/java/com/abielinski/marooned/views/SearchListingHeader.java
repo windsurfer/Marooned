@@ -30,7 +30,7 @@ import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.activities.PostListingActivity;
-import com.abielinski.marooned.Reddit.url.SearchPostListURL;
+import com.abielinski.marooned.reddit.url.SearchPostListURL;
 
 
 public final class SearchListingHeader extends FrameLayout {

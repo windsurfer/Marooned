@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit;
+package com.abielinski.marooned.reddit;
 
 import android.net.Uri;
 import androidx.annotation.NonNull;

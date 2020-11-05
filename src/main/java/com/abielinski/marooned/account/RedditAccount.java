@@ -18,7 +18,7 @@
 package com.abielinski.marooned.account;
 
 import com.abielinski.marooned.common.StringUtils;
-import com.abielinski.marooned.Reddit.api.RedditOAuth;
+import com.abielinski.marooned.reddit.api.RedditOAuth;
 
 public class RedditAccount {
 

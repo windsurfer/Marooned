@@ -25,8 +25,8 @@ import androidx.annotation.NonNull;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.common.General;
-import com.abielinski.marooned.Reddit.prepared.markdown.MarkdownParagraphGroup;
-import com.abielinski.marooned.Reddit.prepared.markdown.MarkdownParser;
+import com.abielinski.marooned.reddit.prepared.markdown.MarkdownParagraphGroup;
+import com.abielinski.marooned.reddit.prepared.markdown.MarkdownParser;
 
 public class MarkdownPreviewDialog extends PropertiesDialog {
 

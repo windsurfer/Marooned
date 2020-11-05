@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.common.LinkHandler;
-import com.abielinski.marooned.Reddit.url.PostCommentListingURL;
+import com.abielinski.marooned.reddit.url.PostCommentListingURL;
 
 public final class CommentSubThreadView extends StatusListItemView {
 

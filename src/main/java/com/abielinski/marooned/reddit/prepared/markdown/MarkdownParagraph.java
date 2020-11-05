@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared.markdown;
+package com.abielinski.marooned.reddit.prepared.markdown;
 
 import android.graphics.Typeface;
 import android.net.Uri;

@@ -15,9 +15,9 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.url;
+package com.abielinski.marooned.reddit.url;
 
-import com.abielinski.marooned.Reddit.PostSort;
+import com.abielinski.marooned.reddit.PostSort;
 
 public abstract class PostListingURL extends RedditURLParser.RedditURL {
 

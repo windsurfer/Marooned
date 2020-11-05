@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared.html;
+package com.abielinski.marooned.reddit.prepared.html;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -24,10 +24,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.apache.commons.text.StringEscapeUtils;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.common.RRError;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BlockType;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElement;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElementRRError;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElementVerticalSequence;
+import com.abielinski.marooned.reddit.prepared.bodytext.BlockType;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElement;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElementRRError;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElementVerticalSequence;
 
 import java.util.ArrayList;
 

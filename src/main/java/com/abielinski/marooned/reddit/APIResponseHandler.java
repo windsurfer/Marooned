@@ -15,15 +15,15 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit;
+package com.abielinski.marooned.reddit;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.abielinski.marooned.activities.BugReportActivity;
 import com.abielinski.marooned.cache.CacheRequest;
 import com.abielinski.marooned.common.RRError;
-import com.abielinski.marooned.Reddit.things.RedditSubreddit;
-import com.abielinski.marooned.Reddit.things.RedditUser;
+import com.abielinski.marooned.reddit.things.RedditSubreddit;
+import com.abielinski.marooned.reddit.things.RedditUser;
 
 import java.util.List;
 

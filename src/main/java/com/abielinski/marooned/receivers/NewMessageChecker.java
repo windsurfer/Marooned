@@ -42,9 +42,9 @@ import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.jsonwrap.JsonBufferedArray;
 import com.abielinski.marooned.jsonwrap.JsonBufferedObject;
 import com.abielinski.marooned.jsonwrap.JsonValue;
-import com.abielinski.marooned.Reddit.things.RedditComment;
-import com.abielinski.marooned.Reddit.things.RedditMessage;
-import com.abielinski.marooned.Reddit.things.RedditThing;
+import com.abielinski.marooned.reddit.things.RedditComment;
+import com.abielinski.marooned.reddit.things.RedditMessage;
+import com.abielinski.marooned.reddit.things.RedditThing;
 
 import java.net.URI;
 import java.util.UUID;

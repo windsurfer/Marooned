@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.api;
+package com.abielinski.marooned.reddit.api;
 
 import android.content.Context;
 import android.util.Log;
@@ -28,11 +28,11 @@ import com.abielinski.marooned.common.TimestampBound;
 import com.abielinski.marooned.io.CacheDataSource;
 import com.abielinski.marooned.io.RequestResponseHandler;
 import com.abielinski.marooned.jsonwrap.JsonValue;
-import com.abielinski.marooned.Reddit.RedditSubredditHistory;
-import com.abielinski.marooned.Reddit.things.InvalidSubredditNameException;
-import com.abielinski.marooned.Reddit.things.RedditSubreddit;
-import com.abielinski.marooned.Reddit.things.RedditThing;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.RedditSubredditHistory;
+import com.abielinski.marooned.reddit.things.InvalidSubredditNameException;
+import com.abielinski.marooned.reddit.things.RedditSubreddit;
+import com.abielinski.marooned.reddit.things.RedditThing;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
 
 import java.util.Collection;
 import java.util.HashMap;

@@ -35,10 +35,10 @@ import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.StringUtils;
 import com.abielinski.marooned.common.UnexpectedInternalStateException;
 import com.abielinski.marooned.fragments.AccountListDialog;
-import com.abielinski.marooned.Reddit.PostSort;
-import com.abielinski.marooned.Reddit.api.SubredditSubscriptionState;
-import com.abielinski.marooned.Reddit.url.PostCommentListingURL;
-import com.abielinski.marooned.Reddit.url.UserCommentListingURL;
+import com.abielinski.marooned.reddit.PostSort;
+import com.abielinski.marooned.reddit.api.SubredditSubscriptionState;
+import com.abielinski.marooned.reddit.url.PostCommentListingURL;
+import com.abielinski.marooned.reddit.url.UserCommentListingURL;
 import com.abielinski.marooned.settings.SettingsActivity;
 
 import java.util.EnumMap;

@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared.html;
+package com.abielinski.marooned.reddit.prepared.html;
 
 public abstract class HtmlRawElementTag extends HtmlRawElement {
 

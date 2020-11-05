@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared;
+package com.abielinski.marooned.reddit.prepared;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -30,9 +30,9 @@ import com.abielinski.marooned.common.LinkHandler;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.RRThemeAttributes;
 import com.abielinski.marooned.common.RRTime;
-import com.abielinski.marooned.Reddit.api.RedditAPICommentAction;
-import com.abielinski.marooned.Reddit.things.RedditComment;
-import com.abielinski.marooned.Reddit.things.RedditThingWithIdAndType;
+import com.abielinski.marooned.reddit.api.RedditAPICommentAction;
+import com.abielinski.marooned.reddit.things.RedditComment;
+import com.abielinski.marooned.reddit.things.RedditThingWithIdAndType;
 
 import java.net.URI;
 

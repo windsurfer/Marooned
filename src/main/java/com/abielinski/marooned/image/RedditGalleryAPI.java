@@ -28,7 +28,7 @@ import com.abielinski.marooned.common.Constants;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.jsonwrap.JsonBufferedObject;
 import com.abielinski.marooned.jsonwrap.JsonValue;
-import com.abielinski.marooned.Reddit.url.PostCommentListingURL;
+import com.abielinski.marooned.reddit.url.PostCommentListingURL;
 
 import java.util.UUID;
 

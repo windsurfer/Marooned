@@ -33,7 +33,7 @@ import com.abielinski.marooned.account.RedditAccountManager;
 import com.abielinski.marooned.adapters.AccountListAdapter;
 import com.abielinski.marooned.common.AndroidCommon;
 import com.abielinski.marooned.common.RunnableOnce;
-import com.abielinski.marooned.Reddit.api.RedditOAuth;
+import com.abielinski.marooned.reddit.api.RedditOAuth;
 
 public class AccountListDialog extends AppCompatDialogFragment
 		implements RedditAccountChangeListener {

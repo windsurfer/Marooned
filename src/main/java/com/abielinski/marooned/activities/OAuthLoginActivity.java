@@ -30,7 +30,7 @@ import com.abielinski.marooned.R;
 import com.abielinski.marooned.Marooned;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.TorCommon;
-import com.abielinski.marooned.Reddit.api.RedditOAuth;
+import com.abielinski.marooned.reddit.api.RedditOAuth;
 
 import java.io.ByteArrayInputStream;
 

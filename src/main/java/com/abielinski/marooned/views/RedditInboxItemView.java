@@ -28,8 +28,8 @@ import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.RRThemeAttributes;
-import com.abielinski.marooned.Reddit.prepared.RedditChangeDataManager;
-import com.abielinski.marooned.Reddit.prepared.RedditRenderableInboxItem;
+import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
+import com.abielinski.marooned.reddit.prepared.RedditRenderableInboxItem;
 
 public class RedditInboxItemView extends LinearLayout {
 

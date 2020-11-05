@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.url;
+package com.abielinski.marooned.reddit.url;
 
 import android.net.Uri;
 

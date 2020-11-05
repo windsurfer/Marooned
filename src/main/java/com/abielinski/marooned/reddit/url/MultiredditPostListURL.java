@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.url;
+package com.abielinski.marooned.reddit.url;
 
 import android.content.Context;
 import android.net.Uri;
@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
 import com.abielinski.marooned.common.Constants;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.StringUtils;
-import com.abielinski.marooned.Reddit.PostSort;
+import com.abielinski.marooned.reddit.PostSort;
 
 import java.util.ArrayList;
 import java.util.List;

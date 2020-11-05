@@ -32,10 +32,10 @@ import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.LinkHandler;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.fragments.CommentListingFragment;
-import com.abielinski.marooned.Reddit.prepared.RedditPreparedPost;
-import com.abielinski.marooned.Reddit.url.PostCommentListingURL;
-import com.abielinski.marooned.Reddit.url.RedditURLParser;
-import com.abielinski.marooned.Reddit.url.UserCommentListingURL;
+import com.abielinski.marooned.reddit.prepared.RedditPreparedPost;
+import com.abielinski.marooned.reddit.url.PostCommentListingURL;
+import com.abielinski.marooned.reddit.url.RedditURLParser;
+import com.abielinski.marooned.reddit.url.UserCommentListingURL;
 import com.abielinski.marooned.views.RedditPostView;
 
 import java.util.ArrayList;

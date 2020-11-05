@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared;
+package com.abielinski.marooned.reddit.prepared;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,9 +34,9 @@ import com.abielinski.marooned.activities.CommentReplyActivity;
 import com.abielinski.marooned.common.BetterSSB;
 import com.abielinski.marooned.common.RRThemeAttributes;
 import com.abielinski.marooned.common.RRTime;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElement;
-import com.abielinski.marooned.Reddit.prepared.html.HtmlReader;
-import com.abielinski.marooned.Reddit.things.RedditMessage;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElement;
+import com.abielinski.marooned.reddit.prepared.html.HtmlReader;
+import com.abielinski.marooned.reddit.things.RedditMessage;
 
 public final class RedditPreparedMessage implements RedditRenderableInboxItem {
 

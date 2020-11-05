@@ -15,11 +15,11 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit;
+package com.abielinski.marooned.reddit;
 
 import com.abielinski.marooned.account.RedditAccount;
 import com.abielinski.marooned.common.Constants;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.api;
+package com.abielinski.marooned.reddit.api;
 
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -43,12 +43,12 @@ import com.abielinski.marooned.common.RRError;
 import com.abielinski.marooned.common.RRTime;
 import com.abielinski.marooned.fragments.CommentListingFragment;
 import com.abielinski.marooned.fragments.CommentPropertiesDialog;
-import com.abielinski.marooned.Reddit.APIResponseHandler;
-import com.abielinski.marooned.Reddit.RedditAPI;
-import com.abielinski.marooned.Reddit.prepared.RedditChangeDataManager;
-import com.abielinski.marooned.Reddit.prepared.RedditRenderableComment;
-import com.abielinski.marooned.Reddit.things.RedditComment;
-import com.abielinski.marooned.Reddit.url.UserProfileURL;
+import com.abielinski.marooned.reddit.APIResponseHandler;
+import com.abielinski.marooned.reddit.RedditAPI;
+import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
+import com.abielinski.marooned.reddit.prepared.RedditRenderableComment;
+import com.abielinski.marooned.reddit.things.RedditComment;
+import com.abielinski.marooned.reddit.url.UserProfileURL;
 import com.abielinski.marooned.views.RedditCommentView;
 
 import java.util.ArrayList;

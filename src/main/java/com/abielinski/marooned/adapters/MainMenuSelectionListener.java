@@ -18,7 +18,7 @@
 package com.abielinski.marooned.adapters;
 
 import com.abielinski.marooned.fragments.MainMenuFragment;
-import com.abielinski.marooned.Reddit.url.PostListingURL;
+import com.abielinski.marooned.reddit.url.PostListingURL;
 
 public interface MainMenuSelectionListener {
 	void onSelected(@MainMenuFragment.MainMenuAction int type);

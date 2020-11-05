@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit;
+package com.abielinski.marooned.reddit;
 
 import android.content.Context;
 import android.view.View;
@@ -26,10 +26,10 @@ import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.adapters.GroupedRecyclerViewAdapter;
 import com.abielinski.marooned.common.RRThemeAttributes;
 import com.abielinski.marooned.fragments.CommentListingFragment;
-import com.abielinski.marooned.Reddit.prepared.RedditChangeDataManager;
-import com.abielinski.marooned.Reddit.prepared.RedditRenderableComment;
-import com.abielinski.marooned.Reddit.things.RedditMoreComments;
-import com.abielinski.marooned.Reddit.url.RedditURLParser;
+import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
+import com.abielinski.marooned.reddit.prepared.RedditRenderableComment;
+import com.abielinski.marooned.reddit.things.RedditMoreComments;
+import com.abielinski.marooned.reddit.url.RedditURLParser;
 import com.abielinski.marooned.views.LoadMoreCommentsView;
 import com.abielinski.marooned.views.RedditCommentView;
 

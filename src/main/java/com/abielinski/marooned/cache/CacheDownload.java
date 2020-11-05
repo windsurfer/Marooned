@@ -23,7 +23,7 @@ import com.abielinski.marooned.common.RRTime;
 import com.abielinski.marooned.common.TorCommon;
 import com.abielinski.marooned.http.HTTPBackend;
 import com.abielinski.marooned.jsonwrap.JsonValue;
-import com.abielinski.marooned.Reddit.api.RedditOAuth;
+import com.abielinski.marooned.reddit.api.RedditOAuth;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

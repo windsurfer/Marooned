@@ -21,7 +21,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import com.abielinski.marooned.Marooned;
 import com.abielinski.marooned.common.collections.CollectionStream;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
 
 import java.net.URI;
 import java.util.ArrayList;

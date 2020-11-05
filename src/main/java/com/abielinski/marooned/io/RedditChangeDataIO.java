@@ -22,7 +22,7 @@ import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import com.abielinski.marooned.common.TriggerableThread;
-import com.abielinski.marooned.Reddit.prepared.RedditChangeDataManager;
+import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

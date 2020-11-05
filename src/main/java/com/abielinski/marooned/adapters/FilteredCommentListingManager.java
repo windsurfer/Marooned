@@ -20,7 +20,7 @@ package com.abielinski.marooned.adapters;
 import android.content.Context;
 import androidx.annotation.Nullable;
 import com.abielinski.marooned.common.StringUtils;
-import com.abielinski.marooned.Reddit.RedditCommentListItem;
+import com.abielinski.marooned.reddit.RedditCommentListItem;
 
 import java.util.ArrayList;
 import java.util.Collection;

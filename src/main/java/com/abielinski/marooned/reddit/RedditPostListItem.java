@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit;
+package com.abielinski.marooned.reddit;
 
 import android.app.Activity;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.adapters.GroupedRecyclerViewAdapter;
 import com.abielinski.marooned.fragments.PostListingFragment;
-import com.abielinski.marooned.Reddit.prepared.RedditPreparedPost;
+import com.abielinski.marooned.reddit.prepared.RedditPreparedPost;
 import com.abielinski.marooned.views.RedditPostView;
 
 public class RedditPostListItem extends GroupedRecyclerViewAdapter.Item {

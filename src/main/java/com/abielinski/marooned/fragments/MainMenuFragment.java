@@ -37,11 +37,11 @@ import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.RRError;
 import com.abielinski.marooned.common.TimestampBound;
 import com.abielinski.marooned.io.RequestResponseHandler;
-import com.abielinski.marooned.Reddit.api.RedditMultiredditSubscriptionManager;
-import com.abielinski.marooned.Reddit.api.RedditSubredditSubscriptionManager;
-import com.abielinski.marooned.Reddit.api.SubredditRequestFailure;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
-import com.abielinski.marooned.Reddit.url.PostListingURL;
+import com.abielinski.marooned.reddit.api.RedditMultiredditSubscriptionManager;
+import com.abielinski.marooned.reddit.api.RedditSubredditSubscriptionManager;
+import com.abielinski.marooned.reddit.api.SubredditRequestFailure;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.url.PostListingURL;
 import com.abielinski.marooned.views.ScrollbarRecyclerViewManager;
 import com.abielinski.marooned.views.liststatus.ErrorView;
 

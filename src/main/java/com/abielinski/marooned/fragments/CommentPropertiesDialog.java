@@ -25,7 +25,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.common.RRTime;
-import com.abielinski.marooned.Reddit.things.RedditComment;
+import com.abielinski.marooned.reddit.things.RedditComment;
 
 public final class CommentPropertiesDialog extends PropertiesDialog {
 

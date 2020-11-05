@@ -41,10 +41,10 @@ import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.LinkHandler;
 import com.abielinski.marooned.common.RRError;
 import com.abielinski.marooned.common.RRTime;
-import com.abielinski.marooned.Reddit.APIResponseHandler;
-import com.abielinski.marooned.Reddit.RedditAPI;
-import com.abielinski.marooned.Reddit.things.RedditUser;
-import com.abielinski.marooned.Reddit.url.UserPostListingURL;
+import com.abielinski.marooned.reddit.APIResponseHandler;
+import com.abielinski.marooned.reddit.RedditAPI;
+import com.abielinski.marooned.reddit.things.RedditUser;
+import com.abielinski.marooned.reddit.url.UserPostListingURL;
 import com.abielinski.marooned.views.liststatus.ErrorView;
 import com.abielinski.marooned.views.liststatus.LoadingView;
 

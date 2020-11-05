@@ -29,9 +29,9 @@ import android.widget.TextView;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.activities.MoreCommentsListingActivity;
 import com.abielinski.marooned.common.General;
-import com.abielinski.marooned.Reddit.RedditCommentListItem;
-import com.abielinski.marooned.Reddit.url.PostCommentListingURL;
-import com.abielinski.marooned.Reddit.url.RedditURLParser;
+import com.abielinski.marooned.reddit.RedditCommentListItem;
+import com.abielinski.marooned.reddit.url.PostCommentListingURL;
+import com.abielinski.marooned.reddit.url.RedditURLParser;
 
 import java.util.ArrayList;
 

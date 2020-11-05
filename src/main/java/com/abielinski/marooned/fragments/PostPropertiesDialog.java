@@ -25,7 +25,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.common.RRTime;
-import com.abielinski.marooned.Reddit.things.RedditPost;
+import com.abielinski.marooned.reddit.things.RedditPost;
 
 public final class PostPropertiesDialog extends PropertiesDialog {
 

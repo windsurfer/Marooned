@@ -27,7 +27,7 @@ import android.view.ViewGroup;
 import androidx.appcompat.app.AppCompatActivity;
 import com.abielinski.marooned.common.LinkHandler;
 import com.abielinski.marooned.common.RunnableOnce;
-import com.abielinski.marooned.Reddit.api.RedditOAuth;
+import com.abielinski.marooned.reddit.api.RedditOAuth;
 
 public class LinkDispatchActivity extends AppCompatActivity {
 

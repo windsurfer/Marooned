@@ -48,7 +48,7 @@ import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.fragments.PostListingFragment;
 import com.abielinski.marooned.image.ThumbnailScaler;
-import com.abielinski.marooned.Reddit.prepared.RedditPreparedPost;
+import com.abielinski.marooned.reddit.prepared.RedditPreparedPost;
 
 import java.io.IOException;
 import java.net.URI;

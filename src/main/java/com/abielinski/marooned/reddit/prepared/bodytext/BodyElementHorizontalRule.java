@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared.bodytext;
+package com.abielinski.marooned.reddit.prepared.bodytext;
 
 import android.graphics.Color;
 import android.view.View;

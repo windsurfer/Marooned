@@ -15,15 +15,15 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared;
+package com.abielinski.marooned.reddit.prepared;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import org.apache.commons.text.StringEscapeUtils;
-import com.abielinski.marooned.Reddit.prepared.bodytext.BodyElement;
-import com.abielinski.marooned.Reddit.prepared.html.HtmlReader;
-import com.abielinski.marooned.Reddit.things.RedditComment;
-import com.abielinski.marooned.Reddit.things.RedditThingWithIdAndType;
+import com.abielinski.marooned.reddit.prepared.bodytext.BodyElement;
+import com.abielinski.marooned.reddit.prepared.html.HtmlReader;
+import com.abielinski.marooned.reddit.things.RedditComment;
+import com.abielinski.marooned.reddit.things.RedditThingWithIdAndType;
 
 public class RedditParsedComment implements RedditThingWithIdAndType {
 

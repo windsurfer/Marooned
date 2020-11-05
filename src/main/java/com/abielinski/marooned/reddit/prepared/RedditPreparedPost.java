@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared;
+package com.abielinski.marooned.reddit.prepared;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -65,14 +65,14 @@ import com.abielinski.marooned.common.RRTime;
 import com.abielinski.marooned.fragments.PostPropertiesDialog;
 import com.abielinski.marooned.fragments.ShareOrderDialog;
 import com.abielinski.marooned.image.ThumbnailScaler;
-import com.abielinski.marooned.Reddit.APIResponseHandler;
-import com.abielinski.marooned.Reddit.RedditAPI;
-import com.abielinski.marooned.Reddit.api.RedditSubredditSubscriptionManager;
-import com.abielinski.marooned.Reddit.api.SubredditSubscriptionState;
-import com.abielinski.marooned.Reddit.things.InvalidSubredditNameException;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
-import com.abielinski.marooned.Reddit.url.SubredditPostListURL;
-import com.abielinski.marooned.Reddit.url.UserProfileURL;
+import com.abielinski.marooned.reddit.APIResponseHandler;
+import com.abielinski.marooned.reddit.RedditAPI;
+import com.abielinski.marooned.reddit.api.RedditSubredditSubscriptionManager;
+import com.abielinski.marooned.reddit.api.SubredditSubscriptionState;
+import com.abielinski.marooned.reddit.things.InvalidSubredditNameException;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.url.SubredditPostListURL;
+import com.abielinski.marooned.reddit.url.UserProfileURL;
 import com.abielinski.marooned.views.RedditPostView;
 import com.abielinski.marooned.views.bezelmenu.SideToolbarOverlay;
 import com.abielinski.marooned.views.bezelmenu.VerticalToolbar;

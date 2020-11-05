@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.prepared;
+package com.abielinski.marooned.reddit.prepared;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
@@ -29,9 +29,9 @@ import com.abielinski.marooned.common.collections.WeakReferenceListManager;
 import com.abielinski.marooned.io.ExtendedDataInputStream;
 import com.abielinski.marooned.io.ExtendedDataOutputStream;
 import com.abielinski.marooned.io.RedditChangeDataIO;
-import com.abielinski.marooned.Reddit.things.RedditComment;
-import com.abielinski.marooned.Reddit.things.RedditPost;
-import com.abielinski.marooned.Reddit.things.RedditThingWithIdAndType;
+import com.abielinski.marooned.reddit.things.RedditComment;
+import com.abielinski.marooned.reddit.things.RedditPost;
+import com.abielinski.marooned.reddit.things.RedditThingWithIdAndType;
 
 import java.io.IOException;
 import java.util.HashMap;

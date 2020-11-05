@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Reddit.things;
+package com.abielinski.marooned.reddit.things;
 
 import android.content.Intent;
 import android.os.Parcel;

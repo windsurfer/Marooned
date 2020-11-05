@@ -30,12 +30,12 @@ import com.abielinski.marooned.activities.OptionsMenuUtility;
 import com.abielinski.marooned.adapters.MainMenuListingManager;
 import com.abielinski.marooned.fragments.MainMenuFragment;
 import com.abielinski.marooned.io.WritableHashSet;
-import com.abielinski.marooned.Reddit.PostSort;
-import com.abielinski.marooned.Reddit.prepared.RedditPreparedPost;
-import com.abielinski.marooned.Reddit.things.InvalidSubredditNameException;
-import com.abielinski.marooned.Reddit.things.SubredditCanonicalId;
-import com.abielinski.marooned.Reddit.url.PostCommentListingURL;
-import com.abielinski.marooned.Reddit.url.UserCommentListingURL;
+import com.abielinski.marooned.reddit.PostSort;
+import com.abielinski.marooned.reddit.prepared.RedditPreparedPost;
+import com.abielinski.marooned.reddit.things.InvalidSubredditNameException;
+import com.abielinski.marooned.reddit.things.SubredditCanonicalId;
+import com.abielinski.marooned.reddit.url.PostCommentListingURL;
+import com.abielinski.marooned.reddit.url.UserCommentListingURL;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -180,7 +180,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return AppearanceTheme.valueOf(StringUtils.asciiUppercase(getString(
 				R.string.pref_appearance_theme_key,
-				"red",
+				"maroon",
 				context,
 				sharedPreferences)));
 	}
