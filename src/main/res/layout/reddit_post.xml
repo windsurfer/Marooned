@@ -57,7 +57,7 @@
 				android:layout_height="wrap_content"
 				android:scaleType="center"
 				android:adjustViewBounds="true"
-				android:maxHeight="450dp"
+				android:maxHeight="800dp"
 				android:paddingTop="5dp"
 				android:paddingBottom="2dp"
 				android:paddingRight="5dp"

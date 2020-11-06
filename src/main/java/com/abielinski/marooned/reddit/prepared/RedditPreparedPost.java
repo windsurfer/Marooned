@@ -196,7 +196,7 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 		hasThumbnail = showThumbnails && hasThumbnail(post);
 
 		// TODO parameterise
-		final int thumbnailWidth = General.dpToPixels(context, 64);
+		final int thumbnailWidth = General.dpToPixels(context, 96);
 
 		if(hasThumbnail && hasThumbnail(post)) {
 			downloadThumbnail(context, thumbnailWidth, cm, listId);

@@ -85,12 +85,18 @@ public final class ThumbnailScaler {
 		float yScale = ((float)height) / (float)image.getHeight();
 		float smallerScale = (xScale <= yScale) ? xScale : yScale;
 
-		return Bitmap.createScaledBitmap(
+
+		Bitmap scaled = Bitmap.createScaledBitmap(
 				image,
 				Math.round(smallerScale * image.getWidth()),
 				Math.round(smallerScale * image.getHeight()),
 				true);
 
+		if(image != scaled) {
+			image.recycle();
+		}
+
+		return scaled;
 	}
 
 	public static Bitmap scaleNoCrop(final Bitmap image, final int desiredSquareSizePx) {

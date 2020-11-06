@@ -188,7 +188,7 @@ public class OAuthLoginActivity extends BaseActivity {
 		settings.setAppCacheEnabled(false);
 		settings.setDisplayZoomControls(false);
 
-		setTitle(RedditOAuth.getPromptUri().toString());
+		setTitle(R.string.firstrun_login_title);
 		mWebView.loadUrl(RedditOAuth.getPromptUri().toString());
 		mWebView.setBackgroundColor(Color.BLACK);
 		mWebView.setWebViewClient(new WebViewClient() {

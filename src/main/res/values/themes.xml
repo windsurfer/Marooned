@@ -183,13 +183,13 @@
 
 	<style name="RR.Dark.LowContrast.Maroon" parent="RR.Dark.LowContrast">
 
-		<item name="colorPrimary">#6A002c</item>
-		<item name="colorPrimaryDark">#370016</item>
+		<item name="colorPrimary">#610020</item>
+		<item name="colorPrimaryDark">#370010</item>
 		<item name="colorAccent">#D8B0B0</item>
 
 		<item name="rrPostListHeaderBackgroundCol">#370000</item>
 
-		<item name="rrMainTextCol">#EDEDED</item>
+		<item name="rrMainTextCol">#FDFDFD</item>
 		<item name="rrSubTextCol">#777777</item>
 
 		<item name="rrLoadingRingForegroundCol">#AAAAAA</item>
@@ -206,7 +206,7 @@
 
 		<item name="rrPostThumbnailBackground">#222222</item>
 
-		<item name="rrCommentBodyCol">#F3F3F3</item>
+		<item name="rrCommentBodyCol">#FCFCFC</item>
 		<item name="rrCommentHeaderCol">#B8B8B8</item>
 
 	</style>
