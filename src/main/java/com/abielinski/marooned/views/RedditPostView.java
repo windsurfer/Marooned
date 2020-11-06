@@ -22,14 +22,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.Process;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +41,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -522,10 +527,23 @@ public final class RedditPostView extends FlingableItemView
 
 			if (!mImageIsRendering){
 
-				final int imageHeight = post.renderedImageHeight != 0 ? post.renderedImageHeight
-						: (int)(800.0f * dpScale);
+				final int availableHeight;
+				final int availableWidth;
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+					Rect windowSize = new Rect ();
+					mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(windowSize);
+					availableHeight = Math.min((int)(800.0f * dpScale), (int)windowSize.height());
+					availableWidth = Math.min((int)(800.0f * dpScale), (int)windowSize.width());
+				}else{
+					availableHeight = (int)(600.0f * dpScale);
+					availableWidth = (int)(600.0f * dpScale);
+				}
 
-				int imageWidth = Math.max(mOuterView.getWidth(), imageHeight);
+				final int imageHeight = post.renderedImageHeight != 0 ?
+						Math.min(post.renderedImageHeight, availableHeight)
+						: availableHeight;
+
+				final int imageWidth = availableWidth;
 
 				postImageView.setMinimumHeight(imageHeight);
 
@@ -541,7 +559,7 @@ public final class RedditPostView extends FlingableItemView
 						@Override
 						public void run() {
 
-							android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+							Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
 							try {
 
@@ -557,6 +575,7 @@ public final class RedditPostView extends FlingableItemView
 										postImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 										postImageView.setImageDrawable(result);
 										post.renderedImageHeight = result.getIntrinsicHeight();
+										postImageView.setMinimumHeight(post.renderedImageHeight);
 
 										final Animation animation = AnimationUtils.loadAnimation(
 												getContext(),
