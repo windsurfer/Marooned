@@ -195,6 +195,8 @@
 		<item name="rrLoadingRingForegroundCol">#AAAAAA</item>
 		<item name="rrLoadingRingBackgroundCol">#323232</item>
 
+		<item name="rrListItemBackgroundCol">#232425</item>
+		<item name="rrListBackgroundCol">#111111</item>
 		<item name="rrPostTitleCol">#FFFFFF</item>
 		<item name="rrPostTitleReadCol">#A39B9B</item>
 
@@ -204,7 +206,7 @@
 		<item name="rrPostCommentsButtonBackCol">#222222</item>
 		<item name="rrPostCommentsButtonHighlightCol">#444444</item>
 
-		<item name="rrPostThumbnailBackground">#222222</item>
+		<item name="rrPostThumbnailBackground">#444444</item>
 
 		<item name="rrCommentBodyCol">#FCFCFC</item>
 		<item name="rrCommentHeaderCol">#B8B8B8</item>

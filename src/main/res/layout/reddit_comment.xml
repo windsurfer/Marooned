@@ -24,12 +24,6 @@
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
 
-	<View
-			android:id="@+id/view_reddit_comment_divider_top"
-			android:layout_width="match_parent"
-			android:layout_height="1px"
-			android:background="?rrListDividerCol"/>
-
 	<LinearLayout
 			android:id="@+id/view_reddit_comment_indented_content"
 			android:layout_width="match_parent"
