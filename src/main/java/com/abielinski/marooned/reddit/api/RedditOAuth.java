@@ -48,11 +48,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public final class RedditOAuth {
 
-	private static final String REDIRECT_URI_OLD = "http://rr_oauth_redir";
-	private static final String CLIENT_ID_OLD = "m_zCW1Dixs9WLA";
-
-	private static final String REDIRECT_URI_NEW = "redreader://rr_oauth_redir";
-	private static final String CLIENT_ID_NEW = "EvLqme1n5YC93w";
+	private static final String REDIRECT_URI = "marooned://marooned_oauth_redir";
+	private static final String CLIENT_ID = "ZxAs7iOyKxSTfA";
 
 	private static final String ALL_SCOPES = "identity,edit,flair,history,"
 			+ "modconfig,modflair,modlog,modposts,modwiki,mysubreddits,"
@@ -170,8 +167,8 @@ public final class RedditOAuth {
 		uri.appendQueryParameter("response_type", "code");
 		uri.appendQueryParameter("duration", "permanent");
 		uri.appendQueryParameter("state", "Texas");
-		uri.appendQueryParameter("redirect_uri", REDIRECT_URI_NEW);
-		uri.appendQueryParameter("client_id", CLIENT_ID_NEW);
+		uri.appendQueryParameter("redirect_uri", REDIRECT_URI);
+		uri.appendQueryParameter("client_id", CLIENT_ID);
 		uri.appendQueryParameter("scope", ALL_SCOPES);
 
 		return uri.build();
@@ -313,7 +310,7 @@ public final class RedditOAuth {
 		final ArrayList<HTTPBackend.PostField> postFields = new ArrayList<>(3);
 		postFields.add(new HTTPBackend.PostField("grant_type", "authorization_code"));
 		postFields.add(new HTTPBackend.PostField("code", code));
-		postFields.add(new HTTPBackend.PostField("redirect_uri", REDIRECT_URI_NEW));
+		postFields.add(new HTTPBackend.PostField("redirect_uri", REDIRECT_URI));
 
 		try {
 			final HTTPBackend.Request request = HTTPBackend.getBackend().prepareRequest(
@@ -325,7 +322,7 @@ public final class RedditOAuth {
 			request.addHeader(
 					"Authorization",
 					"Basic " + Base64.encodeToString(
-							(CLIENT_ID_NEW + ":").getBytes(),
+							(CLIENT_ID + ":").getBytes(),
 							Base64.URL_SAFE | Base64.NO_WRAP));
 
 			final AtomicReference<FetchRefreshTokenResult> result =
@@ -678,8 +675,7 @@ public final class RedditOAuth {
 
 			request.addHeader(
 					"Authorization",
-					"Basic " + Base64.encodeToString(
-							((user.usesNewClientId ? CLIENT_ID_NEW : CLIENT_ID_OLD) + ":")
+					"Basic " + Base64.encodeToString((CLIENT_ID + ":")
 									.getBytes(),
 							Base64.URL_SAFE | Base64.NO_WRAP));
 
@@ -781,7 +777,7 @@ public final class RedditOAuth {
 			request.addHeader(
 					"Authorization",
 					"Basic " + Base64.encodeToString(
-							(CLIENT_ID_NEW + ":").getBytes(),
+							(CLIENT_ID + ":").getBytes(),
 							Base64.URL_SAFE | Base64.NO_WRAP));
 
 			final AtomicReference<FetchAccessTokenResult> result =

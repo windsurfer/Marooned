@@ -457,7 +457,7 @@ public class LinkHandler {
 				Log.i("RRDEBUG", "Considering " + packageName);
 
 				if(packageName != null && !packageName.startsWith(
-						"org.quantumbadger.redreader")) {
+						"com.abielinski.marooned")) {
 					final Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.setData(uri);
 					intent.setPackage(packageName);

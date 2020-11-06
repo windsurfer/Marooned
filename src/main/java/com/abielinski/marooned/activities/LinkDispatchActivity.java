@@ -66,7 +66,7 @@ public class LinkDispatchActivity extends AppCompatActivity {
 			return;
 		}
 
-		if(data.getScheme().equalsIgnoreCase("redreader")) {
+		if(data.getScheme().equalsIgnoreCase("marooned")) {
 			RedditOAuth.completeLogin(this, data, new RunnableOnce(() -> {
 
 				/*

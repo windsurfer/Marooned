@@ -19,6 +19,8 @@ package com.abielinski.marooned.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.CookieManager;
 import android.webkit.WebResourceResponse;
@@ -41,11 +43,14 @@ public class OAuthLoginActivity extends BaseActivity {
 	private static final String CSS_FIXES
 			= "li {\n" +
 			"  list-style-type: none;\n" +
-			"  margin:10px\n" +
+			"  margin:14px\n" +
 			"}\n" +
 			"\n" +
 			"label {\n" +
 			"  margin-right: 10px;\n" +
+			"}\n" +
+			"a, a:visited {\n" +
+			"  color: #8ac5fc;\n" +
 			"}\n" +
 			"\n" +
 			"div.icon, div.infobar, div.mobile-web-redirect-bar, div#topbar {\n" +
@@ -58,36 +63,53 @@ public class OAuthLoginActivity extends BaseActivity {
 			"\n" +
 			"div.content {\n" +
 			"  padding: 0px;\n" +
+			"  padding-top: 1px;\n" +
+			"  padding-bottom: 1px;\n" +
 			"  margin: 20px;\n" +
+			"  background-color: #333;\n" +
+			"}\n" +
+			"div.content a:not(.recover-password) {\n" +
+			"  pointer-events: none;\n" +
+			"}\n" +
+			"#login_login, #login_reg {\n" +
+			"  background-color: #333;\n" +
+			"  padding-top: 24px;\n" +
+			"  padding-bottom: 24px;\n" +
+			"  max-width: 600px;\n" +
+			"  margin: auto;\n" +
 			"}\n" +
 			"\n" +
 			"body {\n" +
-			"  background-color: #FFF;\n" +
+			"  background-color: #000; color: #fff; text-transform: capitalize; padding-top: 10px; padding-bottom: 60px; margin-bottom: 60px; font-size: 110%;\n" +
 			"}\n" +
 			"\n" +
 			"input.newbutton {\n" +
-			"  background-color: #888;\n" +
+			"  background-color: #444;\n" +
 			"  font-size: 20pt;\n" +
-			"  margin: 10px;\n" +
+			"  margin: 16px auto;\n" +
 			"  border-image-source: none;\n" +
 			"  color: #FFF;\n" +
 			"  border: none;\n" +
-			"  padding-left:10px;\n" +
-			"  padding-right:10px;\n" +
+			"  padding-left:14px;\n" +
+			"  padding-right:14px;\n" +
 			"  padding-top:6px;\n" +
 			"  padding-bottom:6px;\n" +
 			"}\n" +
 			"\n" +
 			"button {\n" +
-			"  background-color: #888;\n" +
-			"  font-size: 15pt;\n" +
+			"  display: block;\n" +
+			"  background-color: #555;\n" +
+			"  text-transform: capitalize;\n" +
+			"  font-size: 16pt;\n" +
 			"  border-image-source: none;\n" +
 			"  color: #FFF;\n" +
 			"  border: none;\n" +
-			"  padding-left:10px;\n" +
-			"  padding-right:10px;\n" +
+			"  padding-left:16px;\n" +
+			"  padding-right:16px;\n" +
 			"  padding-top:6px;\n" +
 			"  padding-bottom:6px;\n" +
+			"  margin: 16px;\n" +
+			"  margin-left: auto;\n" +
 			"}\n" +
 			"\n" +
 			"input.allow {\n" +
@@ -107,7 +129,13 @@ public class OAuthLoginActivity extends BaseActivity {
 			"}\n" +
 			"\n" +
 			"form.pretty-form {\n" +
-			"  float: left;\n" +
+			"  margin-bottom: 40px;\n" +
+			"}\n" +
+			"form input {\n" +
+			"  background: #444; color: #fff; padding: 6px; border: none; border-bottom: 1px solid #aaa;\n" +
+			"}\n" +
+			".error {\n" +
+			"  color: #f44; display: block; margin-top: 5px;\n" +
 			"}\n" +
 			"\n";
 
@@ -162,21 +190,26 @@ public class OAuthLoginActivity extends BaseActivity {
 
 		setTitle(RedditOAuth.getPromptUri().toString());
 		mWebView.loadUrl(RedditOAuth.getPromptUri().toString());
-
+		mWebView.setBackgroundColor(Color.BLACK);
 		mWebView.setWebViewClient(new WebViewClient() {
 			@Override
 			public boolean shouldOverrideUrlLoading(
 					final WebView view,
 					final String url) {
 
-				if(url.startsWith("http://rr_oauth_redir")
-						|| url.startsWith("redreader://rr_oauth_redir")) { // TODO constant
+				if(url.startsWith("http://marooned_oauth_redir")
+						|| url.startsWith("marooned://marooned_oauth_redir")) { // TODO constant
 
 					final Intent intent = new Intent();
 					intent.putExtra("url", url);
 					setResult(123, intent);
 					finish();
 
+				} else if (url.startsWith("https://www.reddit.com/password")){
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+					browserIntent.setData(Uri.parse(url));
+					startActivity(browserIntent);
+					return true;
 				} else {
 					setTitle(url);
 					return false;
