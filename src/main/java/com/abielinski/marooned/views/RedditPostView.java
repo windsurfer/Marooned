@@ -407,7 +407,7 @@ public final class RedditPostView extends FlingableItemView
 			title.setText(data.src.getTitle());
 			title_alternate.setText(data.src.getTitle());
 			if(mCommentsButtonPref) {
-				commentsText.setText(String.valueOf(data.src.getSrc().num_comments));
+				commentsText.setText(General.shortScore(data.src.getSrc().num_comments));
 			}
 
 			thumbnailView.setMinimumWidth((int)(96.0f

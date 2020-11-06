@@ -120,7 +120,8 @@ public final class General {
 
 	public static String shortScore(final int score){
 		if (score > 999){
-			return String.valueOf(score/1000) + "." + String.valueOf(score/100 % 10) + "k";
+			final int modified = score+49;
+			return (modified/1000) + "." + (modified/100 % 10) + "k";
 		}
 		return String.valueOf(score);
 	}
