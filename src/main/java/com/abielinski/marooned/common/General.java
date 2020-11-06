@@ -126,6 +126,10 @@ public final class General {
 		return String.valueOf(score);
 	}
 
+	public static String filterFlairIcons(String flair){
+		return flair.replaceAll(":[^:]+:","");
+	}
+
 	public static String bytesToMegabytes(final long input) {
 		final long totalKilobytes = input / 1024;
 		final long totalMegabytes = totalKilobytes / 1024;

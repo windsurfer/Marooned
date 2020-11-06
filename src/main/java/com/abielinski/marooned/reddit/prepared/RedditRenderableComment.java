@@ -153,7 +153,7 @@ public class RedditRenderableComment
 			}
 
 			sb.append(
-					" " + flair + General.LTR_OVERRIDE_MARK + " ",
+					" " + General.filterFlairIcons(flair) + General.LTR_OVERRIDE_MARK + " ",
 					BetterSSB.FOREGROUND_COLOR | BetterSSB.BACKGROUND_COLOR,
 					theme.rrFlairTextCol,
 					theme.rrFlairBackCol,

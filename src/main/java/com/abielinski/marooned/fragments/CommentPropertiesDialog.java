@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import org.apache.commons.text.StringEscapeUtils;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.activities.BaseActivity;
+import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.RRTime;
 import com.abielinski.marooned.reddit.things.RedditComment;
 
@@ -60,7 +61,7 @@ public final class CommentPropertiesDialog extends PropertiesDialog {
 			items.addView(propView(
 					context,
 					R.string.props_author_flair,
-					comment.author_flair_text,
+					General.filterFlairIcons(comment.author_flair_text),
 					false));
 		}
 

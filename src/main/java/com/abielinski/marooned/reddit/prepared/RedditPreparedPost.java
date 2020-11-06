@@ -1047,7 +1047,7 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 			if(src.getFlairText() != null) {
 				postListDescSb.append(
 						" "
-								+ src.getFlairText()
+								+ General.filterFlairIcons(src.getFlairText())
 								+ General.LTR_OVERRIDE_MARK
 								+ " ",
 						BetterSSB.BOLD
