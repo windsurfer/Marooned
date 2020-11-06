@@ -367,7 +367,7 @@ public class MainMenuListingManager {
 			}
 		}
 
-		if(PrefsUtility.pref_show_subscribed_subreddits_main_menu(
+		if(!user.isAnonymous() && PrefsUtility.pref_show_subscribed_subreddits_main_menu(
 				activity,
 				PreferenceManager.getDefaultSharedPreferences(activity))) {
 
