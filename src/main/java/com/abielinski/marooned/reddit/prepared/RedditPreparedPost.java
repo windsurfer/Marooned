@@ -110,6 +110,8 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 
 	private RedditPostView mBoundView = null;
 
+	public int renderedImageHeight = 0;
+
 	public boolean cached = false;
 
 	public boolean isCached() {

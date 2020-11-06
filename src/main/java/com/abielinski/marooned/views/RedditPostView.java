@@ -522,7 +522,9 @@ public final class RedditPostView extends FlingableItemView
 
 			if (!mImageIsRendering){
 
-				int imageHeight = (int)(800.0f * dpScale);
+				final int imageHeight = post.renderedImageHeight != 0 ? post.renderedImageHeight
+						: (int)(800.0f * dpScale);
+
 				int imageWidth = Math.max(mOuterView.getWidth(), imageHeight);
 
 				postImageView.setMinimumHeight(imageHeight);
@@ -554,6 +556,7 @@ public final class RedditPostView extends FlingableItemView
 									if (postImageView != null && oldPost != null && oldPost.src == post.src && mImageIsRendering) {
 										postImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 										postImageView.setImageDrawable(result);
+										post.renderedImageHeight = result.getIntrinsicHeight();
 
 										final Animation animation = AnimationUtils.loadAnimation(
 												getContext(),
