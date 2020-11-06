@@ -143,6 +143,11 @@ public class BetterSSB {
 		}
 	}
 
+	public void addSpan(Object what){
+		sb.append("u");
+		sb.setSpan(what,  sb.length() - 1, sb.length(), 0);
+	}
+
 	public void linkify() {
 
 		final String asText = sb.toString();

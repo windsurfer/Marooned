@@ -32,6 +32,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -1069,9 +1070,8 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 					pointsCol,
 					0,
 					1f);
-			postListDescSb.append(
-					context.getString(R.string.subtitle_points) + " ",
-					0);
+			postListDescSb.addSpan(new ImageSpan(context, R.drawable.arrow_up_small_dark));
+			postListDescSb.append(" ", 0);
 		}
 
 		if(mPostSubtitleItems.contains(PrefsUtility.AppearancePostSubtitleItem.GOLD)) {
