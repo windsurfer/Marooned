@@ -83,6 +83,8 @@ public final class RedditPostView extends FlingableItemView
 
 	private final boolean mCommentsButtonPref;
 
+	private boolean mImageIsRendering = false;
+
 	private final int
 			rrPostTitleReadCol,
 			rrPostTitleCol,
@@ -400,6 +402,7 @@ public final class RedditPostView extends FlingableItemView
 
 			postImageView.setVisibility(GONE);
 			postImageView.setImageResource(android.R.color.transparent);
+			mImageIsRendering = false;
 
 			title.setVisibility(VISIBLE);
 			title_alternate.setVisibility(GONE);
@@ -517,54 +520,58 @@ public final class RedditPostView extends FlingableItemView
 
 			overlayVisible = false;
 
-			int imageHeight = (int)(800.0f * dpScale);
-			int imageWidth = Math.max(mOuterView.getWidth(), imageHeight);
+			if (!mImageIsRendering){
 
-			// smaller "loading" height than the max height
-			postImageView.setMinimumHeight((int)(500.0f * dpScale));
+				int imageHeight = (int)(800.0f * dpScale);
+				int imageWidth = Math.max(mOuterView.getWidth(), imageHeight);
 
-			String postUrl = post.src.getUrl();
-			Uri imageCacheUri = getURIFromCache(postUrl, mActivity);
-			if (imageCacheUri != null){
+				postImageView.setMinimumHeight(imageHeight);
 
-				RedditPreparedPost oldPost = post;
+				String postUrl = post.src.getUrl();
+				Uri imageCacheUri = getURIFromCache(postUrl, mActivity);
+				if (imageCacheUri != null){
 
-				new Thread("Image rendering thread"){
-					@Override
-					public void run() {
+					mImageIsRendering = true;
 
-						android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+					RedditPreparedPost oldPost = post;
 
-						try {
+					new Thread("Image rendering thread"){
+						@Override
+						public void run() {
 
-							final Bitmap rawBitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), imageCacheUri);
+							android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
 
-							final Bitmap scaledBitmap = ThumbnailScaler.scaleToFit(
-									rawBitmap,
-									imageWidth,
-									imageHeight);
-							final BitmapDrawable result = new BitmapDrawable(mActivity.getResources(), scaledBitmap);
-							mActivity.runOnUiThread(()->{
-								if (postImageView != null && oldPost != null && oldPost.src == post.src) {
-									postImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-									postImageView.setImageDrawable(result);
+							try {
 
-									final Animation animation = AnimationUtils.loadAnimation(
-											getContext(),
-											R.anim.fade_in);
+								final Bitmap rawBitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), imageCacheUri);
 
-									postImageView.clearAnimation();
-									postImageView.startAnimation(animation);
-								}
-							});
+								final Bitmap scaledBitmap = ThumbnailScaler.scaleToFit(
+										rawBitmap,
+										imageWidth,
+										imageHeight);
+								final BitmapDrawable result = new BitmapDrawable(mActivity.getResources(), scaledBitmap);
+								mActivity.runOnUiThread(()->{
+									if (postImageView != null && oldPost != null && oldPost.src == post.src && mImageIsRendering) {
+										postImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+										postImageView.setImageDrawable(result);
 
-						} catch (IOException e) {
-							e.printStackTrace();
+										final Animation animation = AnimationUtils.loadAnimation(
+												getContext(),
+												R.anim.fade_in);
+
+										postImageView.clearAnimation();
+										postImageView.startAnimation(animation);
+									}
+								});
+
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 						}
-					}
 
 
-				}.start();
+					}.start();
+				}
 			}
 		}
 
