@@ -55,8 +55,14 @@ public class RRTime {
 			return dtFormatter12hr.print(localDateTime);
 		}
 	}
-
 	public static String formatDurationFrom(final Context context, final long startTime) {
+		return formatDurationFrom(context, startTime, 2);
+	}
+
+	public static String formatDurationFrom(
+			final Context context,
+			final long startTime,
+			final int numParts) {
 		final String space = " ";
 		final String comma = ",";
 		final String separator = comma + space;
@@ -108,15 +114,21 @@ public class RRTime {
 				.appendSuffix(context.getString(R.string.time_ms))
 				.toFormatter();
 
-		String duration
-				= periodFormatter.print(period.normalizedStandard(PeriodType.yearMonthDayTime()));
+		StringBuilder duration
+				= new StringBuilder(periodFormatter.print(
+				period.normalizedStandard(PeriodType.yearMonthDayTime())));
 
-		final List<String> parts = Arrays.asList(duration.split(comma));
-		if(parts.size() >= 2) {
-			duration = parts.get(0) + comma + parts.get(1);
+		final List<String> parts = Arrays.asList(duration.toString().split(comma));
+
+		if(parts.size() >= numParts) {
+			duration = new StringBuilder(parts.get(0));
 		}
 
-		return String.format(context.getString(R.string.time_ago), duration);
+		for(int i = 1; i < numParts; i ++) {
+			duration.append(comma).append(parts.get(i));
+		}
+
+		return String.format(context.getString(R.string.time_ago), duration.toString());
 	}
 
 	public static long since(final long timestamp) {

@@ -799,6 +799,7 @@
 	<!-- Constants. Do not change. -->
 	<string-array name="pref_menus_mainmenu_shortcutitems_items_default">
 		<item>frontpage</item>
+		<item>popular</item>
 		<item>all</item>
 		<item>custom</item>
 	</string-array>

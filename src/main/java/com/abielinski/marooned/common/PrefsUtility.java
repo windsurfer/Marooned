@@ -485,7 +485,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return getBoolean(
 				R.string.pref_menus_show_popular_main_menu_key,
-				false,
+				true,
 				context,
 				sharedPreferences);
 	}
@@ -743,7 +743,7 @@ public final class PrefsUtility {
 			final SharedPreferences sharedPreferences) {
 		return getBoolean(
 				R.string.pref_behaviour_skiptofrontpage_key,
-				false,
+				true,
 				context,
 				sharedPreferences);
 	}
