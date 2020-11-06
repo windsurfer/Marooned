@@ -124,12 +124,12 @@ public class BugReportActivity extends BaseActivity {
 		intent.putExtra(
 				Intent.EXTRA_EMAIL,
 				new String[] {
-						"bug"
-								+ "reports"
+						"adam"
+								+ "bdevelop"
 								+ (char)64
-								+ "redreader"
+								+ "gmail"
 								+ '.'
-								+ "org"}); // no spam, thanks
+								+ "com"}); // no spam, thanks
 		intent.putExtra(Intent.EXTRA_SUBJECT, "Bug Report");
 		intent.putExtra(Intent.EXTRA_TEXT, sb.toString());
 
