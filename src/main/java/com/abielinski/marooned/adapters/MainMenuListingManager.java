@@ -130,6 +130,7 @@ public class MainMenuListingManager {
 		final Drawable rrIconCross;
 		final Drawable rrIconUpvote;
 		final Drawable rrIconDownvote;
+		final Drawable rrIconForward;
 
 		{
 			final TypedArray attr = activity.obtainStyledAttributes(new int[] {
@@ -139,7 +140,8 @@ public class MainMenuListingManager {
 					R.attr.rrIconStarFilled,
 					R.attr.rrIconCross,
 					R.attr.rrIconArrowUpBold,
-					R.attr.rrIconArrowDownBold
+					R.attr.rrIconArrowDownBold,
+					R.attr.rrIconForward
 			});
 
 			rrIconPerson = ContextCompat.getDrawable(activity, attr.getResourceId(0, 0));
@@ -153,6 +155,9 @@ public class MainMenuListingManager {
 			rrIconDownvote = ContextCompat.getDrawable(
 					activity,
 					attr.getResourceId(6, 0));
+			rrIconForward = ContextCompat.getDrawable(
+					activity,
+					attr.getResourceId(7, 0));
 
 			attr.recycle();
 		}
@@ -171,7 +176,7 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_frontpage,
 								MainMenuFragment.MENU_MENU_ACTION_FRONTPAGE,
-								null,
+								rrIconForward,
 								true));
 			}
 
@@ -181,8 +186,8 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_popular,
 								MainMenuFragment.MENU_MENU_ACTION_POPULAR,
-								null,
-								false));
+								rrIconForward,
+								true));
 			}
 
 			if(mainMenuShortcutItems.contains(MainMenuFragment.MainMenuShortcutItems.ALL)) {
@@ -191,8 +196,8 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_all,
 								MainMenuFragment.MENU_MENU_ACTION_ALL,
-								null,
-								false));
+								rrIconForward,
+								true));
 			}
 
 			if(mainMenuShortcutItems.contains(MainMenuFragment.MainMenuShortcutItems.CUSTOM)) {
@@ -201,8 +206,8 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_custom_destination,
 								MainMenuFragment.MENU_MENU_ACTION_CUSTOM,
-								null,
-								false));
+								rrIconForward,
+								true));
 			}
 
 			if(mainMenuShortcutItems.contains(MainMenuFragment.MainMenuShortcutItems.RANDOM)) {
@@ -211,8 +216,8 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_random,
 								MainMenuFragment.MENU_MENU_ACTION_RANDOM,
-								null,
-								false));
+								rrIconForward,
+								true));
 			}
 
 			if(mainMenuShortcutItems.contains(MainMenuFragment.MainMenuShortcutItems.RANDOM_NSFW)) {
@@ -221,8 +226,8 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_random_nsfw,
 								MainMenuFragment.MENU_MENU_ACTION_RANDOM_NSFW,
-								null,
-								false));
+								rrIconForward,
+								true));
 			}
 		}
 
