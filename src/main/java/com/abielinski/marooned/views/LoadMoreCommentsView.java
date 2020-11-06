@@ -51,23 +51,29 @@ public class LoadMoreCommentsView extends LinearLayout {
 		mCommentListingURL = commentListingURL;
 
 		setOrientation(VERTICAL);
-
+/*
 		final View divider = new View(context);
 		addView(divider);
 
 		divider.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
 		divider.getLayoutParams().height = 1;
+ */
 
 		final LinearLayout layout = new LinearLayout(context);
 		layout.setOrientation(HORIZONTAL);
 		addView(layout);
 		final int marginPx = General.dpToPixels(context, 8);
 
+		final int marginBottom = General.dpToPixels(context, 2);
+
 		layout.setGravity(Gravity.CENTER_VERTICAL);
 
 		mIndentView = new IndentView(context);
 		layout.addView(mIndentView);
 		mIndentView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+
+		MarginLayoutParams params = (MarginLayoutParams) layout.getLayoutParams();
+		params.bottomMargin = marginBottom;
 
 		final ImageView icon;
 
@@ -82,7 +88,7 @@ public class LoadMoreCommentsView extends LinearLayout {
 
 			layout.setBackgroundColor(appearance.getColor(1, General.COLOR_INVALID));
 
-			divider.setBackgroundColor(appearance.getColor(2, General.COLOR_INVALID));
+			//divider.setBackgroundColor(appearance.getColor(2, General.COLOR_INVALID));
 
 			appearance.recycle();
 		}

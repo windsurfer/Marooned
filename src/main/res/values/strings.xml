@@ -1298,8 +1298,8 @@
 
 	<!-- 2020-09-18 -->
 	<plurals name="load_more_comments_button_reply_count">
-		<item quantity="one">"Load more comments (%d reply)"</item>
-		<item quantity="other">"Load more comments (%d replies)"</item>
+		<item quantity="one">"View more comments (%d reply)"</item>
+		<item quantity="other">"View more comments (%d replies)"</item>
 	</plurals>
 
 	<!-- 2020-09-19 -->
