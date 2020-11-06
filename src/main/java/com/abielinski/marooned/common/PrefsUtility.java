@@ -1377,6 +1377,21 @@ public final class PrefsUtility {
 						sharedPreferences)));
 	}
 
+	public enum CachePrecacheVideos {
+		NEVER, WIFIONLY, ALWAYS
+	}
+
+	public static CachePrecacheVideos cache_precache_videos(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return CachePrecacheVideos.valueOf(StringUtils.asciiUppercase(
+				getString(
+						R.string.pref_cache_precache_videos_list_key,
+						"wifionly",
+						context,
+						sharedPreferences)));
+	}
+
 	public static CachePrecacheImages cache_precache_images_old(
 			final Context context,
 			final SharedPreferences sharedPreferences) {

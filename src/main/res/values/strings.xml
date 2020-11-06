@@ -1309,4 +1309,7 @@
 	<string name="pref_behaviour_back_again_key" translatable="false">pref_behaviour_back_again</string>
 	<string name="theme_name_maroon">Maroon</string>
 
+	<string name="pref_cache_precache_videos_list_key" translatable="false">pref_cache_precache_videos</string>
+	<string name="pref_cache_precache_videos_title">Precache videos</string>
+
 </resources>

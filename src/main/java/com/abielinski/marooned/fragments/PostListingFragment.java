@@ -812,6 +812,11 @@ public class PostListingFragment extends RRFragment
 						activity,
 						mSharedPreferences);
 
+				final PrefsUtility.CachePrecacheVideos videoPrecachePref
+						= PrefsUtility.cache_precache_videos(
+						activity,
+						mSharedPreferences);
+
 				final PrefsUtility.CachePrecacheComments commentPrecachePref
 						= PrefsUtility.cache_precache_comments(
 						activity,
@@ -822,6 +827,13 @@ public class PostListingFragment extends RRFragment
 								|| (imagePrecachePref == PrefsUtility.CachePrecacheImages.WIFIONLY
 								&& isConnectionWifi))
 						&& !FileUtils.isCacheDiskFull(activity);
+
+				final boolean precacheVideos
+						= (videoPrecachePref == PrefsUtility.CachePrecacheVideos.ALWAYS
+						|| (videoPrecachePref == PrefsUtility.CachePrecacheVideos.WIFIONLY
+						&& isConnectionWifi))
+						&& !FileUtils.isCacheDiskFull(activity);
+
 
 				final boolean precacheComments
 						= (commentPrecachePref == PrefsUtility.CachePrecacheComments.ALWAYS
@@ -864,6 +876,7 @@ public class PostListingFragment extends RRFragment
 								mSharedPreferences));
 
 				Log.i(TAG, "Precaching images: " + (precacheImages ? "ON" : "OFF"));
+				Log.i(TAG, "Precaching videos: " + (precacheVideos ? "ON" : "OFF"));
 				Log.i(TAG, "Precaching comments: " + (precacheComments ? "ON" : "OFF"));
 
 				final CacheManager cm = CacheManager.getInstance(activity);
@@ -1028,7 +1041,8 @@ public class PostListingFragment extends RRFragment
 
 										postItem.setCached(isImageCached(activity, info.urlOriginal), activity);
 
-										if(!precacheImages) {
+										// not strictly required, just an optimization
+										if(!precacheImages && !precacheVideos) {
 											return;
 										}
 
@@ -1043,34 +1057,53 @@ public class PostListingFragment extends RRFragment
 										}
 
 										// Don't precache gifs if they're opened externally
-										if(ImageInfo.MediaType.GIF.equals(info.mediaType)
-												&& !gifViewMode.downloadInApp) {
+										if(ImageInfo.MediaType.GIF.equals(info.mediaType)){
+											if (!precacheVideos){
+												Log.i(TAG, String.format(
+													"Not precaching '%s': GIFs on current connection",
+													post.getUrl()));
+												return;
+											}
+											if(!gifViewMode.downloadInApp) {
 
-											Log.i(TAG, String.format(
+												Log.i(TAG, String.format(
 													"Not precaching '%s': GIFs opened externally",
 													post.getUrl()));
-											return;
+												return;
+											}
 										}
 
 										// Don't precache images if they're opened externally
-										if(ImageInfo.MediaType.IMAGE.equals(info.mediaType)
-												&& !imageViewMode.downloadInApp) {
-
-											Log.i(TAG, String.format(
+										if(ImageInfo.MediaType.IMAGE.equals(info.mediaType)) {
+											if (!imageViewMode.downloadInApp) {
+												Log.i(TAG, String.format(
 													"Not precaching '%s': images opened externally",
 													post.getUrl()));
-											return;
+												return;
+											}
+											if(!precacheImages){
+												Log.i(TAG, String.format(
+														"Not precaching '%s': images on current connection",
+														post.getUrl()));
+												return;
+											}
 										}
 
 
 										// Don't precache videos if they're opened externally
-										if(ImageInfo.MediaType.VIDEO.equals(info.mediaType)
-												&& !videoViewMode.downloadInApp) {
-
-											Log.i(TAG, String.format(
-													"Not precaching '%s': videos opened externally",
-													post.getUrl()));
-											return;
+										if(ImageInfo.MediaType.VIDEO.equals(info.mediaType)){
+											if (!videoViewMode.downloadInApp) {
+												Log.i(TAG, String.format(
+														"Not precaching '%s': videos opened externally",
+														post.getUrl()));
+												return;
+											}
+											if (!precacheVideos){
+												Log.i(TAG, String.format(
+														"Not precaching '%s': videos on current connection",
+														post.getUrl()));
+												return;
+											}
 										}
 
 										precacheImage(
