@@ -447,7 +447,7 @@
 
     <string name="download_subreddits">Downloading subreddits…</string>
 
-    <string name="subtitle_points">pts</string>
+    <string name="subtitle_points">▲</string>
     <string name="subtitle_by">by</string>
     <string name="subtitle_to">to</string>
 

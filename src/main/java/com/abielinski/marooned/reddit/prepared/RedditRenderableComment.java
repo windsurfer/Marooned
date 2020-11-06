@@ -170,7 +170,7 @@ public class RedditRenderableComment
 
 			if(!Boolean.TRUE.equals(rawComment.score_hidden)) {
 				sb.append(
-						String.valueOf(score),
+						General.shortScore(score),
 						BetterSSB.FOREGROUND_COLOR | BetterSSB.BOLD,
 						pointsCol,
 						0,
@@ -184,7 +184,7 @@ public class RedditRenderableComment
 						1f);
 			}
 
-			sb.append(" " + context.getString(R.string.subtitle_points) + " ", 0);
+			sb.append(context.getString(R.string.subtitle_points) + " ", 0);
 		}
 
 		if(theme.shouldShow(PrefsUtility.AppearanceCommentHeaderItem.GOLD)) {

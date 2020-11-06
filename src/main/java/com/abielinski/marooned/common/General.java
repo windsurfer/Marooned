@@ -118,6 +118,13 @@ public final class General {
 		}
 	}
 
+	public static String shortScore(final int score){
+		if (score > 999){
+			return String.valueOf(score/1000) + "." + String.valueOf(score/100 % 10) + "k";
+		}
+		return String.valueOf(score);
+	}
+
 	public static String bytesToMegabytes(final long input) {
 		final long totalKilobytes = input / 1024;
 		final long totalMegabytes = totalKilobytes / 1024;
