@@ -130,7 +130,7 @@ public class MainMenuListingManager {
 		final Drawable rrIconCross;
 		final Drawable rrIconUpvote;
 		final Drawable rrIconDownvote;
-		final Drawable rrIconForward;
+		final Drawable rrIconChevronRight;
 
 		{
 			final TypedArray attr = activity.obtainStyledAttributes(new int[] {
@@ -141,7 +141,7 @@ public class MainMenuListingManager {
 					R.attr.rrIconCross,
 					R.attr.rrIconArrowUpBold,
 					R.attr.rrIconArrowDownBold,
-					R.attr.rrIconForward
+					R.attr.rrIconChevronRight
 			});
 
 			rrIconPerson = ContextCompat.getDrawable(activity, attr.getResourceId(0, 0));
@@ -155,7 +155,7 @@ public class MainMenuListingManager {
 			rrIconDownvote = ContextCompat.getDrawable(
 					activity,
 					attr.getResourceId(6, 0));
-			rrIconForward = ContextCompat.getDrawable(
+			rrIconChevronRight = ContextCompat.getDrawable(
 					activity,
 					attr.getResourceId(7, 0));
 
@@ -176,7 +176,7 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_frontpage,
 								MainMenuFragment.MENU_MENU_ACTION_FRONTPAGE,
-								rrIconForward,
+								rrIconChevronRight,
 								true));
 			}
 
@@ -186,7 +186,7 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_popular,
 								MainMenuFragment.MENU_MENU_ACTION_POPULAR,
-								rrIconForward,
+								rrIconChevronRight,
 								true));
 			}
 
@@ -196,7 +196,7 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_all,
 								MainMenuFragment.MENU_MENU_ACTION_ALL,
-								rrIconForward,
+								rrIconChevronRight,
 								true));
 			}
 
@@ -206,7 +206,7 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_custom_destination,
 								MainMenuFragment.MENU_MENU_ACTION_CUSTOM,
-								rrIconForward,
+								rrIconChevronRight,
 								true));
 			}
 
@@ -216,7 +216,7 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_random,
 								MainMenuFragment.MENU_MENU_ACTION_RANDOM,
-								rrIconForward,
+								rrIconChevronRight,
 								true));
 			}
 
@@ -226,7 +226,7 @@ public class MainMenuListingManager {
 						makeItem(
 								R.string.mainmenu_random_nsfw,
 								MainMenuFragment.MENU_MENU_ACTION_RANDOM_NSFW,
-								rrIconForward,
+								rrIconChevronRight,
 								true));
 			}
 		}

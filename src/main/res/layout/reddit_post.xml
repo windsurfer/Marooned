@@ -33,6 +33,7 @@
 			android:layout_height="wrap_content"
 			android:gravity="top"
 			android:background="?rrListItemBackgroundCol"
+			android:nextFocusRight="@id/reddit_post_comments_button"
 			android:orientation="vertical">
 
 		<TextView
@@ -46,6 +47,7 @@
 				android:paddingBottom="2dp"
 				android:textSize="16sp"
 				android:visibility="gone"/>
+
 		<ImageView
 				android:id="@+id/reddit_post_image_view"
 				android:gravity="top"
@@ -68,7 +70,6 @@
 				android:orientation="horizontal"
 				android:minHeight="48dp"
 				android:elevation="10dp"
-				android:nextFocusRight="@id/reddit_post_comments_button"
 				android:baselineAligned="false"
 				tools:ignore="UnusedAttribute">
 
@@ -144,7 +145,7 @@
 					android:background="?rrPostCommentsButtonBackCol"
 					android:orientation="vertical"
 					android:paddingTop="5dp"
-					android:nextFocusLeft="@id/reddit_post_layout">
+					android:nextFocusLeft="@id/reddit_post_wrapper">
 
 				<ImageView
 						android:layout_height="wrap_content"

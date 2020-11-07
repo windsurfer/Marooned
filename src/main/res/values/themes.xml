@@ -113,7 +113,8 @@
 		<item name="rrIconPin">@drawable/pin_dark</item>
 		<item name="rrIconPinOff">@drawable/pin_off_dark</item>
 		<item name="rrIconMessagePlus">@drawable/message_plus_dark</item>
-		
+		<item name="rrIconChevronRight">@drawable/ic_baseline_chevron_right_24</item>
+
     </style>
 
 	<style name="RR.Dark.LowContrast" parent="RR.Dark">
@@ -388,6 +389,7 @@
 		<item name="rrIconPin">@drawable/pin_light</item>
 		<item name="rrIconPinOff">@drawable/pin_off_light</item>
 		<item name="rrIconMessagePlus">@drawable/message_plus_light</item>
+		<item name="rrIconChevronRight">@drawable/ic_baseline_chevron_right_24_light</item>
 
     </style>
 

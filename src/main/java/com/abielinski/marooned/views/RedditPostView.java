@@ -320,8 +320,8 @@ public final class RedditPostView extends FlingableItemView
 			if (mCommentsButtonPref) {
 				mOuterView.setNextFocusLeftId(commentsButton.getId());
 
-				commentsButton.setNextFocusForwardId(R.id.reddit_post_layout);
-				commentsButton.setNextFocusRightId(R.id.reddit_post_layout);
+				commentsButton.setNextFocusForwardId(R.id.reddit_post_wrapper);
+				commentsButton.setNextFocusRightId(R.id.reddit_post_wrapper);
 				commentsButton.setNextFocusLeftId(NO_ID);
 			}
 		}
@@ -531,8 +531,9 @@ public final class RedditPostView extends FlingableItemView
 				final int availableWidth;
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
 					Rect windowSize = new Rect ();
+					final int margin = (int)(96.0f * dpScale);
 					mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(windowSize);
-					availableHeight = Math.min((int)(800.0f * dpScale), (int)windowSize.height());
+					availableHeight = Math.min((int)(800.0f * dpScale), (int)windowSize.height() - margin);
 					availableWidth = Math.min((int)(800.0f * dpScale), (int)windowSize.width());
 				}else{
 					availableHeight = (int)(600.0f * dpScale);

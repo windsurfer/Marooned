@@ -43,10 +43,11 @@
 		<meta-data android:name="com.lge.support.SPLIT_WINDOW" android:value="true" />
 
         <activity android:name="com.abielinski.marooned.activities.MainActivity"
-                  android:configChanges="orientation|screenSize|keyboardHidden"
+                  android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
                   android:clearTaskOnLaunch="false"
                   android:finishOnTaskLaunch="false"
-                  android:alwaysRetainTaskState="true">
+                  android:alwaysRetainTaskState="true"
+				  android:documentLaunchMode="intoExisting">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -40,6 +40,7 @@ import com.abielinski.marooned.R;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.TorCommon;
+import com.abielinski.marooned.views.MFrameLayout;
 
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -60,7 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity
 			= new HashMap<>();
 
 	private TextView mActionbarTitleTextView;
-	private FrameLayout mContentView;
+	private MFrameLayout mContentView;
 
 	private ImageView mActionbarBackIconView;
 	private View mActionbarTitleOuterView;
