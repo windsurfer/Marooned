@@ -46,8 +46,7 @@
                   android:configChanges="orientation|screenSize|keyboardHidden|keyboard"
                   android:clearTaskOnLaunch="false"
                   android:finishOnTaskLaunch="false"
-                  android:alwaysRetainTaskState="true"
-				  android:documentLaunchMode="intoExisting">
+                  android:alwaysRetainTaskState="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
