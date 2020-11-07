@@ -19,10 +19,10 @@
     <string name="firstrun_login_message">You are not currently logged in. You can access the account list by selecting Accounts from the menu.</string>
     <string name="firstrun_login_button_now">Log in now</string>
     <string name="firstrun_login_button_later">Be anonymous</string>
-    <string name="prefs_category_appearance">Appearance</string>
-    <string name="prefs_category_behaviour">Behaviour</string>
-    <string name="prefs_category_cache">Cache</string>
-    <string name="prefs_category_menus">Menus</string>
+    <string name="prefs_category_appearance">Appearance &amp; layout</string>
+    <string name="prefs_category_behaviour">Behaviour, sort, &amp; content</string>
+    <string name="prefs_category_cache">Pre-caching</string>
+    <string name="prefs_category_menus">Menus &amp; shortcuts</string>
     <string name="pref_appearance_theme_header">Theme</string>
     <string name="pref_appearance_thumbnails_header">Thumbnails</string>
     <string name="pref_appearance_comments_header">Comments</string>

@@ -834,6 +834,10 @@ public class PostListingFragment extends RRFragment
 						&& isConnectionWifi))
 						&& !FileUtils.isCacheDiskFull(activity);
 
+				final long maxSizePrecacheVideos
+						= PrefsUtility.pref_cache_videos_size(activity,mSharedPreferences);
+				final long maxSizePrecacheImages
+						= PrefsUtility.pref_cache_images_size(activity,mSharedPreferences);
 
 				final boolean precacheComments
 						= (commentPrecachePref == PrefsUtility.CachePrecacheComments.ALWAYS
@@ -1047,28 +1051,32 @@ public class PostListingFragment extends RRFragment
 										}
 
 										// Don't precache huge images
-										if(info.size != null
-												&& info.size > 30 * 1024 * 1024) {
-											Log.i(TAG, String.format(
-													"Not precaching '%s': too big (%d kB)",
-													post.getUrl(),
-													info.size / 1024));
-											return;
-										}
+										final long size = info.size != null ? info.size : 0;
+
 
 										// Don't precache gifs if they're opened externally
 										if(ImageInfo.MediaType.GIF.equals(info.mediaType)){
+
 											if (!precacheVideos){
 												Log.i(TAG, String.format(
 													"Not precaching '%s': GIFs on current connection",
 													post.getUrl()));
 												return;
 											}
+
 											if(!gifViewMode.downloadInApp) {
 
 												Log.i(TAG, String.format(
 													"Not precaching '%s': GIFs opened externally",
 													post.getUrl()));
+												return;
+											}
+
+											if (size > maxSizePrecacheVideos) {
+												Log.i(TAG, String.format(
+														"Not precaching '%s': too big (%d kB)",
+														post.getUrl(),
+														size / 1024));
 												return;
 											}
 										}
@@ -1087,6 +1095,14 @@ public class PostListingFragment extends RRFragment
 														post.getUrl()));
 												return;
 											}
+
+											if (size > maxSizePrecacheImages) {
+												Log.i(TAG, String.format(
+														"Not precaching '%s': too big (%d kB)",
+														post.getUrl(),
+														size / 1024));
+												return;
+											}
 										}
 
 
@@ -1102,6 +1118,14 @@ public class PostListingFragment extends RRFragment
 												Log.i(TAG, String.format(
 														"Not precaching '%s': videos on current connection",
 														post.getUrl()));
+												return;
+											}
+
+											if (size > maxSizePrecacheVideos) {
+												Log.i(TAG, String.format(
+														"Not precaching '%s': too big (%d kB)",
+														post.getUrl(),
+														size / 1024));
 												return;
 											}
 										}

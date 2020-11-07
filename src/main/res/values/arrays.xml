@@ -1039,4 +1039,29 @@
 		<item>edit</item>
 	</string-array>
 
+
+
+	<!-- Constants. Do not change. -->
+	<string-array name="pref_cache_maxsize_items">
+		<item>1MB</item>
+		<item>2MB</item>
+		<item>5MB</item>
+		<item>10MB</item>
+		<item>20MB</item>
+		<item>30MB</item>
+		<item>50MB</item>
+		<item>100MB</item>
+	</string-array>
+
+	<string-array name="pref_cache_maxsize_returns">
+		<item>1</item>
+		<item>2</item>
+		<item>5</item>
+		<item>10</item>
+		<item>20</item>
+		<item>30</item>
+		<item>50</item>
+		<item>100</item>
+	</string-array>
+
 </resources>

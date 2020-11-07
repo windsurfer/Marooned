@@ -31,7 +31,7 @@
 
     <string name="prefs_category_appearance">Appearance &amp; layout</string>
     <string name="prefs_category_behaviour">Behaviour, sort, &amp; content</string>
-    <string name="prefs_category_cache">Cache</string>
+    <string name="prefs_category_cache">Pre-caching</string>
     <string name="prefs_category_menus">Menus &amp; shortcuts</string>
 
     <!-- Appearance Prefs -->
@@ -1311,5 +1311,10 @@
 
 	<string name="pref_cache_precache_videos_list_key" translatable="false">pref_cache_precache_videos</string>
 	<string name="pref_cache_precache_videos_title">Precache videos</string>
+
+	<string name="pref_cache_precache_images_size_list_key" translatable="false">pref_cache_precache_images_size</string>
+	<string name="pref_cache_precache_images_size_title">Precache images smaller than</string>
+	<string name="pref_cache_precache_videos_size_list_key" translatable="false">pref_cache_precache_videos_size</string>
+	<string name="pref_cache_precache_videos_size_title">Precache videos smaller than</string>
 
 </resources>

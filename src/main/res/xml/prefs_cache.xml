@@ -27,11 +27,25 @@
 						android:entryValues="@array/list_yes_no_or_wifi_return"
 						android:defaultValue="always"/>
 
+		<ListPreference android:title="@string/pref_cache_precache_images_size_title"
+						android:key="@string/pref_cache_precache_images_size_list_key"
+						android:entries="@array/pref_cache_maxsize_items"
+						android:entryValues="@array/pref_cache_maxsize_returns"
+						android:defaultValue="5"/>
+
+
 		<ListPreference android:title="@string/pref_cache_precache_videos_title"
 						android:key="@string/pref_cache_precache_videos_list_key"
 						android:entries="@array/list_yes_no_or_wifi_items"
 						android:entryValues="@array/list_yes_no_or_wifi_return"
 						android:defaultValue="wifionly"/>
+
+		<ListPreference android:title="@string/pref_cache_precache_videos_size_title"
+						android:key="@string/pref_cache_precache_videos_size_list_key"
+						android:entries="@array/pref_cache_maxsize_items"
+						android:entryValues="@array/pref_cache_maxsize_returns"
+						android:defaultValue="30"/>
+
 
 		<Preference android:title="@string/pref_cache_location_title"
 				android:key="@string/pref_cache_location_key"/>

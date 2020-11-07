@@ -1392,6 +1392,33 @@ public final class PrefsUtility {
 						sharedPreferences)));
 	}
 
+
+	public static Long pref_cache_images_size(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return 1024L
+				* 1024L
+				* Long.valueOf(getString(
+				R.string.pref_cache_precache_images_size_list_key,
+				"5",
+				context,
+				sharedPreferences));
+	}
+
+	public static Long pref_cache_videos_size(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return 1024L
+				* 1024L
+				* Long.valueOf(getString(
+				R.string.pref_cache_precache_videos_size_list_key,
+				"30",
+				context,
+				sharedPreferences));
+	}
+
+
+
 	public static CachePrecacheImages cache_precache_images_old(
 			final Context context,
 			final SharedPreferences sharedPreferences) {
