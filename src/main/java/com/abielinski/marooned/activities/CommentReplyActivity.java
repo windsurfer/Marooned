@@ -20,6 +20,7 @@ package com.abielinski.marooned.activities;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import android.view.KeyEvent;
@@ -27,11 +28,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.abielinski.marooned.R;
@@ -59,6 +62,11 @@ public class CommentReplyActivity extends BaseActivity {
 	private Spinner usernameSpinner;
 	private EditText textEdit;
 	private CheckBox inboxReplies;
+	private Button helpButton;
+	private Button replyButton;
+	private Button previewButton;
+	private Button moreHelpButton;
+	private TableLayout helpTable;
 
 	private boolean sendRepliesToInbox = true;
 
@@ -103,6 +111,12 @@ public class CommentReplyActivity extends BaseActivity {
 		usernameSpinner = (Spinner)layout.findViewById(R.id.comment_reply_username);
 		inboxReplies = (CheckBox)layout.findViewById(R.id.comment_reply_inbox);
 		textEdit = (EditText)layout.findViewById(R.id.comment_reply_text);
+		helpButton = (Button)layout.findViewById(R.id.comment_reply_help);
+		replyButton = (Button)layout.findViewById(R.id.comment_reply_button);
+		previewButton = (Button)layout.findViewById(R.id.comment_reply_preview);
+		moreHelpButton = (Button)layout.findViewById(R.id.comment_help_more);
+
+		helpTable = (TableLayout) layout.findViewById(R.id.comment_help_table);
 
 		if(mParentType == ParentType.COMMENT_OR_POST) {
 			inboxReplies.setVisibility(View.VISIBLE);
@@ -135,6 +149,7 @@ public class CommentReplyActivity extends BaseActivity {
 		if(existingCommentText != null) {
 			textEdit.setText(existingCommentText);
 		}
+		textEdit.requestFocus();
 
 		if(intent != null && intent.hasExtra(PARENT_MARKDOWN_KEY)) {
 			final TextView parentMarkdown = layout.findViewById(R.id.comment_parent_text);
@@ -155,6 +170,25 @@ public class CommentReplyActivity extends BaseActivity {
 			General.quickToast(this, getString(R.string.error_toast_notloggedin));
 			finish();
 		}
+
+		helpButton.setOnClickListener((view)->{
+			helpTable.setVisibility(helpTable.getVisibility() == View.GONE ?
+					View.VISIBLE : View.GONE);
+		});
+		moreHelpButton.setOnClickListener((view)->{
+			String url = "https://old.reddit.com/wiki/commenting";
+
+			Uri uri = Uri.parse(url);
+			Intent urlIntent = new Intent(Intent.ACTION_VIEW, uri);
+			startActivity(urlIntent);
+		});
+
+		replyButton.setOnClickListener((view)->{
+			saveReply();
+		});
+		previewButton.setOnClickListener((view)->{
+			showPreview();
+		});
 
 		usernameSpinner.setAdapter(new ArrayAdapter<>(
 				this,
@@ -185,192 +219,205 @@ public class CommentReplyActivity extends BaseActivity {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
+	public void saveReply(){
 
-		if(item.getTitle().equals(getString(R.string.comment_reply_send))) {
+		final ProgressDialog progressDialog = new ProgressDialog(this);
+		progressDialog.setTitle(getString(R.string.comment_reply_submitting_title));
+		progressDialog.setMessage(getString(R.string.comment_reply_submitting_message));
+		progressDialog.setIndeterminate(true);
+		progressDialog.setCancelable(true);
+		progressDialog.setCanceledOnTouchOutside(false);
 
-			final ProgressDialog progressDialog = new ProgressDialog(this);
-			progressDialog.setTitle(getString(R.string.comment_reply_submitting_title));
-			progressDialog.setMessage(getString(R.string.comment_reply_submitting_message));
-			progressDialog.setIndeterminate(true);
-			progressDialog.setCancelable(true);
-			progressDialog.setCanceledOnTouchOutside(false);
+		progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(final DialogInterface dialogInterface) {
+				General.quickToast(
+						CommentReplyActivity.this,
+						getString(R.string.comment_reply_oncancel));
+				General.safeDismissDialog(progressDialog);
+			}
+		});
 
-			progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-				@Override
-				public void onCancel(final DialogInterface dialogInterface) {
+		progressDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+			@Override
+			public boolean onKey(
+					final DialogInterface dialogInterface,
+					final int keyCode,
+					final KeyEvent keyEvent) {
+
+				if(keyCode == KeyEvent.KEYCODE_BACK) {
 					General.quickToast(
 							CommentReplyActivity.this,
 							getString(R.string.comment_reply_oncancel));
 					General.safeDismissDialog(progressDialog);
 				}
-			});
 
-			progressDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-				@Override
-				public boolean onKey(
-						final DialogInterface dialogInterface,
-						final int keyCode,
-						final KeyEvent keyEvent) {
+				return true;
+			}
+		});
 
-					if(keyCode == KeyEvent.KEYCODE_BACK) {
-						General.quickToast(
-								CommentReplyActivity.this,
-								getString(R.string.comment_reply_oncancel));
+		final APIResponseHandler.ActionResponseHandler handler
+				= new APIResponseHandler.ActionResponseHandler(this) {
+			@Override
+			protected void onSuccess(@Nullable final String redirectUrl) {
+				AndroidCommon.UI_THREAD_HANDLER.post(new Runnable() {
+					@Override
+					public void run() {
+						General.safeDismissDialog(progressDialog);
+
+						if(mParentType == ParentType.MESSAGE) {
+							General.quickToast(
+									CommentReplyActivity.this,
+									getString(R.string.pm_reply_done));
+						} else {
+							General.quickToast(
+									CommentReplyActivity.this,
+									getString(R.string.comment_reply_done_norefresh));
+						}
+
+						mDraftReset = true;
+						lastText = null;
+						lastParentIdAndType = null;
+
+						if(redirectUrl != null) {
+							LinkHandler.onLinkClicked(
+									CommentReplyActivity.this,
+									redirectUrl);
+						}
+
+						finish();
+					}
+				});
+			}
+
+			@Override
+			protected void onCallbackException(final Throwable t) {
+				BugReportActivity.handleGlobalError(CommentReplyActivity.this, t);
+			}
+
+			@Override
+			protected void onFailure(
+					@CacheRequest.RequestFailureType final int type,
+					final Throwable t,
+					final Integer status,
+					final String readableMessage) {
+
+				final RRError error = General.getGeneralErrorForFailure(
+						context,
+						type,
+						t,
+						status,
+						null);
+
+				AndroidCommon.UI_THREAD_HANDLER.post(new Runnable() {
+					@Override
+					public void run() {
+						General.showResultDialog(CommentReplyActivity.this, error);
 						General.safeDismissDialog(progressDialog);
 					}
-
-					return true;
-				}
-			});
-
-			final APIResponseHandler.ActionResponseHandler handler
-					= new APIResponseHandler.ActionResponseHandler(this) {
-				@Override
-				protected void onSuccess(@Nullable final String redirectUrl) {
-					AndroidCommon.UI_THREAD_HANDLER.post(new Runnable() {
-						@Override
-						public void run() {
-							General.safeDismissDialog(progressDialog);
-
-							if(mParentType == ParentType.MESSAGE) {
-								General.quickToast(
-										CommentReplyActivity.this,
-										getString(R.string.pm_reply_done));
-							} else {
-								General.quickToast(
-										CommentReplyActivity.this,
-										getString(R.string.comment_reply_done_norefresh));
-							}
-
-							mDraftReset = true;
-							lastText = null;
-							lastParentIdAndType = null;
-
-							if(redirectUrl != null) {
-								LinkHandler.onLinkClicked(
-										CommentReplyActivity.this,
-										redirectUrl);
-							}
-
-							finish();
-						}
-					});
-				}
-
-				@Override
-				protected void onCallbackException(final Throwable t) {
-					BugReportActivity.handleGlobalError(CommentReplyActivity.this, t);
-				}
-
-				@Override
-				protected void onFailure(
-						@CacheRequest.RequestFailureType final int type,
-						final Throwable t,
-						final Integer status,
-						final String readableMessage) {
-
-					final RRError error = General.getGeneralErrorForFailure(
-							context,
-							type,
-							t,
-							status,
-							null);
-
-					AndroidCommon.UI_THREAD_HANDLER.post(new Runnable() {
-						@Override
-						public void run() {
-							General.showResultDialog(CommentReplyActivity.this, error);
-							General.safeDismissDialog(progressDialog);
-						}
-					});
-				}
-
-				@Override
-				protected void onFailure(final APIFailureType type) {
-
-					final RRError error = General.getGeneralErrorForFailure(
-							context,
-							type);
-
-					AndroidCommon.UI_THREAD_HANDLER.post(new Runnable() {
-						@Override
-						public void run() {
-							General.showResultDialog(CommentReplyActivity.this, error);
-							General.safeDismissDialog(progressDialog);
-						}
-					});
-				}
-			};
-
-			final APIResponseHandler.ActionResponseHandler inboxHandler
-					= new APIResponseHandler.ActionResponseHandler(this) {
-				@Override
-				protected void onSuccess(@Nullable final String redirectUrl) {
-					// Do nothing (result expected)
-				}
-
-				@Override
-				protected void onCallbackException(final Throwable t) {
-					BugReportActivity.handleGlobalError(CommentReplyActivity.this, t);
-				}
-
-				@Override
-				protected void onFailure(
-						@CacheRequest.RequestFailureType final int type,
-						final Throwable t,
-						final Integer status,
-						final String readableMessage) {
-					Toast.makeText(
-							context,
-							getString(R.string.disable_replies_to_infobox_failed),
-							Toast.LENGTH_SHORT).show();
-				}
-
-				@Override
-				protected void onFailure(final APIFailureType type) {
-					Toast.makeText(
-							context,
-							getString(R.string.disable_replies_to_infobox_failed),
-							Toast.LENGTH_SHORT).show();
-				}
-			};
-
-			final CacheManager cm = CacheManager.getInstance(this);
-
-			final ArrayList<RedditAccount> accounts = RedditAccountManager.getInstance(
-					this).getAccounts();
-			RedditAccount selectedAccount = null;
-
-			for(final RedditAccount account : accounts) {
-				if(!account.isAnonymous()
-						&& account.username.equalsIgnoreCase(
-						(String)usernameSpinner.getSelectedItem())) {
-					selectedAccount = account;
-					break;
-				}
+				});
 			}
-			if(mParentType == ParentType.COMMENT_OR_POST) {
-				sendRepliesToInbox = inboxReplies.isChecked();
-			} else {
-				sendRepliesToInbox = true;
-			}
-			RedditAPI.comment(
-					cm,
-					handler,
-					inboxHandler,
-					selectedAccount,
-					parentIdAndType,
-					textEdit.getText().toString(),
-					sendRepliesToInbox,
-					this);
 
-			progressDialog.show();
+			@Override
+			protected void onFailure(final APIFailureType type) {
+
+				final RRError error = General.getGeneralErrorForFailure(
+						context,
+						type);
+
+				AndroidCommon.UI_THREAD_HANDLER.post(new Runnable() {
+					@Override
+					public void run() {
+						General.showResultDialog(CommentReplyActivity.this, error);
+						General.safeDismissDialog(progressDialog);
+					}
+				});
+			}
+		};
+
+		final APIResponseHandler.ActionResponseHandler inboxHandler
+				= new APIResponseHandler.ActionResponseHandler(this) {
+			@Override
+			protected void onSuccess(@Nullable final String redirectUrl) {
+				// Do nothing (result expected)
+			}
+
+			@Override
+			protected void onCallbackException(final Throwable t) {
+				BugReportActivity.handleGlobalError(CommentReplyActivity.this, t);
+			}
+
+			@Override
+			protected void onFailure(
+					@CacheRequest.RequestFailureType final int type,
+					final Throwable t,
+					final Integer status,
+					final String readableMessage) {
+				Toast.makeText(
+						context,
+						getString(R.string.disable_replies_to_infobox_failed),
+						Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			protected void onFailure(final APIFailureType type) {
+				Toast.makeText(
+						context,
+						getString(R.string.disable_replies_to_infobox_failed),
+						Toast.LENGTH_SHORT).show();
+			}
+		};
+
+		final CacheManager cm = CacheManager.getInstance(this);
+
+		final ArrayList<RedditAccount> accounts = RedditAccountManager.getInstance(
+				this).getAccounts();
+		RedditAccount selectedAccount = null;
+
+		for(final RedditAccount account : accounts) {
+			if(!account.isAnonymous()
+					&& account.username.equalsIgnoreCase(
+					(String)usernameSpinner.getSelectedItem())) {
+				selectedAccount = account;
+				break;
+			}
+		}
+		if(mParentType == ParentType.COMMENT_OR_POST) {
+			sendRepliesToInbox = inboxReplies.isChecked();
+		} else {
+			sendRepliesToInbox = true;
+		}
+		RedditAPI.comment(
+				cm,
+				handler,
+				inboxHandler,
+				selectedAccount,
+				parentIdAndType,
+				textEdit.getText().toString(),
+				sendRepliesToInbox,
+				this);
+
+		progressDialog.show();
+	}
+
+	public void showPreview(){
+
+		MarkdownPreviewDialog.newInstance(textEdit.getText().toString())
+				.show(getSupportFragmentManager(), "MarkdownPreviewDialog");
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+
+		if(item.getTitle().equals(getString(R.string.comment_reply_send))) {
+
+			saveReply();
 
 		} else if(item.getTitle().equals(getString(R.string.comment_reply_preview))) {
-			MarkdownPreviewDialog.newInstance(textEdit.getText().toString())
-					.show(getSupportFragmentManager(), "MarkdownPreviewDialog");
+
+			showPreview();
+
 		}
 
 		return true;

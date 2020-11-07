@@ -28,6 +28,28 @@
 			android:layout_height="wrap_content"
 			android:layout_margin="10dp" />
 
+	<TextView
+			android:id="@+id/comment_parent_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:textIsSelectable="true" />
+
+	<EditText
+			android:id="@+id/comment_reply_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:padding="6dp"
+			android:inputType="textCapSentences|textMultiLine|textAutoCorrect"
+			android:scrollHorizontally="false"
+			android:minLines="3"
+			android:scrollbars="none"
+			android:singleLine="false"
+			android:importantForAutofill="no"
+			android:background="?rrListItemBackgroundCol" />
+
+
 	<CheckBox
 			android:id="@+id/comment_reply_inbox"
 			android:layout_width="match_parent"
@@ -37,22 +59,143 @@
 			android:visibility="gone"
 			android:text="@string/send_replies_to_inbox" />
 
-	<EditText
-			android:id="@+id/comment_reply_text"
-			android:layout_width="match_parent"
+	<LinearLayout
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:inputType="textCapSentences|textMultiLine"
-			android:scrollHorizontally="false"
-			android:scrollbars="none"
-			android:singleLine="false"
-			android:importantForAutofill="no"/>
+			android:orientation="horizontal"
+			android:layout_gravity="right"
+			android:layout_margin="10dp">
 
-	<TextView
-			android:id="@+id/comment_parent_text"
+		<Button
+				android:id="@+id/comment_reply_help"
+				android:text="@string/comment_help"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+
+		<Button
+				android:id="@+id/comment_reply_preview"
+				android:text="@string/comment_reply_preview"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+
+		<Button
+				android:id="@+id/comment_reply_button"
+				android:text="@string/comment_reply_send"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+
+	</LinearLayout>
+
+	<TableLayout
+			android:id="@+id/comment_help_table"
+			android:visibility="gone"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:textIsSelectable="true" />
+			android:stretchColumns="*"
+			android:layout_margin="10dp">
+
+		<TableRow
+				android:background="?rrListItemBackgroundCol"
+				>
+			<TextView
+					android:textIsSelectable="true"
+					android:padding="10dp"
+					android:text="You type:" />
+			<TextView
+					android:padding="10dp"
+					android:text="You see:" />
+		</TableRow>
+
+
+		<TableRow>
+			<TextView
+					android:textIsSelectable="true"
+					android:padding="10dp"
+					android:text="*italics*" />
+			<TextView
+					android:padding="10dp"
+					android:text="italics"
+					android:textStyle="italic"/>
+		</TableRow>
+
+		<TableRow>
+			<TextView
+					android:textIsSelectable="true"
+					android:padding="10dp"
+					android:text="**bold**" />
+			<TextView
+					android:padding="10dp"
+					android:text="bold"
+					android:textStyle="bold"/>
+		</TableRow>
+
+		<TableRow>
+			<TextView
+					android:textIsSelectable="true"
+					android:padding="10dp"
+					android:text="@string/reddit_help_link_example" />
+			<TextView
+					android:padding="10dp"
+					android:text="@string/reddit_help_link_example_result"
+					android:textColor="#0000ff"/>
+		</TableRow>
+
+
+		<TableRow>
+			<TextView
+					android:textIsSelectable="true"
+					android:padding="10dp"
+					android:text="> quoted text" />
+
+			<LinearLayout
+					android:padding="10dp"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+				<View
+						android:layout_width="3dp"
+						android:layout_marginRight="3dp"
+						android:layout_height="match_parent"
+						android:background="#888888"/>
+				<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="quoted text"/>
+			</LinearLayout>
+		</TableRow>
+
+		<TableRow>
+			<TextView
+					android:textIsSelectable="true"
+					android:padding="10dp"
+					android:text="~~strikethrough~~" />
+			<TextView
+					android:padding="10dp"
+					android:text="@string/strike_strikethrough_strike"/>
+		</TableRow>
+
+		<TableRow>
+			<TextView
+					android:textIsSelectable="true"
+					android:padding="10dp"
+					android:text="super^script" />
+			<TextView
+					android:padding="10dp"
+					android:text="@string/comment_help_super_script"/>
+		</TableRow>
+
+		<TableRow>
+			<Button android:text="More help"
+					android:id="@+id/comment_help_more"
+					android:layout_column="1"
+					android:drawableRight="?rrIconLink"
+				/>
+
+		</TableRow>
+
+	</TableLayout>
 
 </LinearLayout>
