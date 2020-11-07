@@ -33,7 +33,7 @@ public class LinkifiedTextView extends AppCompatTextView {
 
 	public LinkifiedTextView(final AppCompatActivity activity) {
 		super(activity);
-		this.setLineSpacing(0, 1.25f);
+		this.setLineSpacing(0, 1.2f);
 		mActivity = activity;
 	}
 
