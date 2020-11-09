@@ -22,11 +22,14 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.abielinski.marooned.R;
+import com.abielinski.marooned.activities.RefreshableActivity;
 import com.abielinski.marooned.common.RRError;
 import com.abielinski.marooned.fragments.ErrorPropertiesDialog;
+import com.abielinski.marooned.views.glview.Refreshable;
 
 import java.util.Locale;
 
@@ -54,31 +57,58 @@ public final class ErrorView extends StatusListItemView {
 		detailsButton.setText(activity.getApplicationContext()
 				.getString(R.string.button_error_details)
 				.toUpperCase(Locale.getDefault()));
-		detailsButton.setBackgroundColor(Color.rgb(0xF8, 0x17, 0x17));
+		detailsButton.setBackgroundColor(Color.rgb(0x36, 0x36, 0x3F));
 
 		detailsButton.setOnClickListener(v -> ErrorPropertiesDialog.newInstance(error)
 				.show(
 						activity.getSupportFragmentManager(),
 						null));
 
+		final Button refreshButton = new Button(activity);
+		refreshButton.setTextColor(Color.WHITE);
+		refreshButton.setText(activity.getApplicationContext()
+				.getString(R.string.options_refresh)
+				.toUpperCase(Locale.getDefault()));
+		refreshButton.setBackgroundColor(Color.rgb(0x36, 0x36, 0x3F));
+
+		refreshButton.setOnClickListener(v -> {
+			if ( activity instanceof RefreshableActivity ){
+				((RefreshableActivity)activity).requestRefresh(RefreshableActivity.RefreshableFragment.RESTART, false);
+			}else{
+				refreshButton.setVisibility(INVISIBLE);
+			}
+		});
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+				ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		layoutParams.setMargins(24, 0, 0, 0);
+
+
+
 		final LinearLayout layout = new LinearLayout(activity);
 		layout.setOrientation(LinearLayout.VERTICAL);
+		layout.setHorizontalGravity(Gravity.RIGHT);
 		layout.addView(textView);
 		layout.addView(messageView);
-		layout.addView(detailsButton);
+
+		final LinearLayout buttonLayout = new LinearLayout(activity);
+		buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+		buttonLayout.addView(detailsButton);
+		buttonLayout.addView(refreshButton,layoutParams);
+		detailsButton.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+		refreshButton.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+		layout.addView(buttonLayout);
 
 		layout.setPadding(
 				(int)(15 * dpScale),
 				(int)(15 * dpScale),
 				(int)(15 * dpScale),
 				(int)(15 * dpScale));
-		detailsButton.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
 
-		((LinearLayout.LayoutParams)detailsButton.getLayoutParams()).gravity
-				= Gravity.RIGHT;
 
 		setContents(layout);
 
-		setBackgroundColor(Color.rgb(0xCC, 0x00, 0x00));
+		setBackgroundColor(Color.argb(0xDD,0x27, 0x27, 0x27));
 	}
 }
