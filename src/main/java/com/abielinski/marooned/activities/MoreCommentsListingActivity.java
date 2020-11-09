@@ -20,6 +20,8 @@ package com.abielinski.marooned.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -212,5 +214,18 @@ public class MoreCommentsListingActivity extends RefreshableActivity
 		if(General.onBackPressed()) {
 			super.onBackPressed();
 		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		switch (keyCode) {
+			case KeyEvent.KEYCODE_DEL:
+			case KeyEvent.KEYCODE_FORWARD_DEL:{
+				onBackPressed();
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }
