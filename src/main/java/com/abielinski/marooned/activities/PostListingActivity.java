@@ -24,6 +24,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import androidx.annotation.Nullable;
@@ -533,5 +534,18 @@ public class PostListingActivity extends RefreshableActivity
 
 	private void postInvalidateOptionsMenu() {
 		runOnUiThread(this::invalidateOptionsMenu);
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		switch (keyCode) {
+			case KeyEvent.KEYCODE_DEL:
+			case KeyEvent.KEYCODE_FORWARD_DEL:{
+				onBackPressed();
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }
