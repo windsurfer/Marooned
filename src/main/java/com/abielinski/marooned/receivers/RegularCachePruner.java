@@ -15,7 +15,7 @@
  * along with Marooned.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-package com.abielinski.marooned.Receivers;
+package com.abielinski.marooned.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

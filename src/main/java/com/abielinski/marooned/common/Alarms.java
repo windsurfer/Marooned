@@ -21,8 +21,8 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import com.abielinski.marooned.Receivers.NewMessageChecker;
-import com.abielinski.marooned.Receivers.RegularCachePruner;
+import com.abielinski.marooned.receivers.NewMessageChecker;
+import com.abielinski.marooned.receivers.RegularCachePruner;
 
 import java.util.HashMap;
 import java.util.Map;

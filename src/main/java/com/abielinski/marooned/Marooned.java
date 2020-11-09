@@ -22,7 +22,7 @@ import android.util.Log;
 import com.abielinski.marooned.cache.CacheManager;
 import com.abielinski.marooned.common.Alarms;
 import com.abielinski.marooned.io.RedditChangeDataIO;
-import com.abielinski.marooned.Receivers.NewMessageChecker;
+import com.abielinski.marooned.receivers.NewMessageChecker;
 import com.abielinski.marooned.reddit.prepared.RedditChangeDataManager;
 
 public class Marooned extends Application {
