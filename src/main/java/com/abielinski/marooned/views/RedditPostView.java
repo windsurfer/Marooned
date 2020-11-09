@@ -52,6 +52,7 @@ import com.abielinski.marooned.R;
 import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.cache.CacheEntry;
 import com.abielinski.marooned.cache.CacheManager;
+import com.abielinski.marooned.common.FileUtils;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.fragments.PostListingFragment;
@@ -536,7 +537,6 @@ public final class RedditPostView extends FlingableItemView
 
 		if (post.mIsProbablyDisplayableInline && displayInlineImages){
 
-			overlayVisible = false;
 
 			if (!mImageIsRendering){
 
@@ -566,6 +566,7 @@ public final class RedditPostView extends FlingableItemView
 				if (imageCacheUri != null){
 
 					mImageIsRendering = true;
+					overlayVisible = false;
 
 					RedditPreparedPost oldPost = post;
 
@@ -607,6 +608,31 @@ public final class RedditPostView extends FlingableItemView
 
 
 					}.start();
+				}else{
+					// image isn't cached... will it be downloaded?
+					final PrefsUtility.CachePrecacheImages imagePrecachePref
+							= PrefsUtility.cache_precache_images(
+							mActivity,
+							PreferenceManager.getDefaultSharedPreferences(getContext()));
+					final boolean precacheImages
+							= (imagePrecachePref == PrefsUtility.CachePrecacheImages.ALWAYS
+							|| (imagePrecachePref == PrefsUtility.CachePrecacheImages.WIFIONLY
+							&& General.isConnectionWifi(mActivity)))
+							&& !FileUtils.isCacheDiskFull(mActivity);
+					if (precacheImages){
+						// continue waiting....
+						// TODO: check if we are waiting to cache or if it failed
+					}else{
+						// not downloading, give up
+
+						thumbnailView.setVisibility(VISIBLE);
+						title.setVisibility(VISIBLE);
+						title_alternate.setVisibility(GONE);
+						postImageView.setVisibility(GONE);
+						postImageView.setImageResource(android.R.color.transparent);
+
+						mImageIsRendering = true; // TODO: Fix this hack
+					}
 				}
 			}
 		}
