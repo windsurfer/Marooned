@@ -31,5 +31,11 @@
 	<Preference
 			android:key="@string/pref_about_license_key"
 			android:title="@string/title_license"/>
+	<Preference
+			android:key="pref_static_field_key"
+			android:selectable="false"
+			android:persistent="false"
+			android:title="Marooned is open source software."
+			android:summary="Marooned is based on RedReader, An unofficial, open source Android client for Reddit by QuantumBadger."/>
 
 </PreferenceScreen>
