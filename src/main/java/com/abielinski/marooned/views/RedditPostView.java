@@ -67,11 +67,13 @@ public final class RedditPostView extends FlingableItemView
 		implements RedditPreparedPost.ThumbnailLoadedCallback {
 
 	private final float dpScale;
+	private final int thumbnailSize;
 
 	private RedditPreparedPost post = null;
 	private final TextView title, subtitle, title_alternate;
 
 	private final ImageView thumbnailView, overlayIcon, postImageView;
+	private final TextView thumbnailOverlay;
 
 	private final LinearLayout mOuterView;
 	private final LinearLayout commentsButton;
@@ -262,6 +264,7 @@ public final class RedditPostView extends FlingableItemView
 		};
 
 		dpScale = context.getResources().getDisplayMetrics().density; // TODO xml?
+		thumbnailSize = General.getThumbnailSize(context);
 
 		final float titleFontScale = PrefsUtility.appearance_fontscale_posts(
 				context,
@@ -285,6 +288,7 @@ public final class RedditPostView extends FlingableItemView
 		thumbnailView = rootView.findViewById(R.id.reddit_post_thumbnail_view);
 		overlayIcon = rootView.findViewById(R.id.reddit_post_overlay_icon);
 		postImageView = rootView.findViewById(R.id.reddit_post_image_view);
+		thumbnailOverlay = rootView.findViewById(R.id.reddit_post_thumbnail_overlay);
 
 		title = rootView.findViewById(R.id.reddit_post_title);
 		title_alternate = rootView.findViewById(R.id.reddit_post_title_alternate);
@@ -418,10 +422,9 @@ public final class RedditPostView extends FlingableItemView
 				commentsText.setText(General.shortScore(data.src.getSrc().num_comments));
 			}
 
-			thumbnailView.setMinimumWidth((int)(96.0f
-					* dpScale)); // TODO remove constant, customise
-			thumbnailView.setMinimumHeight((int)(96.0f
-					* dpScale)); // TODO remove constant, customise
+
+			thumbnailView.setMinimumWidth(thumbnailSize);
+			thumbnailView.setMinimumHeight(thumbnailSize);
 			if(data.hasThumbnail) {
 				thumbnailView.setVisibility(VISIBLE);
 				thumbnailView.getLayoutParams().height =
@@ -431,6 +434,10 @@ public final class RedditPostView extends FlingableItemView
 				thumbnailView.setVisibility(INVISIBLE);
 			}
 
+			overlayIcon.setMinimumHeight(thumbnailSize);
+			overlayIcon.setMinimumWidth(thumbnailSize);
+
+			thumbnailOverlay.setVisibility(GONE);
 
 			if (data.mIsProbablyDisplayableInline){
 

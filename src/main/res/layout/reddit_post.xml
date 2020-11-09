@@ -77,8 +77,6 @@
 			<FrameLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:minHeight="64dp"
-					android:baselineAligned="false"
 					android:background="?rrPostThumbnailBackground">
 
 				<ImageView
@@ -86,17 +84,32 @@
 						android:gravity="top"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						android:layout_gravity="center"
 						android:scaleType="center"
 						tools:ignore="ContentDescription"/>
 
 				<ImageView
 						android:id="@+id/reddit_post_overlay_icon"
-						android:layout_width="96dp"
-						android:layout_height="96dp"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:layout_gravity="center"
 						android:scaleType="center"
 						android:visibility="gone"
 						android:background="#99000000"
 						tools:ignore="ContentDescription"/>
+
+				<TextView
+						android:id="@+id/reddit_post_thumbnail_overlay"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="bottom"
+						android:textAlignment="center"
+						android:gravity="center_horizontal|bottom"
+						android:background="#88000000"
+						android:textSize="12sp"
+						android:textColor="#ffffff"
+						android:singleLine="true"
+						android:text=""/>
 
 			</FrameLayout>
 
