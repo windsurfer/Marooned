@@ -583,6 +583,49 @@ public class ImageViewDisplayListManager implements
 				new ImageViewScaleAnimation(targetScale, mCoordinateHelper, 15, position);
 	}
 
+
+	public void zoomBy(float scale) {
+
+		final MutableFloatPoint2D position = mTmpPoint1_onFingersMoved;
+		position.set(mResolutionX / 2, mResolutionY / 2);
+
+		final float minScale = mBoundsHelper.getMinScale();
+		final float currentScale = mCoordinateHelper.getScale();
+
+		float targetScale;
+
+		if(currentScale > minScale * 2.0) {
+			targetScale = minScale;
+
+		} else {
+			targetScale = Math.max(
+					(float)mResolutionX / (float)mImageTileSource.getWidth(),
+					(float)mResolutionY / (float)mImageTileSource.getHeight()
+			);
+
+			if(Math.abs((targetScale / currentScale) - 1.0) < 0.05) {
+				targetScale = currentScale * scale;
+			}
+		}
+		mScaleAnimation =
+				new ImageViewScaleAnimation(targetScale, mCoordinateHelper, 15, position);
+
+		mRefreshable.refresh();
+		//mCoordinateHelper.scaleAboutScreenPoint(position, targetScale);
+		//mScrollbars.showBars();
+	}
+	public void panBy(float x, float y) {
+		final float currentScale = mCoordinateHelper.getScale();
+		final MutableFloatPoint2D currentPosition = mCoordinateHelper.getPositionOffset();
+		currentPosition.x += x;
+		currentPosition.y += y;
+
+		mScaleAnimation =
+				new ImageViewScaleAnimation(currentScale, mCoordinateHelper, 15, currentPosition);
+
+		mRefreshable.refresh();
+	}
+
 	@Override
 	public void onUIThreadRepeatingTimer(final UIThreadRepeatingTimer timer) {
 

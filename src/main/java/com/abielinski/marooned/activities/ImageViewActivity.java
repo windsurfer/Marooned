@@ -30,6 +30,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -1304,6 +1305,53 @@ public class ImageViewActivity extends BaseActivity
 		mFloatingToolbar.addView(ib);
 
 		return ib;
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		switch (keyCode) {
+			case KeyEvent.KEYCODE_DEL:
+			case KeyEvent.KEYCODE_FORWARD_DEL:
+			case KeyEvent.KEYCODE_ENTER:
+			{
+				onBackPressed();
+				return true;
+			}
+		}
+
+		// pan and zoom only work with images
+		if (mImageViewDisplayerManager != null) {
+			switch (keyCode) {
+				case KeyEvent.KEYCODE_COMMA: {
+					// zoom out
+					mImageViewDisplayerManager.zoomBy(2.0f);
+					return true;
+				}
+				case KeyEvent.KEYCODE_PERIOD: {
+					// zoom in
+					mImageViewDisplayerManager.zoomBy(2.0f);
+					return true;
+				}
+				case KeyEvent.KEYCODE_DPAD_LEFT: {
+					mImageViewDisplayerManager.panBy(200.0f, 0.0f);
+					return true;
+				}
+				case KeyEvent.KEYCODE_DPAD_DOWN: {
+					mImageViewDisplayerManager.panBy(0.0f, -200.0f);
+					return true;
+				}
+				case KeyEvent.KEYCODE_DPAD_RIGHT: {
+					mImageViewDisplayerManager.panBy(-200.0f, 0.0f);
+					return true;
+				}
+				case KeyEvent.KEYCODE_DPAD_UP: {
+					mImageViewDisplayerManager.panBy(0.0f, 200.0f);
+					return true;
+				}
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }
 
