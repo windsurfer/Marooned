@@ -139,6 +139,14 @@ public final class PrefsUtility {
 				.equals(key);
 	}
 
+	public static boolean appearance_inline_images_show(Context context, SharedPreferences sharedPreferences) {
+			return getBoolean(
+					R.string.pref_appearance_inline_images_show_key,
+					true,
+					context,
+					sharedPreferences);
+	}
+
 	///////////////////////////////
 	// pref_appearance
 	///////////////////////////////

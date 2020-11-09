@@ -68,6 +68,7 @@ public final class RedditPostView extends FlingableItemView
 
 	private final float dpScale;
 	private final int thumbnailSize;
+	private final boolean displayInlineImages;
 
 	private RedditPreparedPost post = null;
 	private final TextView title, subtitle, title_alternate;
@@ -272,6 +273,9 @@ public final class RedditPostView extends FlingableItemView
 		final float subtitleFontScale = PrefsUtility.appearance_fontscale_post_subtitles(
 				context,
 				PreferenceManager.getDefaultSharedPreferences(context));
+		displayInlineImages = PrefsUtility.appearance_inline_images_show(
+				context,
+				PreferenceManager.getDefaultSharedPreferences(context));
 
 		final View rootView =
 				LayoutInflater.from(context).inflate(R.layout.reddit_post, this, true);
@@ -439,7 +443,7 @@ public final class RedditPostView extends FlingableItemView
 
 			thumbnailOverlay.setVisibility(GONE);
 
-			if (data.mIsProbablyDisplayableInline){
+			if (data.mIsProbablyDisplayableInline && displayInlineImages){
 
 
 				thumbnailView.setVisibility(GONE);
@@ -528,7 +532,7 @@ public final class RedditPostView extends FlingableItemView
 		}
 
 
-		if (post.mIsProbablyDisplayableInline){
+		if (post.mIsProbablyDisplayableInline && displayInlineImages){
 
 			overlayVisible = false;
 
