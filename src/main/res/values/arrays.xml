@@ -781,9 +781,10 @@
 		<item>@string/mainmenu_frontpage</item>
 		<item>@string/mainmenu_popular</item>
 		<item>@string/mainmenu_all</item>
-		<item>@string/mainmenu_custom_destination</item>
 		<item>@string/mainmenu_random</item>
 		<item>@string/mainmenu_random_nsfw</item>
+		<item>@string/mainmenu_custom_destination</item>
+		<item>@string/mainmenu_search</item>
 	</string-array>
 
 	<!-- Constants. Do not change. -->
@@ -791,9 +792,10 @@
 		<item>frontpage</item>
 		<item>popular</item>
 		<item>all</item>
-		<item>custom</item>
 		<item>random</item>
 		<item>random_nsfw</item>
+		<item>custom</item>
+		<item>search</item>
 	</string-array>
 
 	<!-- Constants. Do not change. -->
@@ -802,6 +804,7 @@
 		<item>popular</item>
 		<item>all</item>
 		<item>custom</item>
+		<item>search</item>
 	</string-array>
 
 	<!-- 2020-02-04 -->
@@ -1064,4 +1067,5 @@
 		<item>100</item>
 	</string-array>
 
+	<string name="mainmenu_search">Search</string>
 </resources>

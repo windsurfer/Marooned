@@ -131,6 +131,7 @@ public class MainMenuListingManager {
 		final Drawable rrIconUpvote;
 		final Drawable rrIconDownvote;
 		final Drawable rrIconChevronRight;
+		final Drawable rrIconSearch;
 
 		{
 			final TypedArray attr = activity.obtainStyledAttributes(new int[] {
@@ -141,7 +142,8 @@ public class MainMenuListingManager {
 					R.attr.rrIconCross,
 					R.attr.rrIconArrowUpBold,
 					R.attr.rrIconArrowDownBold,
-					R.attr.rrIconChevronRight
+					R.attr.rrIconChevronRight,
+					R.attr.rrIconSearch
 			});
 
 			rrIconPerson = ContextCompat.getDrawable(activity, attr.getResourceId(0, 0));
@@ -158,6 +160,9 @@ public class MainMenuListingManager {
 			rrIconChevronRight = ContextCompat.getDrawable(
 					activity,
 					attr.getResourceId(7, 0));
+			rrIconSearch = ContextCompat.getDrawable(
+					activity,
+					attr.getResourceId(8, 0));
 
 			attr.recycle();
 		}
@@ -227,6 +232,16 @@ public class MainMenuListingManager {
 								R.string.mainmenu_random_nsfw,
 								MainMenuFragment.MENU_MENU_ACTION_RANDOM_NSFW,
 								rrIconChevronRight,
+								true));
+			}
+
+			if(mainMenuShortcutItems.contains(MainMenuFragment.MainMenuShortcutItems.SEARCH)) {
+				mAdapter.appendToGroup(
+						GROUP_MAIN_ITEMS,
+						makeItem(
+								R.string.action_search,
+								MainMenuFragment.MENU_MENU_ACTION_SEARCH,
+								rrIconSearch,
 								true));
 			}
 		}

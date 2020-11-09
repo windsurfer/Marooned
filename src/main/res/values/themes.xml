@@ -114,6 +114,7 @@
 		<item name="rrIconPinOff">@drawable/pin_off_dark</item>
 		<item name="rrIconMessagePlus">@drawable/message_plus_dark</item>
 		<item name="rrIconChevronRight">@drawable/ic_baseline_chevron_right_24</item>
+		<item name="rrIconSearch">@drawable/ic_baseline_search_24</item>
 
     </style>
 

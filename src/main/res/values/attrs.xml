@@ -95,5 +95,6 @@
 	<attr name="rrIconPinOff" format="reference" />
 	<attr name="rrIconMessagePlus" format="reference" />
 	<attr name="rrIconChevronRight" format="reference" />
+	<attr name="rrIconSearch" format="reference" />
 
 </resources>
