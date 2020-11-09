@@ -77,6 +77,7 @@ public final class RedditPostView extends FlingableItemView
 	private final TextView thumbnailOverlay;
 
 	private final LinearLayout mOuterView;
+	private final LinearLayout mInnerView;
 	private final LinearLayout commentsButton;
 	private final TextView commentsText;
 
@@ -281,6 +282,7 @@ public final class RedditPostView extends FlingableItemView
 				LayoutInflater.from(context).inflate(R.layout.reddit_post, this, true);
 
 		mOuterView = rootView.findViewById(R.id.reddit_post_wrapper);
+		mInnerView = rootView.findViewById(R.id.reddit_post_layout);
 
 		mOuterView.setOnClickListener(v -> fragmentParent.onPostSelected(post));
 
@@ -315,18 +317,18 @@ public final class RedditPostView extends FlingableItemView
 
 		if(leftHandedMode) {
 			final ArrayList<View> outerViewElements = new ArrayList<>(3);
-			for(int i = mOuterView.getChildCount() - 1; i >= 0; i--) {
-				outerViewElements.add(mOuterView.getChildAt(i));
-				mOuterView.removeViewAt(i);
+			for(int i = mInnerView.getChildCount() - 1; i >= 0; i--) {
+				outerViewElements.add(mInnerView.getChildAt(i));
+				mInnerView.removeViewAt(i);
 			}
 
 			for(int i = 0; i < outerViewElements.size(); i++) {
-				mOuterView.addView(outerViewElements.get(i));
+				mInnerView.addView(outerViewElements.get(i));
 			}
 
-			mOuterView.setNextFocusRightId(NO_ID);
+			mInnerView.setNextFocusRightId(NO_ID);
 			if (mCommentsButtonPref) {
-				mOuterView.setNextFocusLeftId(commentsButton.getId());
+				mInnerView.setNextFocusLeftId(commentsButton.getId());
 
 				commentsButton.setNextFocusForwardId(R.id.reddit_post_wrapper);
 				commentsButton.setNextFocusRightId(R.id.reddit_post_wrapper);
