@@ -19,6 +19,7 @@ package com.abielinski.marooned.reddit.prepared;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.style.ImageSpan;
 import android.view.View;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.account.RedditAccountManager;
@@ -183,8 +184,8 @@ public class RedditRenderableComment
 						0,
 						1f);
 			}
-
-			sb.append(context.getString(R.string.subtitle_points) + " ", 0);
+			sb.addSpan(new ImageSpan(context, R.drawable.arrow_up_small_dark));
+			sb.append(" ", 0);
 		}
 
 		if(theme.shouldShow(PrefsUtility.AppearanceCommentHeaderItem.GOLD)) {
