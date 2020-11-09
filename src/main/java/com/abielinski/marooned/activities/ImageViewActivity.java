@@ -1314,19 +1314,23 @@ public class ImageViewActivity extends BaseActivity
 		return ib;
 	}
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
 
 		switch (keyCode) {
 			case KeyEvent.KEYCODE_DEL:
 			case KeyEvent.KEYCODE_FORWARD_DEL:
-			case KeyEvent.KEYCODE_ENTER:
-			{
+			case KeyEvent.KEYCODE_ENTER: {
 				onBackPressed();
 				return true;
 			}
 		}
+		return super.onKeyUp(keyCode, event);
+	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// pan and zoom only work with images
 		if (mImageViewDisplayerManager != null) {
 			switch (keyCode) {
