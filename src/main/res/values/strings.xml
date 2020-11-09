@@ -1321,5 +1321,7 @@
 	<string name="reddit_help_link_example_result"><u>reddit!</u></string>
 	<string name="strike_strikethrough_strike"><strike> strikethrough </strike></string>
 	<string name="comment_help_super_script">super<sup>script</sup></string>
+    <string name="pref_appearance_hide_android_status_images_key" translatable="false">pref_appearance_hide_android_status_images</string>
+	<string name="pref_appearance_hide_android_status_images">Hide status bar when viewing media</string>
 
 </resources>

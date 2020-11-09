@@ -146,6 +146,13 @@ public class ImageViewActivity extends BaseActivity
 				sharedPreferences);
 		mGallerySwipeLengthPx = General.dpToPixels(this, gallerySwipeLengthDp);
 
+
+		if(PrefsUtility.pref_appearance_hide_android_status_images(this, sharedPreferences)) {
+			getWindow().setFlags(
+					WindowManager.LayoutParams.FLAG_FULLSCREEN,
+					WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		}
+
 		final Intent intent = getIntent();
 
 		mUrl = intent.getDataString();

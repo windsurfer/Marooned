@@ -550,6 +550,16 @@ public final class PrefsUtility {
 				sharedPreferences);
 	}
 
+	public static boolean pref_appearance_hide_android_status_images(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return getBoolean(
+				R.string.pref_appearance_hide_android_status_images_key,
+				true,
+				context,
+				sharedPreferences);
+	}
+
 	public static boolean pref_appearance_link_text_clickable(
 			final Context context,
 			final SharedPreferences sharedPreferences) {
