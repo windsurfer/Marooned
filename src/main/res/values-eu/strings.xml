@@ -151,7 +151,7 @@
     <string name="comment_reply_submitting_message">Momentu bat…</string>
     <string name="post_submit_subreddit_hint">Azpireddita</string>
     <string name="post_captcha_title">Captcha</string>
-    <string name="bug_message">RedReaderrek errore bat izan du.
+    <string name="bug_message">Maroonedrek errore bat izan du.
 \n
 \nBug txosten bat bidali nahi diozu garatzaileari? Horrela bada, email bat sortuko da informazio guztiarekin, eta bere edukia begiratu dezakezu bidali baino lehen.</string>
     <string name="bug_button_send">Bidali bug txostena email bidez</string>
@@ -309,7 +309,7 @@
     <string name="imgur_album">Imgur albuma</string>
     <string name="album_already_first_image">Jada albumaren lehen irudian.</string>
     <string name="album_already_last_image">Jada albumaren azken irudian.</string>
-    <string name="upgrade_v190_login_message">RedReader eguneratu egin da, eta orain oAuth erabiltzen du reddit autentifikatzeko. Kontu batean bazeuden eguneraketa baino lehen, saioa itxi zaizu.</string>
+    <string name="upgrade_v190_login_message">Marooned eguneratu egin da, eta orain oAuth erabiltzen du reddit autentifikatzeko. Kontu batean bazeuden eguneraketa baino lehen, saioa itxi zaizu.</string>
     <string name="pref_behaviour_videoview_mode_title">Bideo Nabigatzailea</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">Barneko VideoView (gomendatua)</string>
     <string name="videoview_mode_app_vlc_launch_failed">Ezin izan da VLC abiarazi. Mesedez eguneratu VLC edo aldatu zure Bideo nabigatzaile lehentasunak.</string>

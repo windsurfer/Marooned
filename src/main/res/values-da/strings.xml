@@ -272,7 +272,7 @@
     <!-- Bug Reporting -->
 
     <string name="bug_title">En fejl er opstået.</string>
-    <string name="bug_message">RedReader er stødt på en fejl.\n\nKunne du tænke dig at sende en bug report til udvikleren? Hvis ja, vil en email automatisk blive udfyldt for dig med al den relevante information, og du kan inspicere indholdet før du afsender.</string>
+    <string name="bug_message">Marooned er stødt på en fejl.\n\nKunne du tænke dig at sende en bug report til udvikleren? Hvis ja, vil en email automatisk blive udfyldt for dig med al den relevante information, og du kan inspicere indholdet før du afsender.</string>
     <string name="bug_button_send">Send fejlrapport via email</string>
     <string name="bug_button_ignore">Send ikke fejlrapport</string>
 
@@ -532,7 +532,7 @@
     <string name="imgur_album">Imgur album</string>
     <string name="album_already_first_image">Allerede ved det første billede i albummet.</string>
     <string name="album_already_last_image">Allerede ved det sidste billede i albummet.</string>
-    <string name="upgrade_v190_login_message">RedReader er blevet opgraderet og bruger nu OAuth til reddit login. Hvis du var logget ind som en bruger før denne opgradering, er du nu logget ud.</string>
+    <string name="upgrade_v190_login_message">Marooned er blevet opgraderet og bruger nu OAuth til reddit login. Hvis du var logget ind som en bruger før denne opgradering, er du nu logget ud.</string>
     <string name="pref_behaviour_videoview_mode_title">Videoafspiller</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">Intern videoafspiller (foreslået)</string>
     <string name="pref_behaviour_videoview_mode_external_app_vlc">Ekstern App: VLC</string>

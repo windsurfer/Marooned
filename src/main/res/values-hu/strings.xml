@@ -262,7 +262,7 @@
     <!-- Bug Reporting -->
 
     <string name="bug_title">Egy hiba következett be.</string>
-    <string name="bug_message">A RedReader hibát észlelt.\n\nSzeretnél jelentést küldeni a fejlesztőnek? Ha igen, egy e-mail lesz kitöltve az összes szükséges információval, aminek tartalmát elküldés előtt áttekintheted.</string>
+    <string name="bug_message">A Marooned hibát észlelt.\n\nSzeretnél jelentést küldeni a fejlesztőnek? Ha igen, egy e-mail lesz kitöltve az összes szükséges információval, aminek tartalmát elküldés előtt áttekintheted.</string>
     <string name="bug_button_send">Jelentés küldése e-mailben</string>
     <string name="bug_button_ignore">Ne küldj jelentést</string>
 
@@ -622,7 +622,7 @@
     <string name="album_already_first_image">Az album első képe.</string>
     <string name="album_already_last_image">Az album utolsó képe.</string>
 
-    <string name="upgrade_v190_login_message">A RedReader frissítve lett, és a Reddit hitelesítéshez oAuth-ot használ. Ha a frissítés előtt jelentkeztél be egy fiókba, most ki lettél jelentkeztetve.</string>
+    <string name="upgrade_v190_login_message">A Marooned frissítve lett, és a Reddit hitelesítéshez oAuth-ot használ. Ha a frissítés előtt jelentkeztél be egy fiókba, most ki lettél jelentkeztetve.</string>
 
     <string name="pref_behaviour_videoview_mode_title">Videómegtekintő</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">Belső VideoView (recommended)</string>

@@ -172,7 +172,7 @@
     <string name="post_captcha_submit_button">提交</string>
     <string name="post_submit_done">已发帖。</string>
     <string name="bug_title">应用出现了问题。</string>
-    <string name="bug_message">RedReader出故障了。 
+    <string name="bug_message">Marooned出故障了。
 \n 
 \n您愿意给开发者发送一份错误报告吗？如果您愿意，我们将撰写一封电子邮件，并填好相关的信息。您可以在发送前查看电邮的内容。</string>
     <string name="bug_button_send">通过电子邮件报告错误</string>
@@ -284,7 +284,7 @@
     <string name="pref_behaviour_commentsort">评论（默认）</string>
     <string name="action_fling_disabled">不使用</string>
     <string name="pref_about_version_title">版本</string>
-    <string name="prefs_category_about">关于RedReader</string>
+    <string name="prefs_category_about">关于Marooned</string>
     <string name="pref_behaviour_sort_header">排序</string>
     <string name="pref_appearance_locale_header">地区</string>
     <string name="pref_appearance_langforce_title">语言</string>
@@ -503,7 +503,7 @@
     <string name="comment_header_specific_thread_title">您正在浏览一则评论和其回复。</string>
     <string name="pref_behaviour_bezel_toolbar_header">帖子侧边工具栏</string>
     <string name="pref_behaviour_bezel_toolbar_swipezone_title">帖子侧边工具栏滑动区域大小</string>
-    <string name="upgrade_v190_login_message">RedReader已更新，并使用oAuth进行Reddit验证。如果您在更新前登录了您的帐号，您已经被登出。</string>
+    <string name="upgrade_v190_login_message">Marooned已更新，并使用oAuth进行Reddit验证。如果您在更新前登录了您的帐号，您已经被登出。</string>
     <string name="open_with">开启的应用</string>
     <string name="save_image_permission_denied">权限被拒：无法存储图片。</string>
     <string name="inbox_unread_only">仅显示未读的信息</string>
@@ -644,7 +644,7 @@
     <string name="dialog_continue">继续</string>
     <string name="reddit_login_browser_popup_use_external_browser">使用外部浏览器(推荐)</string>
     <string name="reddit_login_browser_popup_use_internal_browser">使用内部浏览器(推荐)</string>
-    <string name="reddit_login_browser_popup_line_2">登录完成后，您应该被重定向回到RedReader。如果登录失败，您可以使用下面的复选框尝试使用其他浏览器。</string>
+    <string name="reddit_login_browser_popup_line_2">登录完成后，您应该被重定向回到Marooned。如果登录失败，您可以使用下面的复选框尝试使用其他浏览器。</string>
     <string name="reddit_login_browser_popup_line_1">要登录，你现在会被带到网络浏览器的Reddit页面。</string>
     <string name="image_gallery_no_image_present_message">找不到指定的图像。它可能已被删除。</string>
     <string name="image_gallery_no_image_present_title">未找到图像</string>

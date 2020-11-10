@@ -174,7 +174,7 @@
     <string name="post_captcha_submit_button">Підтвердити</string>
     <string name="post_submit_done">Публікацію надіслано.</string>
     <string name="bug_title">Виникла помилка.</string>
-    <string name="bug_message">RedReader зіткнувся з помилкою.
+    <string name="bug_message">Marooned зіткнувся з помилкою.
 \n
 \nБажаєте надіслати звіт про помилку розробнику\? Якщо так, буде створено електронний лист з інформацією про помилку і перед надсиланням ви зможете перевірити його зміст.</string>
     <string name="bug_button_send">Надіслати звіт про помилку електронною поштою</string>
@@ -380,7 +380,7 @@
     <string name="imgur_album">Альбом Imgur</string>
     <string name="album_already_first_image">Вже на першому зображенні альбому.</string>
     <string name="album_already_last_image">Вже на останньому зображенні альбому.</string>
-    <string name="upgrade_v190_login_message">RedReader оновився і теперь використовує oAuth для входу на reddit. Вам доведеться увійти повторно до облікового запису, якщо ви входили до оновлення.</string>
+    <string name="upgrade_v190_login_message">Marooned оновився і теперь використовує oAuth для входу на reddit. Вам доведеться увійти повторно до облікового запису, якщо ви входили до оновлення.</string>
     <string name="pref_behaviour_videoview_mode_title">Переглядач відео</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">Вбудований VideoView (рекомендується)</string>
     <string name="pref_behaviour_videoview_mode_external_app_vlc">Зовнішній додаток: VLC</string>

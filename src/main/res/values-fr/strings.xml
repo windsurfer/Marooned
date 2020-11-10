@@ -192,7 +192,7 @@
     <string name="post_submit_done">Post envoyé.</string>
     <!-- Bug Reporting -->
     <string name="bug_title">Une erreur s\'est produite.</string>
-    <string name="bug_message">RedReader a rencontré une erreur.
+    <string name="bug_message">Marooned a rencontré une erreur.
 \n
 \nSouhaitez vous soumettre un rapport de bug aux développeurs \? Si oui, un courriel sera rempli avec les informations importantes et vous pourrez le contrôler avant de l\'envoyer.</string>
     <string name="bug_button_send">Envoyer un rapport d\'erreur par courriel</string>
@@ -610,7 +610,7 @@
     <string name="unblock_subreddit">Débloquer le subreddit</string>
     <string name="sort_posts_comments">Commentaires</string>
     <string name="unpin_subreddit">Retirer du menu principal</string>
-    <string name="upgrade_v190_login_message">RedReader a été mis à niveau et utilise maintenant oAuth pour l\'authentification Reddit. Si vous étiez connecté à un compte avant la mise à niveau, vous êtes maintenant déconnecté.</string>
+    <string name="upgrade_v190_login_message">Marooned a été mis à niveau et utilise maintenant oAuth pour l\'authentification Reddit. Si vous étiez connecté à un compte avant la mise à niveau, vous êtes maintenant déconnecté.</string>
     <string name="userprofile_pm">Envoyer un message</string>
     <string name="time_hour">heure</string>
     <string name="search_listing_header_query">Requête de recherche</string>

@@ -174,7 +174,7 @@
     <string name="post_captcha_submit_button">Send inn</string>
     <string name="post_submit_done">Innlegg innsendt.</string>
     <string name="bug_title">En feil har inntruffet.</string>
-    <string name="bug_message">RedReader har støtt på en feil.
+    <string name="bug_message">Marooned har støtt på en feil.
 \n
 \nØnsker du å sende en feilrapport\? En e-post vil bli fylt inn for deg med kontrollerbar relevant informasjon, som du kan sende.</string>
     <string name="bug_button_send">Send feilrapport per e-post</string>
@@ -604,7 +604,7 @@
     <string name="link_copied_to_clipboard">Lenke kopiert til utklippstavle</string>
     <string name="reddit_login_browser_popup_use_external_browser">Bruk ekstern nettleser (anbefales)</string>
     <string name="reddit_login_browser_popup_use_internal_browser">Bruk intern nettleser (anbefales)</string>
-    <string name="reddit_login_browser_popup_line_2">Når innloggingen er utført, burde du bli videresendt tilbake til RedReader. Hvis det ikke fungerer kan du bruke en annen nettleser nedenfor.</string>
+    <string name="reddit_login_browser_popup_line_2">Når innloggingen er utført, burde du bli videresendt tilbake til Marooned. Hvis det ikke fungerer kan du bruke en annen nettleser nedenfor.</string>
     <string name="reddit_login_browser_popup_line_1">Du vil nå bli sendt til Reddit i en nettleser for innlogging.</string>
 	<plurals name="load_more_comments_button_reply_count">
 		<item quantity="other">Last inn flere kommentarer (%d svar)</item>

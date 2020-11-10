@@ -343,7 +343,7 @@
     <string name="error_unknown_api_message">Il server non ha accettato la richiesta per un motivo sconosciuto. Riprova.</string>
     <string name="error_404_message">I dati richiesti non sono stati trovati.</string>
     <string name="error_403_message">Reddit dice che l\'utente attuale non ha permessi sufficienti. Prova a disconnetterti e riaccedere (eliminando l\'account dall\'elenco e poi aggiungendolo di nuovo).</string>
-    <string name="bug_message">RedReader ha riscontrato un errore.
+    <string name="bug_message">Marooned ha riscontrato un errore.
 \n
 \nVuoi inviare una segnalazione di bug allo sviluppatore? In tal caso, verrà compilata un\'email con tutte le informazioni importanti e potrai verificarne il contenuto prima di inviarla.</string>
     <string name="sort_posts_relevance">Rilevanza</string>
@@ -373,7 +373,7 @@
     <string name="pref_appearance_hide_username_main_menu_title">Nascondi il nome utente nel menu principale</string>
     <string name="selected_link_is_not_image">Il link selezionato non è un\'immagine.</string>
     <string name="imgur_album">Album imgur</string>
-    <string name="upgrade_v190_login_message">RedReader è stato aggiornato e ora utilizza oAuth per l\'autenticazione a reddit. Se avevi effettuato l\'accesso ad un account prima dell\'aggiornamento, adesso verrai disconnesso.</string>
+    <string name="upgrade_v190_login_message">Marooned è stato aggiornato e ora utilizza oAuth per l\'autenticazione a reddit. Se avevi effettuato l\'accesso ad un account prima dell\'aggiornamento, adesso verrai disconnesso.</string>
     <string name="pref_behaviour_videoview_mode_title">Visualizzatore video</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">Visualizzatore video interno (raccomandato)</string>
     <string name="pref_behaviour_videoview_mode_external_app_vlc">App esterna: VLC</string>

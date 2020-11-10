@@ -227,7 +227,7 @@
     <string name="post_submit_done">Įrašas įkeltas.</string>
 
     <string name="bug_title">Įvyko klaida.</string>
-    <string name="bug_message">Su RedReader įvyko klaida.
+    <string name="bug_message">Su Marooned įvyko klaida.
 \n
 \nAr norėtumėte pateikti klaidos aprašą kūrėjui? Jei taip, bus sugeneruotas el. laiškas su visa svarbia informacija, ir jūs galėsite peržiūrėti jo turinį.</string>
     <string name="bug_button_send">Išsiųsti klaidos aprašą el. paštu</string>

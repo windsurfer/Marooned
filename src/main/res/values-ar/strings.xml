@@ -193,7 +193,7 @@
     <string name="post_submit_done">تم تقديم الإشعار.</string>
     <!-- Bug Reporting -->
     <string name="bug_title">حدث خطأ.</string>
-    <string name="bug_message">حدث خطأ ما في تطبيق RedReader. هل تريد إرسال تقرير للمطور؟ إن كنت تريد ذلك، سيتم إرسال بريد إلكتروني يحتوي على المعلومات المتعلقة بالخطأ، يمكنك التحقق من هذه المعلومات قبل الإرسال.</string>
+    <string name="bug_message">حدث خطأ ما في تطبيق Marooned. هل تريد إرسال تقرير للمطور؟ إن كنت تريد ذلك، سيتم إرسال بريد إلكتروني يحتوي على المعلومات المتعلقة بالخطأ، يمكنك التحقق من هذه المعلومات قبل الإرسال.</string>
     <string name="bug_button_send">إرسال التقرير عبر البريد الإلكتروني</string>
     <string name="bug_button_ignore">عدم إرسال التقرير</string>
     <!-- General errors -->
@@ -423,7 +423,7 @@
     <string name="imgur_album">ألبوم &lt;Imgur&gt;</string>
     <string name="album_already_first_image">لا توجد صورة قبل هذه الصورة في الألبوم.</string>
     <string name="album_already_last_image">لا توجد صورة بعد هذه الصورة في الألبوم.</string>
-    <string name="upgrade_v190_login_message">تمت ترقيه &lt;RedReader&gt; ، الآن يتم استخدام &lt;oAuth&gt; لمصادقة ريديت. إذا كنت قد سجلت الدخول إلى حساب قبل الترقية ، سيتم تسجيل خروجك الآن.</string>
+    <string name="upgrade_v190_login_message">تمت ترقيه &lt;Marooned&gt; ، الآن يتم استخدام &lt;oAuth&gt; لمصادقة ريديت. إذا كنت قد سجلت الدخول إلى حساب قبل الترقية ، سيتم تسجيل خروجك الآن.</string>
     <string name="pref_behaviour_videoview_mode_title">عارض الفيديو</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">عارض الفيديو الداخلي (منصوح به)</string>
     <string name="pref_behaviour_videoview_mode_external_app_vlc">التطبيق الخارجي: &lt;VLC&gt;</string>

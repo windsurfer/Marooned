@@ -262,7 +262,7 @@
     <!-- Bug Reporting -->
 
     <string name="bug_title">S-a întâmpinat o eroare.</string>
-    <string name="bug_message">RedReader has encountered an error.\n\nWould you like to send a bug report to the developer? If so, an email will be filled in for you with all the relevant information, and you can inspect the contents before sending.RedReader a întâmpinat o eroare.\n\Doriți să trimiteți developer-ului raportul bug-ului? Dacă da, se va deschide un e-mail pentru dumneavoastră cu toate informațiile relevante, ca dumneavoastră să puteți corecta elementele înainte să le trimiteți.</string>
+    <string name="bug_message">Marooned has encountered an error.\n\nWould you like to send a bug report to the developer? If so, an email will be filled in for you with all the relevant information, and you can inspect the contents before sending.Marooned a întâmpinat o eroare.\n\Doriți să trimiteți developer-ului raportul bug-ului? Dacă da, se va deschide un e-mail pentru dumneavoastră cu toate informațiile relevante, ca dumneavoastră să puteți corecta elementele înainte să le trimiteți.</string>
     <string name="bug_button_send">Trimiteți raportul bug-ului prin e-mail</string>
     <string name="bug_button_ignore">Nu trimiteți raportul bug-ului</string>
 
@@ -627,7 +627,7 @@
     <string name="album_already_first_image">Sunteți deja la prima imagine din album.</string>
     <string name="album_already_last_image">Sunteți deja la ultima imagine din album.</string>
 
-    <string name="upgrade_v190_login_message">RedReader a fost upgradat, și acum folosește oAuth pentru autentificare. Dacă erați logați inainte de upgrade, acum sunteți automat delogat.</string>
+    <string name="upgrade_v190_login_message">Marooned a fost upgradat, și acum folosește oAuth pentru autentificare. Dacă erați logați inainte de upgrade, acum sunteți automat delogat.</string>
 
     <string name="pref_behaviour_videoview_mode_title">Video Viewer</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">Intern VideoView (recomandat)</string>

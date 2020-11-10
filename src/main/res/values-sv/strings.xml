@@ -192,7 +192,7 @@
     <string name="post_submit_done">Inlägg skickat.</string>
     <!-- Bug Reporting -->
     <string name="bug_title">Ett fel har inträffat.</string>
-    <string name="bug_message">RedReader har råkat ut för ett fel.\n\nVill du skicka en buggrapport till utvecklaren? I så fall kommer ett e-brev med all relevant information att fyllas i åt dig, och du kan inspektera innehållet innan det skickas.</string>
+    <string name="bug_message">Marooned har råkat ut för ett fel.\n\nVill du skicka en buggrapport till utvecklaren? I så fall kommer ett e-brev med all relevant information att fyllas i åt dig, och du kan inspektera innehållet innan det skickas.</string>
     <string name="bug_button_send">Skicka buggrapport via e-post</string>
     <string name="bug_button_ignore">Skicka inte buggrapport</string>
     <!-- General errors -->
@@ -446,7 +446,7 @@
     <!-- 2015-10-04 -->
     <string name="album_already_first_image">Redan på första bilden i albumet.</string>
     <string name="album_already_last_image">Redan på sista bilden i albumet.</string>
-    <string name="upgrade_v190_login_message">RedReader har uppgraderats, och använder nu oAuth för reddit-autentisering. Om du var inloggad på ett konto innan uppgraderingen så har du nu loggats ut.</string>
+    <string name="upgrade_v190_login_message">Marooned har uppgraderats, och använder nu oAuth för reddit-autentisering. Om du var inloggad på ett konto innan uppgraderingen så har du nu loggats ut.</string>
     <string name="pref_behaviour_videoview_mode_title">Videovisare</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">Intern VideoView (rekommenderas)</string>
     <string name="pref_behaviour_videoview_mode_external_app_vlc">Extern app: VLC</string>

@@ -227,7 +227,7 @@
     <string name="post_submit_done">已發帖。</string>
 
     <string name="bug_title">應用程式出現了問題。</string>
-    <string name="bug_message">RedReader出故障了。 
+    <string name="bug_message">Marooned出故障了。
 \n 
 \n您願意給開發者發送一份錯誤報告嗎？如果您願意，我們將撰寫一封電子郵件，並填好相關的訊息。您可以在發送前查看電郵的內容。</string>
     <string name="bug_button_send">透過電子郵件報告錯誤</string>
@@ -386,7 +386,7 @@
 
     <string name="pref_about_version_title">版本</string>
 
-    <string name="prefs_category_about">關於RedReader</string>
+    <string name="prefs_category_about">關於Marooned</string>
 
     <string name="pref_behaviour_sort_header">排列</string>
 
@@ -516,7 +516,7 @@
     <string name="album_already_first_image">這已是相冊的第一張圖片。</string>
     <string name="album_already_last_image">這已是相冊的最後一張圖片。</string>
 
-    <string name="upgrade_v190_login_message">RedReader已更新，並使用oAuth進行Reddit驗證。如果您在更新前登入了您的帳號，您已經被登出。</string>
+    <string name="upgrade_v190_login_message">Marooned已更新，並使用oAuth進行Reddit驗證。如果您在更新前登入了您的帳號，您已經被登出。</string>
 
     <string name="pref_behaviour_videoview_mode_title">影片播放器</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">內部VideoView（建议使用）</string>

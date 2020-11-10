@@ -193,7 +193,7 @@
     <string name="post_submit_done">Post verstuurd.</string>
     <!-- Bug Reporting -->
     <string name="bug_title">Een fout is opgestreden.</string>
-    <string name="bug_message">Er is een fout opgetreden in RedReader.\n\nWil je een foutrapportage opsturen naar de ontwikkelaar? Zo ja, dan wordt een e-mail opgesteld met de relevante informatie. Je kunt de informatie in deze e-mail bekijken voor het versturen.</string>
+    <string name="bug_message">Er is een fout opgetreden in Marooned.\n\nWil je een foutrapportage opsturen naar de ontwikkelaar? Zo ja, dan wordt een e-mail opgesteld met de relevante informatie. Je kunt de informatie in deze e-mail bekijken voor het versturen.</string>
     <string name="bug_button_send">Foutrapport e-mailen</string>
     <string name="bug_button_ignore">Geen foutrapporten e-mailen</string>
     <!-- General errors -->
@@ -443,7 +443,7 @@
     <!-- 2015-10-04 -->
     <string name="album_already_first_image">Al op de eerste afbeelding in het album.</string>
     <string name="album_already_last_image">Al op de laatste afbeelding in het album.</string>
-    <string name="upgrade_v190_login_message">RedReader is vernieuwd en gebruikt nu oAuth voor Redditverificatie. Als je ingelogd was vóór deze vernieuwing, dan ben je nu uitgelogd.</string>
+    <string name="upgrade_v190_login_message">Marooned is vernieuwd en gebruikt nu oAuth voor Redditverificatie. Als je ingelogd was vóór deze vernieuwing, dan ben je nu uitgelogd.</string>
     <string name="pref_behaviour_videoview_mode_title">Videospeler</string>
     <string name="pref_behaviour_videoview_mode_internal_videoview">Interne VideoView (aanbevolen)</string>
     <string name="pref_behaviour_videoview_mode_external_app_vlc">Externe App: VLC</string>

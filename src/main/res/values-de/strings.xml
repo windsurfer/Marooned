@@ -193,7 +193,7 @@
     <string name="post_submit_done">Beitrag übermittelt</string>
     <!-- Bug Reporting -->
     <string name="bug_title">Ein Fehler ist aufgetreten.</string>
-    <string name="bug_message">RedReader hat einen Fehler gefunden.
+    <string name="bug_message">Marooned hat einen Fehler gefunden.
 \n
 \nWillst du dem Entwickler einen Fehlerbericht senden\? Wenn ja, wird ein E-Mail mit allen nötigen Infos erstellt, und du kannst die Inhalte vor dem Senden überprüfen.</string>
     <string name="bug_button_send">Fehlerbericht senden</string>
@@ -540,7 +540,7 @@
     <string name="unblock_done">Subreddit nicht mehr geblockt. Bei zukünftigen Besuchen von /r/all wird dieses Subreddit wieder angezeigt.</string>
     <string name="unblock_subreddit">Subreddit nicht mehr blockieren</string>
     <string name="unpin_subreddit">Von Hauptmenü entpinnen</string>
-    <string name="upgrade_v190_login_message">RedReader wurde aktualisiert und benutzt jetzt oAuth zur Authentifizierung auf Reddit. Falls Sie vorher mit einem Benutzerkonto angemeldet waren, wurden Sie nun abgemeldet.</string>
+    <string name="upgrade_v190_login_message">Marooned wurde aktualisiert und benutzt jetzt oAuth zur Authentifizierung auf Reddit. Falls Sie vorher mit einem Benutzerkonto angemeldet waren, wurden Sie nun abgemeldet.</string>
     <string name="upload_to_imgur">Zu Imgur hochladen</string>
     <string name="user_comments">Kommentare</string>
     <string name="userprofile_pm">Nachricht senden</string>
