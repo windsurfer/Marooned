@@ -450,7 +450,10 @@ public final class RedditPostView extends FlingableItemView
 				String seconds = String.format("%1$2s", durationSeconds % 60).replace(' ', '0');
 				thumbnailOverlay.setText(minutes + ":" + seconds);
 				thumbnailOverlay.setVisibility(VISIBLE);
-			}else {
+			}else if (data.src.isGallery()) {
+				thumbnailOverlay.setText(R.string.image_gallery);
+				thumbnailOverlay.setVisibility(VISIBLE);
+			}else{
 				thumbnailOverlay.setVisibility(GONE);
 			}
 

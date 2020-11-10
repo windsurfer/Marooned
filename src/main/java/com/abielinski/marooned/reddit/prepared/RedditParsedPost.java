@@ -94,6 +94,10 @@ public class RedditParsedPost implements RedditThingWithIdAndType {
 	public boolean isStickied() {
 		return mSrc.stickied;
 	}
+	public boolean isGallery() {
+		return mSrc.is_gallery;
+	}
+
 
 	public RedditPost getSrc() {
 		return mSrc;
