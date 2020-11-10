@@ -123,9 +123,10 @@ public class RRTime {
 		if(parts.size() >= numParts) {
 			duration = new StringBuilder(parts.get(0));
 		}
-
-		for(int i = 1; i < numParts; i ++) {
-			duration.append(comma).append(parts.get(i));
+		if (parts.size() > 1) {
+			for (int i = 1; i < numParts; i++) {
+				duration.append(comma).append(parts.get(i));
+			}
 		}
 
 		return String.format(context.getString(R.string.time_ago), duration.toString());
