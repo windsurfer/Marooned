@@ -39,6 +39,7 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 	public String thumbnail; // an image URL
 
 	public JsonBufferedObject media;
+	public JsonBufferedObject preview;
 	@Nullable public String rr_internal_dash_url;
 
 	public RedditPost() {
@@ -70,6 +71,13 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 		} else if(media != null) {
 			try {
 				duration = Integer.parseInt(media.getObject("reddit_video")
+						.getString("duration"));
+			} catch(final Exception e) {
+				duration = 0;
+			}
+		} else if(preview != null){
+			try {
+				duration = Integer.parseInt(preview.getObject("reddit_video_preview")
 						.getString("duration"));
 			} catch(final Exception e) {
 				duration = 0;
