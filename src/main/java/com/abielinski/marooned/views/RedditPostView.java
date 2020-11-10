@@ -596,10 +596,7 @@ public final class RedditPostView extends FlingableItemView
 									}
 								}
 							});
-
 						}
-
-
 					}.start();
 				}else{
 					// image isn't cached... will it be downloaded?

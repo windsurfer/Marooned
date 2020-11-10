@@ -27,7 +27,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.LayoutRes;
@@ -40,6 +39,7 @@ import com.abielinski.marooned.R;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.TorCommon;
+import com.abielinski.marooned.image.BitmapCache;
 import com.abielinski.marooned.views.MFrameLayout;
 
 import java.util.HashMap;
@@ -361,5 +361,11 @@ public abstract class BaseActivity extends AppCompatActivity
 				|| key.equals(getString(R.string.pref_pinned_subreddits_key))) {
 			invalidateOptionsMenu();
 		}
+	}
+
+
+	@Override
+	public void onTrimMemory(int level) {
+		BitmapCache.trimMemory(level);
 	}
 }

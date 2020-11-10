@@ -9,9 +9,12 @@ import android.util.LruCache;
 
 import java.io.IOException;
 
+import static android.content.ComponentCallbacks2.TRIM_MEMORY_BACKGROUND;
+import static android.content.ComponentCallbacks2.TRIM_MEMORY_MODERATE;
+
 public class BitmapCache {
 
-	private static int maxCacheSize = 64 * 1024 * 1024; // 64MiB
+	private static int maxCacheSize = 256 * 1024; // 256MiB stored as KiB
 	private static BitmapCache singleton;
 	private LruCache<String, Bitmap> bitmapCache;
 	public BitmapCache(){
@@ -20,16 +23,16 @@ public class BitmapCache {
 		// Get max available VM memory, exceeding this amount will throw an
 		// OutOfMemory exception. Stored in kilobytes as LruCache takes an
 		// int in its constructor.
-		//final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+		final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 
-		// Use 1/8th of the available memory for this memory cache.
-		final int cacheSize = maxCacheSize;
-		Log.i("BitmapCache", "Init cache with " + cacheSize / 1024 + "KB");
+
+		final int cacheSize = Math.min(maxCacheSize, maxMemory);
+		Log.i("BitmapCache", "Init BitmapCache with " + cacheSize + "KiB");
 
 		bitmapCache = new LruCache<String, Bitmap>(cacheSize) {
-			@Override
+			@Override // returns KB
 			protected int sizeOf(String key, Bitmap value) {
-				return value.getByteCount();
+				return value.getByteCount() / 1024;
 			}
 		};
 	}
@@ -45,10 +48,25 @@ public class BitmapCache {
 		return get().bitmapCache;
 	}
 
+	public static void trimMemory(int level) {
+		if (level >= TRIM_MEMORY_MODERATE) {
+			Log.v("BitmapCache", "Emptying entire BitmapCache");
+			getCache().evictAll();
+		}
+		else if (level >= TRIM_MEMORY_BACKGROUND) {
+			Log.v("BitmapCache", "Shrinking BitmapCache");
+			getCache().trimToSize(getCache().size() / 2);
+		}
+	}
+
 	public static void addBitmapToMemoryCache(String key, Bitmap bitmap) {
 		if (getBitmapFromMemCache(key) == null) {
 			getCache().put(key, bitmap);
 		}
+	}
+
+	public static float getPercentFull(){
+		return (float)getCache().size() / (float)getCache().maxSize();
 	}
 
 	public static Bitmap getBitmapFromMemCache(String key) {
@@ -60,10 +78,10 @@ public class BitmapCache {
 
 		final Bitmap cachedBitmap = getBitmapFromMemCache(key);
 		if (cachedBitmap != null){
-			//Log.i("BitmapCache", "Cache hit");
+			Log.v("BitmapCache", "BitmapCache hit (cache is " + getPercentFull() *100 + "% full )");
 			return cachedBitmap;
 		}
-		//Log.i("BitmapCache", "Cache miss (cache is " + getCache().size()/1024 + "KB )");
+		Log.v("BitmapCache", "BitmapCache miss (cache is " + getPercentFull()*100 + "% full )");
 		try {
 
 			final Bitmap rawBitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), imageCacheUri);

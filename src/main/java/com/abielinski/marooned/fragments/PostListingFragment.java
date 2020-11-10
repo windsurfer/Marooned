@@ -1024,134 +1024,136 @@ public class PostListingFragment extends RRFragment
 								leftHandedMode);
 						downloadedPosts.add(postItem);
 
-						postItem.setCached(isImageCached(activity, parsedPost.getUrl()), activity);
+						boolean isCached = isImageCached(activity, parsedPost.getUrl());
+						postItem.setCached(isCached, activity);
 
-						LinkHandler.getImageInfo(
-								activity,
-								parsedPost.getUrl(),
-								Constants.Priority.IMAGE_PRECACHE,
-								positionInList,
-								new GetImageInfoListener() {
+						if (!isCached) {
+							LinkHandler.getImageInfo(
+									activity,
+									parsedPost.getUrl(),
+									Constants.Priority.IMAGE_PRECACHE,
+									positionInList,
+									new GetImageInfoListener() {
 
-									@Override
-									public void onFailure(
-											final @CacheRequest.RequestFailureType int type,
-											final Throwable t,
-											final Integer status,
-											final String readableMessage) {
-									}
-
-									@Override
-									public void onNotAnImage() {
-									}
-
-									@Override
-									public void onSuccess(final ImageInfo info) {
-
-										postItem.setCached(isImageCached(activity, info.urlOriginal), activity);
-
-										// not strictly required, just an optimization
-										if(!precacheImages && !precacheVideos) {
-											return;
+										@Override
+										public void onFailure(
+												final @CacheRequest.RequestFailureType int type,
+												final Throwable t,
+												final Integer status,
+												final String readableMessage) {
 										}
 
-										// Don't precache huge images
-										final long size = info.size != null ? info.size : 0;
-
-
-										// Don't precache gifs if they're opened externally
-										if(ImageInfo.MediaType.GIF.equals(info.mediaType)){
-
-											if (!precacheVideos){
-												Log.i(TAG, String.format(
-													"Not precaching '%s': GIFs on current connection",
-													post.getUrl()));
-												return;
-											}
-
-											if(!gifViewMode.downloadInApp) {
-
-												Log.i(TAG, String.format(
-													"Not precaching '%s': GIFs opened externally",
-													post.getUrl()));
-												return;
-											}
-
-											if (size > maxSizePrecacheVideos) {
-												Log.i(TAG, String.format(
-														"Not precaching '%s': too big (%d kB)",
-														post.getUrl(),
-														size / 1024));
-												return;
-											}
+										@Override
+										public void onNotAnImage() {
 										}
 
-										// Don't precache images if they're opened externally
-										if(ImageInfo.MediaType.IMAGE.equals(info.mediaType)) {
-											if (!imageViewMode.downloadInApp) {
-												Log.i(TAG, String.format(
-													"Not precaching '%s': images opened externally",
-													post.getUrl()));
-												return;
-											}
-											if(!precacheImages){
-												Log.i(TAG, String.format(
-														"Not precaching '%s': images on current connection",
-														post.getUrl()));
+										@Override
+										public void onSuccess(final ImageInfo info) {
+
+											postItem.setCached(isImageCached(activity, info.urlOriginal), activity);
+
+											// not strictly required, just an optimization
+											if (!precacheImages && !precacheVideos) {
 												return;
 											}
 
-											if (size > maxSizePrecacheImages) {
-												Log.i(TAG, String.format(
-														"Not precaching '%s': too big (%d kB)",
-														post.getUrl(),
-														size / 1024));
-												return;
+											// Don't precache huge images
+											final long size = info.size != null ? info.size : 0;
+
+
+											// Don't precache gifs if they're opened externally
+											if (ImageInfo.MediaType.GIF.equals(info.mediaType)) {
+
+												if (!precacheVideos) {
+													Log.i(TAG, String.format(
+															"Not precaching '%s': GIFs on current connection",
+															post.getUrl()));
+													return;
+												}
+
+												if (!gifViewMode.downloadInApp) {
+
+													Log.i(TAG, String.format(
+															"Not precaching '%s': GIFs opened externally",
+															post.getUrl()));
+													return;
+												}
+
+												if (size > maxSizePrecacheVideos) {
+													Log.i(TAG, String.format(
+															"Not precaching '%s': too big (%d kB)",
+															post.getUrl(),
+															size / 1024));
+													return;
+												}
 											}
-										}
 
+											// Don't precache images if they're opened externally
+											if (ImageInfo.MediaType.IMAGE.equals(info.mediaType)) {
+												if (!imageViewMode.downloadInApp) {
+													Log.i(TAG, String.format(
+															"Not precaching '%s': images opened externally",
+															post.getUrl()));
+													return;
+												}
+												if (!precacheImages) {
+													Log.i(TAG, String.format(
+															"Not precaching '%s': images on current connection",
+															post.getUrl()));
+													return;
+												}
 
-										// Don't precache videos if they're opened externally
-										if(ImageInfo.MediaType.VIDEO.equals(info.mediaType)){
-											if (!videoViewMode.downloadInApp) {
-												Log.i(TAG, String.format(
-														"Not precaching '%s': videos opened externally",
-														post.getUrl()));
-												return;
+												if (size > maxSizePrecacheImages) {
+													Log.i(TAG, String.format(
+															"Not precaching '%s': too big (%d kB)",
+															post.getUrl(),
+															size / 1024));
+													return;
+												}
 											}
-											if (!precacheVideos){
-												Log.i(TAG, String.format(
-														"Not precaching '%s': videos on current connection",
-														post.getUrl()));
-												return;
+
+
+											// Don't precache videos if they're opened externally
+											if (ImageInfo.MediaType.VIDEO.equals(info.mediaType)) {
+												if (!videoViewMode.downloadInApp) {
+													Log.i(TAG, String.format(
+															"Not precaching '%s': videos opened externally",
+															post.getUrl()));
+													return;
+												}
+												if (!precacheVideos) {
+													Log.i(TAG, String.format(
+															"Not precaching '%s': videos on current connection",
+															post.getUrl()));
+													return;
+												}
+
+												if (size > maxSizePrecacheVideos) {
+													Log.i(TAG, String.format(
+															"Not precaching '%s': too big (%d kB)",
+															post.getUrl(),
+															size / 1024));
+													return;
+												}
 											}
 
-											if (size > maxSizePrecacheVideos) {
-												Log.i(TAG, String.format(
-														"Not precaching '%s': too big (%d kB)",
-														post.getUrl(),
-														size / 1024));
-												return;
-											}
-										}
-
-										precacheImage(
-												activity,
-												info.urlOriginal,
-												positionInList,
-												postItem,
-												parsedPost.getUrl());
-
-										if(info.urlAudioStream != null) {
 											precacheImage(
 													activity,
-													info.urlAudioStream,
+													info.urlOriginal,
 													positionInList,
-													postItem);
-										}
-									}
-								});
+													postItem,
+													parsedPost.getUrl());
 
+											if (info.urlAudioStream != null) {
+												precacheImage(
+														activity,
+														info.urlAudioStream,
+														positionInList,
+														postItem);
+											}
+										}
+									});
+						}
 
 						mPostCount++;
 						mPostRefreshCount.decrementAndGet();
