@@ -57,7 +57,7 @@
 				android:layout_height="wrap_content"
 				android:scaleType="center"
 				android:visibility="gone"
-				android:background="@color/darkWindowBackground"
+				android:background="?rrPostThumbnailBackground"
 				tools:ignore="ContentDescription"
 				tools:visibility="visible"
 				tools:layout_height="200dp"

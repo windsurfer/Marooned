@@ -208,7 +208,7 @@
 		<item name="rrPostCommentsButtonBackCol">#222222</item>
 		<item name="rrPostCommentsButtonHighlightCol">#333333</item>
 
-		<item name="rrPostThumbnailBackground">#444444</item>
+		<item name="rrPostThumbnailBackground">#000000</item>
 
 		<item name="rrCommentBodyCol">#FCFCFC</item>
 		<item name="rrCommentHeaderCol">#B8B8B8</item>
