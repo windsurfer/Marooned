@@ -114,6 +114,7 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 	public int renderedImageHeight = 0;
 
 	public boolean cached = false;
+	public boolean failToShowInline = false;
 
 	public boolean isCached() {
 		return cached;
@@ -123,6 +124,17 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 		if (cached != newCached) {
 			cached = newCached;
 			postListDescription = rebuildSubtitle(activity);
+			activity.runOnUiThread(() -> {
+				if(mBoundView != null) {
+					mBoundView.updateAppearance();
+				}
+			});
+		}
+	}
+
+	public void setFailToCache(final Activity activity){
+		if (!failToShowInline){
+			failToShowInline = true;
 			activity.runOnUiThread(() -> {
 				if(mBoundView != null) {
 					mBoundView.updateAppearance();

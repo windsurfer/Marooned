@@ -546,7 +546,7 @@ public final class RedditPostView extends FlingableItemView
 		if (post.mIsProbablyDisplayableInline && displayInlineImages){
 
 
-			if (!mImageIsRendering){
+			if (!mImageIsRendering || post.failToShowInline){
 
 				mImageStartRender = System.currentTimeMillis();
 
@@ -567,7 +567,7 @@ public final class RedditPostView extends FlingableItemView
 
 				String postUrl = post.src.getUrl();
 				Uri imageCacheUri = getURIFromCache(postUrl, mActivity);
-				if (imageCacheUri != null){
+				if (imageCacheUri != null && !post.failToShowInline){
 
 					mImageIsRendering = true;
 					overlayVisible = false;
@@ -621,7 +621,7 @@ public final class RedditPostView extends FlingableItemView
 							|| (imagePrecachePref == PrefsUtility.CachePrecacheImages.WIFIONLY
 							&& General.isConnectionWifi(mActivity)))
 							&& !FileUtils.isCacheDiskFull(mActivity);
-					if (precacheImages){
+					if (precacheImages && !post.failToShowInline){
 						// continue waiting....
 						// TODO: check if we are waiting to cache or if it failed
 					}else{

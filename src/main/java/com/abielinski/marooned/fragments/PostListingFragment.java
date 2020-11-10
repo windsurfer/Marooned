@@ -1052,6 +1052,7 @@ public class PostListingFragment extends RRFragment
 												final Throwable t,
 												final Integer status,
 												final String readableMessage) {
+											preparedPost.setFailToCache(activity);
 										}
 
 										@Override
@@ -1105,12 +1106,14 @@ public class PostListingFragment extends RRFragment
 													Log.i(TAG, String.format(
 															"Not precaching '%s': images opened externally",
 															post.getUrl()));
+													preparedPost.setFailToCache(activity);
 													return;
 												}
 												if (!precacheImages) {
 													Log.i(TAG, String.format(
 															"Not precaching '%s': images on current connection",
 															post.getUrl()));
+													preparedPost.setFailToCache(activity);
 													return;
 												}
 
@@ -1119,6 +1122,7 @@ public class PostListingFragment extends RRFragment
 															"Not precaching '%s': too big (%d kB)",
 															post.getUrl(),
 															size / 1024));
+													preparedPost.setFailToCache(activity);
 													return;
 												}
 											}
