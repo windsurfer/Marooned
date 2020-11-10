@@ -32,8 +32,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +54,7 @@ import com.abielinski.marooned.common.FileUtils;
 import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.fragments.PostListingFragment;
+import com.abielinski.marooned.image.BitmapCache;
 import com.abielinski.marooned.image.ThumbnailScaler;
 import com.abielinski.marooned.reddit.prepared.RedditPreparedPost;
 
@@ -94,7 +93,7 @@ public final class RedditPostView extends FlingableItemView
 	private final boolean mCommentsButtonPref;
 
 	private boolean mImageIsRendering = false;
-	private boolean mWaitingForRender = false;
+	private long mImageStartRender = -1;
 
 	private final int
 			rrPostTitleReadCol,
@@ -420,7 +419,6 @@ public final class RedditPostView extends FlingableItemView
 			postImageView.setVisibility(GONE);
 			postImageView.setImageResource(android.R.color.transparent);
 			mImageIsRendering = false;
-			mWaitingForRender = false;
 
 			title.setVisibility(VISIBLE);
 			title_alternate.setVisibility(GONE);
@@ -475,12 +473,9 @@ public final class RedditPostView extends FlingableItemView
 
 		this.post = data;
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			updateAppearance();
-		}
+		updateAppearance();
 	}
 
-	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	public void updateAppearance() {
 
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -542,18 +537,14 @@ public final class RedditPostView extends FlingableItemView
 
 			if (!mImageIsRendering){
 
-				final int availableHeight;
-				final int availableWidth;
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-					Rect windowSize = new Rect ();
-					final int margin = (int)(128.0f * dpScale);
-					mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(windowSize);
-					availableHeight = Math.min((int)(800.0f * dpScale), (int)windowSize.height() - margin);
-					availableWidth = Math.min((int)(800.0f * dpScale), (int)windowSize.width());
-				}else{
-					availableHeight = (int)(600.0f * dpScale);
-					availableWidth = (int)(600.0f * dpScale);
-				}
+				mImageStartRender = System.currentTimeMillis();
+
+				Rect windowSize = new Rect ();
+				final int margin = (int)(128.0f * dpScale);
+				mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(windowSize);
+
+				final int availableHeight = Math.min((int)(800.0f * dpScale), (int)windowSize.height() - margin);
+				final int availableWidth = Math.min((int)(800.0f * dpScale), (int)windowSize.width());
 
 				final int imageHeight = post.renderedImageHeight != 0 ?
 						Math.min(post.renderedImageHeight, availableHeight)
@@ -571,52 +562,47 @@ public final class RedditPostView extends FlingableItemView
 					overlayVisible = false;
 
 					RedditPreparedPost oldPost = post;
-
 					new Thread("Image rendering thread"){
 						@Override
 						public void run() {
 
 							Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
-							try {
+							final Bitmap scaledBitmap =
+									BitmapCache.getScaledBitmap(
+											mActivity,
+											imageCacheUri,
+											imageWidth,
+											imageHeight);
 
-								final Bitmap rawBitmap = MediaStore.Images.Media.getBitmap(mActivity.getContentResolver(), imageCacheUri);
+							final BitmapDrawable result = new BitmapDrawable(mActivity.getResources(), scaledBitmap);
+							mActivity.runOnUiThread(()->{
+								if (postImageView != null && oldPost != null && oldPost.src == post.src && mImageIsRendering) {
+									postImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+									postImageView.setImageDrawable(result);
+									post.renderedImageHeight = result.getIntrinsicHeight();
+									postImageView.setMinimumHeight(post.renderedImageHeight);
 
-								final Bitmap scaledBitmap = ThumbnailScaler.scaleToFit(
-										rawBitmap,
-										imageWidth,
-										imageHeight);
-								final BitmapDrawable result = new BitmapDrawable(mActivity.getResources(), scaledBitmap);
-								mActivity.runOnUiThread(()->{
-									if (postImageView != null && oldPost != null && oldPost.src == post.src && mImageIsRendering) {
-										postImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-										postImageView.setImageDrawable(result);
-										post.renderedImageHeight = result.getIntrinsicHeight();
-										postImageView.setMinimumHeight(post.renderedImageHeight);
+									long totalMilis = System.currentTimeMillis() - mImageStartRender;
+									//Log.i("ImageRender", "Took " + totalMilis + "ms to render");
 
-										if (mWaitingForRender) {
-											mWaitingForRender = false;
-											final Animation animation = AnimationUtils.loadAnimation(
-													getContext(),
-													R.anim.fade_in);
+									postImageView.clearAnimation();
+									if (totalMilis > 100) {
+										final Animation animation = AnimationUtils.loadAnimation(
+												getContext(),
+												R.anim.fade_in);
 
-											postImageView.clearAnimation();
-											postImageView.startAnimation(animation);
-										}
+										postImageView.startAnimation(animation);
 									}
-								});
+								}
+							});
 
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
 						}
 
 
 					}.start();
 				}else{
 					// image isn't cached... will it be downloaded?
-
-					mWaitingForRender = true;
 
 					final PrefsUtility.CachePrecacheImages imagePrecachePref
 							= PrefsUtility.cache_precache_images(
