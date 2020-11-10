@@ -113,7 +113,9 @@ public final class PrefsUtility {
 				|| key.equals(context.getString(
 				R.string.pref_appearance_hide_headertoolbar_commentlist_key))
 				|| key.equals(context.getString(
-				R.string.pref_appearance_hide_headertoolbar_postlist_key));
+				R.string.pref_appearance_hide_headertoolbar_postlist_key))
+				|| key.equals(context.getString(
+				R.string.pref_behavior_prevent_duplicates_key));
 	}
 
 	public static boolean isRestartRequired(final Context context, final String key) {
@@ -1223,6 +1225,17 @@ public final class PrefsUtility {
 				context,
 				sharedPreferences);
 	}
+
+	public static boolean pref_behaviour_duplicates(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return getBoolean(
+				R.string.pref_behavior_prevent_duplicates_key,
+				false,
+				context,
+				sharedPreferences);
+	}
+
 
 	//Show Visited Posts? True hides them.
 	// See strings.xml, prefs_behaviour.xml, PostListingFragment.java

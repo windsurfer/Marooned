@@ -149,6 +149,11 @@
                             android:key="@string/pref_behaviour_nsfw_key"
                             android:defaultValue="false"/>
 
+		<CheckBoxPreference android:title="@string/pref_behavior_prevent_duplicates"
+				android:key="@string/pref_behavior_prevent_duplicates_key"
+				android:summary="@string/pref_behavior_prevent_duplicates_summary"
+				android:defaultValue="false"/>
+
 		<CheckBoxPreference android:title="@string/pref_behaviour_hide_read_posts_title"
 				android:key="@string/pref_behaviour_hide_read_posts_key"
 				android:defaultValue="false"/>

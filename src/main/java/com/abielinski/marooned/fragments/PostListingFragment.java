@@ -134,6 +134,8 @@ public class PostListingFragment extends RRFragment
 
 	private Integer mPreviousFirstVisibleItemPosition;
 
+	private HashSet<String> postedURLs = new HashSet<>(200);
+
 	// Session may be null
 	public PostListingFragment(
 			final AppCompatActivity parent,
@@ -797,6 +799,9 @@ public class PostListingFragment extends RRFragment
 						activity,
 						mSharedPreferences);
 				final boolean isConnectionWifi = General.isConnectionWifi(activity);
+				final boolean hideDuplicatePosts = PrefsUtility.pref_behaviour_duplicates(
+						activity,
+						mSharedPreferences);
 
 				final PrefsUtility.AppearanceThumbnailsShow thumbnailsPref
 						= PrefsUtility.appearance_thumbnails_show(
@@ -940,6 +945,12 @@ public class PostListingFragment extends RRFragment
 						// has been clicked on AND user preference
 						// "hideReadPosts" is true
 						if(hideReadPosts && preparedPost.isRead()) {
+							continue;
+						}
+
+						// skip adding this post if it has been read AND user pref is enabled
+						if (hideDuplicatePosts && !postedURLs.add(preparedPost.src.getUrl())){
+							Log.i(TAG, "Skipping post because duplicate: " + preparedPost.src.getUrl());
 							continue;
 						}
 

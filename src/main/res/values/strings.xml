@@ -1324,7 +1324,11 @@
     <string name="pref_appearance_hide_android_status_images_key" translatable="false">pref_appearance_hide_android_status_images</string>
 	<string name="pref_appearance_hide_android_status_images">Hide status bar when viewing media</string>
 
-	<string name="pref_appearance_inline_images_show_key">pref_appearance_inline_images_show</string>
+	<string name="pref_appearance_inline_images_show_key" translatable="false">pref_appearance_inline_images_show</string>
 	<string name="pref_appearance_inline_images_show">Show inline images</string>
+
+	<string name="pref_behavior_prevent_duplicates_key" translatable="false">pref_behavior_prevent_duplicates</string>
+	<string name="pref_behavior_prevent_duplicates">Hide duplicate posts</string>
+	<string name="pref_behavior_prevent_duplicates_summary">Only the first post linking to the same URL would be displayed</string>
 
 </resources>
