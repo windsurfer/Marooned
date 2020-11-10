@@ -73,7 +73,7 @@
 				android:layout_height="wrap_content"
 				android:gravity="top"
 				android:orientation="horizontal"
-				android:minHeight="48dp"
+				android:minHeight="56dp"
 				android:elevation="10dp"
 				android:baselineAligned="false"
 				tools:ignore="UnusedAttribute">
@@ -82,7 +82,8 @@
 			<FrameLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:background="?rrPostThumbnailBackground">
+					android:background="?rrPostThumbnailBackground"
+					tools:visibility="gone">
 
 				<ImageView
 						android:id="@+id/reddit_post_thumbnail_view"
@@ -140,7 +141,7 @@
 						android:textColor="?rrPostTitleCol"
 						android:paddingLeft="10dp"
 						android:paddingRight="10dp"
-						android:paddingTop="5dp"
+						android:paddingTop="4dp"
 						android:paddingBottom="0dp"
 						android:textSize="14sp"
 						tools:text="This is an example headline"
@@ -154,9 +155,8 @@
 						android:textColor="#909090"
 						android:paddingLeft="10dp"
 						android:paddingRight="10dp"
-						android:paddingTop="3dp"
+						android:paddingTop="5dp"
 						android:paddingBottom="5dp"
-						android:scaleType="fitStart"
 						android:textSize="11sp"
 						tools:ignore="SmallSp"
 						tools:text="This is a subtitle for a post"/>
@@ -171,8 +171,7 @@
 					android:background="?rrPostCommentsButtonBackCol"
 					android:orientation="vertical"
 					android:paddingTop="0dp"
-					android:nextFocusLeft="@id/reddit_post_wrapper"
-					android:minHeight="48dp">
+					android:nextFocusLeft="@id/reddit_post_wrapper">
 
 				<ImageView
 						android:layout_height="wrap_content"
@@ -181,7 +180,7 @@
 						android:scaleType="fitCenter"
 						android:layout_marginLeft="8dp"
 						android:layout_marginRight="8dp"
-						android:layout_marginTop="4dp"
+						android:layout_marginTop="8dp"
 						android:layout_marginBottom="1dp"
 						android:contentDescription="@string/action_comments"/>
 
