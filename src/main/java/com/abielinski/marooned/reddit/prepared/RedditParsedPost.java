@@ -168,4 +168,8 @@ public class RedditParsedPost implements RedditThingWithIdAndType {
 	public BodyElement getSelfText() {
 		return mSelfText;
 	}
+
+	public int getDuration() {
+		return mSrc.getDuration();
+	}
 }

@@ -444,7 +444,15 @@ public final class RedditPostView extends FlingableItemView
 			overlayIcon.setMinimumHeight(thumbnailSize);
 			overlayIcon.setMinimumWidth(thumbnailSize);
 
-			thumbnailOverlay.setVisibility(GONE);
+			int durationSeconds = data.src.getDuration();
+			if (durationSeconds != 0){
+				int minutes = durationSeconds / 60;
+				String seconds = String.format("%1$2s", durationSeconds % 60).replace(' ', '0');
+				thumbnailOverlay.setText(minutes + ":" + seconds);
+				thumbnailOverlay.setVisibility(VISIBLE);
+			}else {
+				thumbnailOverlay.setVisibility(GONE);
+			}
 
 			if (data.mIsProbablyDisplayableInline && displayInlineImages){
 

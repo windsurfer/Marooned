@@ -27,7 +27,7 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 
 	public String id, name;
 	public String title, url, author, domain, subreddit, subreddit_id;
-	public int num_comments, score, ups, downs, gilded;
+	public int num_comments, score, ups, downs, gilded, duration;
 	public boolean archived, over_18, hidden, saved, is_self, clicked, stickied;
 	public Object edited;
 	public Boolean likes;
@@ -54,14 +54,29 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 			try {
 				rr_internal_dash_url = media.getObject("reddit_video")
 						.getString("fallback_url");
-
 			} catch(final Exception e) {
 				rr_internal_dash_url = null;
 			}
-
 		}
 
 		return rr_internal_dash_url;
+	}
+
+	public int getDuration() {
+
+		if(duration != 0) {
+			return duration;
+
+		} else if(media != null) {
+			try {
+				duration = Integer.parseInt(media.getObject("reddit_video")
+						.getString("duration"));
+			} catch(final Exception e) {
+				duration = 0;
+			}
+		}
+
+		return duration;
 	}
 
 	public String getUrl() {
@@ -88,6 +103,7 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 		ups = in.readInt();
 		downs = in.readInt();
 		gilded = in.readInt();
+		duration = in.readInt();
 		archived = in.readInt() == 1;
 		over_18 = in.readInt() == 1;
 		hidden = in.readInt() == 1;
@@ -160,6 +176,7 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 		parcel.writeInt(ups);
 		parcel.writeInt(downs);
 		parcel.writeInt(gilded);
+		parcel.writeInt(duration);
 		parcel.writeInt(archived ? 1 : 0);
 		parcel.writeInt(over_18 ? 1 : 0);
 		parcel.writeInt(hidden ? 1 : 0);
