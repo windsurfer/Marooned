@@ -459,8 +459,8 @@ public final class RedditPostView extends FlingableItemView
 				title.setVisibility(GONE);
 				title_alternate.setVisibility(VISIBLE);
 
-				postImageView.setImageResource(R.drawable.ic_loading_dark);
-				postImageView.setScaleType(ImageView.ScaleType.CENTER);
+				//postImageView.setImageResource(R.drawable.ic_loading_dark);
+				//postImageView.setScaleType(ImageView.ScaleType.CENTER);
 
 			}else{
 
