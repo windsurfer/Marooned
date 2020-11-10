@@ -94,6 +94,7 @@ public final class RedditPostView extends FlingableItemView
 	private final boolean mCommentsButtonPref;
 
 	private boolean mImageIsRendering = false;
+	private boolean mWaitingForRender = false;
 
 	private final int
 			rrPostTitleReadCol,
@@ -419,6 +420,7 @@ public final class RedditPostView extends FlingableItemView
 			postImageView.setVisibility(GONE);
 			postImageView.setImageResource(android.R.color.transparent);
 			mImageIsRendering = false;
+			mWaitingForRender = false;
 
 			title.setVisibility(VISIBLE);
 			title_alternate.setVisibility(GONE);
@@ -592,12 +594,15 @@ public final class RedditPostView extends FlingableItemView
 										post.renderedImageHeight = result.getIntrinsicHeight();
 										postImageView.setMinimumHeight(post.renderedImageHeight);
 
-										final Animation animation = AnimationUtils.loadAnimation(
-												getContext(),
-												R.anim.fade_in);
+										if (mWaitingForRender) {
+											mWaitingForRender = false;
+											final Animation animation = AnimationUtils.loadAnimation(
+													getContext(),
+													R.anim.fade_in);
 
-										postImageView.clearAnimation();
-										postImageView.startAnimation(animation);
+											postImageView.clearAnimation();
+											postImageView.startAnimation(animation);
+										}
 									}
 								});
 
@@ -610,6 +615,9 @@ public final class RedditPostView extends FlingableItemView
 					}.start();
 				}else{
 					// image isn't cached... will it be downloaded?
+
+					mWaitingForRender = true;
+
 					final PrefsUtility.CachePrecacheImages imagePrecachePref
 							= PrefsUtility.cache_precache_images(
 							mActivity,
