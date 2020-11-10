@@ -206,7 +206,7 @@
 		<item name="rrGoldBackCol">#6C530C</item>
 
 		<item name="rrPostCommentsButtonBackCol">#222222</item>
-		<item name="rrPostCommentsButtonHighlightCol">#444444</item>
+		<item name="rrPostCommentsButtonHighlightCol">#333333</item>
 
 		<item name="rrPostThumbnailBackground">#444444</item>
 
@@ -231,8 +231,8 @@
 		<item name="android:windowBackground">@color/darkWindowBackground</item>
 
 		<item name="rrListItemBackgroundCol">#000000</item>
-		<item name="rrListItemBackgroundHighlightCol">#555555</item>
-		<item name="rrListBackgroundCol">#111111</item>
+		<item name="rrListItemBackgroundHighlightCol">#333333</item>
+		<item name="rrListBackgroundCol">#000000</item>
 
 		<item name="rrIndentBackgroundCol">#000000</item>
 		<item name="rrIndentLineCol">#222222</item>
@@ -243,7 +243,7 @@
 		<item name="rrListSubtitleCol">#CCCCCC</item>
 
 		<item name="rrLoadingRingForegroundCol">#C8C8C8</item>
-		<item name="rrLoadingRingBackgroundCol">#000000</item>
+		<item name="rrLoadingRingBackgroundCol">#3A3A3A</item>
 
 		<item name="alertDialogTheme">@style/Theme.AppCompat.Dialog.Alert</item>
 		<item name="rrActionBarPopupThemeStyle">@style/ThemeOverlay.AppCompat.Dark</item>
@@ -253,7 +253,7 @@
 		<!-- Post -->
 
 		<item name="rrPostTitleCol">#DDDDDD</item>
-		<item name="rrPostTitleReadCol">#909090</item>
+		<item name="rrPostTitleReadCol">#A5A5A5</item>
 		<item name="rrPostSubtitleCol">#909090</item>
 		<item name="rrPostSubtitleBoldCol">#BBBBBB</item>
 		<item name="rrPostSubtitleUpvoteCol">#FF9B76</item>
