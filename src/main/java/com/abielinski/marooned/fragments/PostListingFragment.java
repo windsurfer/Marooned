@@ -229,7 +229,12 @@ public class PostListingFragment extends RRFragment
 					final RecyclerView recyclerView,
 					final int dx,
 					final int dy) {
-				onLoadMoreItemsCheck();
+			mRecyclerView.post(new Runnable() {
+				@Override
+				public void run() {
+					onLoadMoreItemsCheck();
+				}
+			});
 			}
 		});
 
