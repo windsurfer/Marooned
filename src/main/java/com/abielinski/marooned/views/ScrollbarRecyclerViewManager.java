@@ -53,7 +53,7 @@ public class ScrollbarRecyclerViewManager {
 
 		mSwipeRefreshLayout.setEnabled(false);
 
-		final LinearLayoutManager linearLayoutManager = new CenterLayoutManager(context);
+		final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
 		mRecyclerView.setLayoutManager(linearLayoutManager);
 		mRecyclerView.setHasFixedSize(true);
 		linearLayoutManager.setSmoothScrollbarEnabled(false);
