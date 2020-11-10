@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -38,13 +37,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.UiThread;
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.activities.BaseActivity;
@@ -55,10 +51,8 @@ import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.fragments.PostListingFragment;
 import com.abielinski.marooned.image.BitmapCache;
-import com.abielinski.marooned.image.ThumbnailScaler;
 import com.abielinski.marooned.reddit.prepared.RedditPreparedPost;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -563,7 +557,15 @@ public final class RedditPostView extends FlingableItemView
 
 				final int imageWidth = availableWidth;
 
-				postImageView.setMinimumHeight(imageHeight);
+				final int sourceWidth = post.src.getSrc().getSourceWidth();
+				final int sourceHeight = post.src.getSrc().getSourceHeight();
+
+				float xScale = ((float)imageWidth) / (float)sourceWidth;
+				float yScale = ((float)imageHeight) / (float)sourceHeight;
+				float smallerScale = (xScale <= yScale) ? xScale : yScale;
+				final int predictedHeight = Math.round(smallerScale * sourceHeight);
+
+				postImageView.setMinimumHeight(predictedHeight);
 
 				String postUrl = post.src.getUrl();
 				Uri imageCacheUri = getURIFromCache(postUrl, mActivity);

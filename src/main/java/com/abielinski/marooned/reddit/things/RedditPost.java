@@ -42,6 +42,8 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 	public JsonBufferedObject preview;
 	@Nullable public String rr_internal_dash_url;
 
+	public int source_width, source_height;
+
 	public RedditPost() {
 	}
 
@@ -86,6 +88,48 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 		}
 
 		return duration;
+	}
+
+	public int getSourceWidth(){
+		if (source_width != 0){
+			return source_width;
+		}else if (preview != null){
+			try {
+
+				source_width = Integer.parseInt(preview
+						.getArray("images")
+						.get(0).asObject()
+						.getObject("source")
+						.getString("width"));
+				return source_width;
+
+			} catch(final Exception e) {
+				source_width = 0;
+			}
+		}
+
+		return 0;
+	}
+
+	public int getSourceHeight(){
+		if (source_height != 0){
+			return source_height;
+		}else if (preview != null){
+			try {
+
+				source_height = Integer.parseInt(preview
+						.getArray("images")
+						.get(0).asObject()
+						.getObject("source")
+						.getString("height"));
+				return source_height;
+
+			} catch(final Exception e) {
+				source_height = 0;
+			}
+		}
+
+		return 0;
 	}
 
 	public String getUrl() {
@@ -225,6 +269,7 @@ public final class RedditPost implements Parcelable, RedditThingWithIdAndType {
 
 		getDashUrl();
 		parcel.writeString(rr_internal_dash_url);
+		getDuration();
 	}
 
 	public static final Parcelable.Creator<RedditPost> CREATOR
