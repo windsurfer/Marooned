@@ -242,11 +242,13 @@ public class PostListingFragment extends RRFragment
 
 		mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
 
-		int limit = 50;
+		int limit = 25;
 
 		if(mPostCountLimit > 0 && limit > mPostCountLimit) {
 			limit = mPostCountLimit;
 		}
+
+		mPostListingURL = mPostListingURL.limit(limit);
 
 		final DownloadStrategy downloadStrategy;
 
@@ -543,6 +545,14 @@ public class PostListingFragment extends RRFragment
 				mLastAfter = mAfter;
 				mReadyToDownloadMore = false;
 
+				int limit = 25;
+
+				if(mPostCountLimit > 0 && limit > mPostRefreshCount.get()) {
+					limit = mPostRefreshCount.get();
+				}
+
+				mPostListingURL = mPostListingURL.limit(limit);
+
 				final Uri newUri = mPostListingURL.after(mAfter).generateJsonUri();
 
 				// TODO customise (currently 3 hrs)
@@ -551,11 +561,6 @@ public class PostListingFragment extends RRFragment
 						? DownloadStrategyIfNotCached.INSTANCE
 						: DownloadStrategyNever.INSTANCE;
 
-				int limit = 50;
-
-				if(mPostCountLimit > 0 && limit > mPostRefreshCount.get()) {
-					limit = mPostRefreshCount.get();
-				}
 
 				mRequest = new PostListingRequest(
 						newUri,
