@@ -177,6 +177,10 @@ public final class CacheManager {
 	}
 
 	public synchronized void pruneCache() {
+		pruneCache(false);
+	}
+
+	public synchronized void pruneCache(boolean agressive) {
 
 		try {
 
@@ -193,12 +197,17 @@ public final class CacheManager {
 					context,
 					prefs);
 
-			final ArrayList<Long> filesToDelete = dbManager.getFilesToPrune(
-					currentFiles,
-					maxAge,
-					72);
+			final ArrayList<Long> filesToDelete;
+			if (agressive){
+				filesToDelete = dbManager.getLargeFilesToSnip(currentFiles);
+			} else {
+				filesToDelete = dbManager.getFilesToPrune(
+						currentFiles,
+						maxAge,
+						72);
+			}
 
-			Log.i("CacheManager", "Pruning " + filesToDelete.size() + " files");
+			Log.i("CacheManager", "Pruning " + filesToDelete.size() + " files (" + currentFiles.size() + " files in cache)");
 
 			for(final long id : filesToDelete) {
 				final File file = getExistingCacheFile(id);
@@ -212,6 +221,7 @@ public final class CacheManager {
 		}
 
 	}
+
 
 	public synchronized void emptyTheWholeCache() {
 		dbManager.emptyTheWholeCache();

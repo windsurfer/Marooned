@@ -84,6 +84,21 @@ public final class CacheDownload extends PrioritisedCachedThreadPool.Task {
 		}.start();
 	}
 
+	public synchronized void emergencyFreeSpace(){
+
+		new Thread() {
+			@Override
+			public void run() {
+
+				android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+
+				manager.pruneTemp();
+				manager.pruneCache(true);
+
+			}
+		}.start();
+	}
+
 	public void doDownload() {
 
 		if(mCancelled) {
@@ -274,6 +289,7 @@ public final class CacheDownload extends PrioritisedCachedThreadPool.Task {
 										e,
 										null,
 										"Out of disk space");
+								emergencyFreeSpace();
 							} else {
 								mInitiator.notifyFailure(
 										CacheRequest.REQUEST_FAILURE_STORAGE,
@@ -326,6 +342,7 @@ public final class CacheDownload extends PrioritisedCachedThreadPool.Task {
 										e,
 										null,
 										"Out of disk space");
+								emergencyFreeSpace();
 							} else {
 								mInitiator.notifyFailure(
 										CacheRequest.REQUEST_FAILURE_STORAGE,
@@ -343,7 +360,7 @@ public final class CacheDownload extends PrioritisedCachedThreadPool.Task {
 									e,
 									null,
 									"Out of disk space");
-
+							emergencyFreeSpace();
 						} else {
 							e.printStackTrace();
 							mInitiator.notifyFailure(

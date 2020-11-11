@@ -24,6 +24,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import androidx.annotation.NonNull;
+
+import com.abielinski.marooned.common.Constants;
 import com.abielinski.marooned.common.Optional;
 import com.abielinski.marooned.common.RRTime;
 
@@ -311,6 +313,75 @@ final class CacheDbManager extends SQLiteOpenHelper {
 
 		return filesToDelete;
 	}
+
+	// More agressive "prune" used when running low on storage. Deletes the oldest half of files
+	public synchronized ArrayList<Long> getLargeFilesToSnip(
+			final HashSet<Long> currentFiles) {
+
+		final SQLiteDatabase db = this.getWritableDatabase();
+
+		final long currentTime = RRTime.utcCurrentTimeMillis();
+
+		final Cursor cursor = db.query(
+				TABLE,
+				new String[] {FIELD_ID, FIELD_TIMESTAMP, FIELD_TYPE},
+				String.format(Locale.US, "%s=? OR %s=?", FIELD_TYPE, FIELD_TYPE),
+				new String[] {String.valueOf(Constants.FileType.IMAGE), String.valueOf(Constants.FileType.THUMBNAIL)},
+				null,
+				null,
+				FIELD_TIMESTAMP + " ASC",
+				null);
+
+		final ArrayList<Long> entriesToDelete = new ArrayList<>();
+		final ArrayList<Long> filesToDelete = new ArrayList<>(100);
+
+		int numToDelete = currentFiles.size() / 2;
+
+		while(cursor.moveToNext()) {
+
+			final long id = cursor.getLong(0);
+
+			if(!currentFiles.contains(id)) {
+				entriesToDelete.add(id);
+
+			} else {
+				entriesToDelete.add(id);
+				filesToDelete.add(id);
+
+			}
+
+			if (filesToDelete.size() >= numToDelete){
+				break;
+			}
+		}
+
+		if(!entriesToDelete.isEmpty()) {
+
+			final StringBuilder query = new StringBuilder(String.format(
+					Locale.US,
+					"DELETE FROM %s WHERE %s IN (",
+					TABLE,
+					FIELD_ID));
+
+			query.append(entriesToDelete.remove(entriesToDelete.size() - 1));
+
+			for(final long id : entriesToDelete) {
+				query.append(",").append(id);
+				if(query.length() > 512 * 1024) {
+					break;
+				}
+			}
+
+			query.append(')');
+
+			db.execSQL(query.toString());
+		}
+
+		cursor.close();
+
+		return filesToDelete;
+	}
+
 
 	public synchronized void emptyTheWholeCache() {
 		final SQLiteDatabase db = this.getWritableDatabase();
