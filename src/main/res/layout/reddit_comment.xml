@@ -43,7 +43,7 @@
 				android:background="?rrListItemBackgroundCol"
 				android:orientation="vertical"
 				android:paddingLeft="12dp"
-				android:paddingTop="8dp"
+				android:paddingTop="7dp"
 				android:paddingRight="12dp"
 				android:paddingBottom="8dp">
 
@@ -53,7 +53,8 @@
 					android:layout_height="wrap_content"
 					android:textColor="?rrCommentHeaderCol"
 					android:textSize="11sp"
-					tools:ignore="SmallSp" />
+					tools:ignore="SmallSp"
+					tools:text="Comment header"/>
 
 			<FrameLayout
 					android:id="@+id/view_reddit_comment_bodyholder"
@@ -61,7 +62,7 @@
 					android:layout_height="wrap_content"
 					android:minHeight="14dp"
 					android:paddingTop="2dp"
-					tools:ignore="UselessLeaf" />
+					tools:ignore="UselessLeaf"/>
 
 		</LinearLayout>
 

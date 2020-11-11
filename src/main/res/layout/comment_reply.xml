@@ -18,6 +18,7 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical">
@@ -44,10 +45,13 @@
 			android:inputType="textCapSentences|textMultiLine|textAutoCorrect"
 			android:scrollHorizontally="false"
 			android:minLines="3"
+			android:gravity="top|start"
 			android:scrollbars="none"
 			android:singleLine="false"
 			android:importantForAutofill="no"
-			android:background="?rrListItemBackgroundCol" />
+			android:textAlignment="viewStart"
+			android:background="?rrPostCommentsButtonBackCol"
+			tools:text="This is where the comment would be"/>
 
 
 	<CheckBox
@@ -58,36 +62,6 @@
 			android:checked="true"
 			android:visibility="gone"
 			android:text="@string/send_replies_to_inbox" />
-
-	<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			android:layout_gravity="right"
-			android:layout_margin="10dp">
-
-		<Button
-				android:id="@+id/comment_reply_help"
-				android:text="@string/comment_help"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"/>
-
-		<Button
-				android:id="@+id/comment_reply_preview"
-				android:text="@string/comment_reply_preview"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"/>
-
-		<Button
-				android:id="@+id/comment_reply_button"
-				android:text="@string/comment_reply_send"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"/>
-
-	</LinearLayout>
 
 	<TableLayout
 			android:id="@+id/comment_help_table"
@@ -192,10 +166,41 @@
 					android:id="@+id/comment_help_more"
 					android:layout_column="1"
 					android:drawableRight="?rrIconLink"
-				/>
+					/>
 
 		</TableRow>
 
 	</TableLayout>
+
+	<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_gravity="right"
+			android:layout_margin="10dp">
+
+		<Button
+				android:id="@+id/comment_reply_help"
+				android:text="@string/comment_help"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+
+		<Button
+				android:id="@+id/comment_reply_preview"
+				android:text="@string/comment_reply_preview"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+
+		<Button
+				android:id="@+id/comment_reply_button"
+				android:text="@string/comment_reply_send"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+
+	</LinearLayout>
+
 
 </LinearLayout>

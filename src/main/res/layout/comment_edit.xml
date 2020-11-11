@@ -22,8 +22,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="10dp"
-		android:inputType="textCapSentences|textMultiLine"
+		android:inputType="textCapSentences|textMultiLine|textAutoCorrect"
 		android:scrollHorizontally="false"
 		android:scrollbars="none"
 		android:singleLine="false"
-		android:importantForAutofill="no"/>
+		android:importantForAutofill="no"
+		android:background="?rrPostCommentsButtonBackCol" />
