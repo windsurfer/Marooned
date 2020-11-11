@@ -1332,5 +1332,7 @@
 	<string name="pref_behavior_prevent_duplicates_summary">Only the first post linking to the same URL would be displayed</string>
 	<string name="pref_appearance_inline_images_show_nsfw_key" translatable="false">pref_appearance_inline_images_nsfw_show</string>
 	<string name="pref_appearance_inline_images_nsfw_show">Show NSFW inline images</string>
+	<string name="pref_appearance_thumbnails_size_key" translatable="false">pref_appearance_thumbnails_size_title</string>
+	<string name="pref_appearance_thumbnails_size_title">Thumbnail size</string>
 
 </resources>

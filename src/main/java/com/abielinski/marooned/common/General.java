@@ -144,21 +144,13 @@ public final class General {
 				context.getResources().getDisplayMetrics()));
 	}
 
-	public static int getThumbnailSize(final Context context) {
+	public static int getThumbnailSize(final Context context,
+									   final SharedPreferences sharedPreferences) {
 
-		if ((context.getResources().getConfiguration().screenLayout &
-				Configuration.SCREENLAYOUT_SIZE_MASK) ==
-				Configuration.SCREENLAYOUT_SIZE_LARGE){
-			return dpToPixels(context, 64.0f);
-		}
-
-		if ((context.getResources().getConfiguration().screenLayout &
-				Configuration.SCREENLAYOUT_SIZE_MASK) ==
-				Configuration.SCREENLAYOUT_SIZE_XLARGE){
-			return dpToPixels(context, 96.0f);
-		}
-
-		return dpToPixels(context, 48.0f);
+		final int thumbnailSize = PrefsUtility.pref_appearance_thumbnails_size(
+				context,
+				sharedPreferences);
+		return dpToPixels(context, thumbnailSize);
 	}
 
 	public static int spToPixels(final Context context, final float sp) {

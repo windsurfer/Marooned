@@ -349,6 +349,17 @@ public final class PrefsUtility {
 		}
 	}
 
+
+	public static int pref_appearance_thumbnails_size(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return Integer.valueOf(getString(
+				R.string.pref_appearance_thumbnails_size_key,
+				"64",
+				context,
+				sharedPreferences));
+	}
+
 	public static boolean appearance_thumbnails_nsfw_show(
 			final Context context,
 			final SharedPreferences sharedPreferences) {

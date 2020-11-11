@@ -298,7 +298,8 @@ public class CommentListingRequest {
 							parsedPost,
 							timestamp,
 							true,
-							false);
+							false,
+							0);
 
 					notifyListener(Event.EVENT_POST_DOWNLOADED, preparedPost);
 

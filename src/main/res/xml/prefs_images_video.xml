@@ -89,6 +89,12 @@
 						android:entryValues="@array/list_yes_no_or_wifi_return"
 						android:defaultValue="always"/>
 
+		<ListPreference android:title="@string/pref_appearance_thumbnails_size_title"
+				android:key="@string/pref_appearance_thumbnails_size_key"
+				android:entries="@array/pref_appearance_thumbnail_items"
+				android:entryValues="@array/pref_appearance_thumbnail_returns"
+				android:defaultValue="64"/>
+
 		<CheckBoxPreference android:title="@string/pref_appearance_thumbnails_nsfw_show_title"
 							android:key="@string/pref_appearance_thumbnails_nsfw_show_key"
 							android:defaultValue="false"/>

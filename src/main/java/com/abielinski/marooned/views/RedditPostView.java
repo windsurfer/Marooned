@@ -261,22 +261,18 @@ public final class RedditPostView extends FlingableItemView
 				thumbnailView.setImageBitmap((Bitmap)msg.obj);
 			}
 		};
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 		dpScale = context.getResources().getDisplayMetrics().density; // TODO xml?
-		thumbnailSize = General.getThumbnailSize(context);
+		thumbnailSize = General.getThumbnailSize(context, prefs);
 
-		final float titleFontScale = PrefsUtility.appearance_fontscale_posts(
-				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+
+		final float titleFontScale = PrefsUtility.appearance_fontscale_posts(context,prefs);
 		final float subtitleFontScale = PrefsUtility.appearance_fontscale_post_subtitles(
-				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
-		displayInlineImages = PrefsUtility.appearance_inline_images_show(
-				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
-		displayNSFWInlineImages = PrefsUtility.appearance_inline_images_nsfw_show(
-				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				context,prefs
+				);
+		displayInlineImages = PrefsUtility.appearance_inline_images_show(context,prefs);
+		displayNSFWInlineImages = PrefsUtility.appearance_inline_images_nsfw_show(context,prefs);
 
 		final View rootView =
 				LayoutInflater.from(context).inflate(R.layout.reddit_post, this, true);

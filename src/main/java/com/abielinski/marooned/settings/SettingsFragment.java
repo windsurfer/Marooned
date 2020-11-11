@@ -114,6 +114,7 @@ public final class SettingsFragment extends PreferenceFragment {
 				R.string.pref_behaviour_blocked_subredditsort_key,
 				R.string.pref_cache_rerequest_postlist_age_key,
 				R.string.pref_appearance_thumbnails_show_list_key,
+				R.string.pref_appearance_thumbnails_size_key,
 				R.string.pref_cache_precache_images_list_key,
 				R.string.pref_cache_precache_videos_list_key,
 				R.string.pref_cache_precache_comments_list_key,

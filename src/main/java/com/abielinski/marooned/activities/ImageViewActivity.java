@@ -313,7 +313,8 @@ public class ImageViewActivity extends BaseActivity
 					parsedPost,
 					-1,
 					false,
-					false);
+					false,
+					0);
 
 		} else {
 			post = null;

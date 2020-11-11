@@ -194,7 +194,8 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 			final RedditParsedPost post,
 			final long timestamp,
 			final boolean showSubreddit,
-			final boolean showThumbnails) {
+			final boolean showThumbnails,
+			final int thumbnailSize) {
 
 		this.src = post;
 		this.showSubreddit = showSubreddit;
@@ -210,10 +211,10 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 
 		hasThumbnail = showThumbnails && hasThumbnail(post);
 
-		final int thumbnailWidth = General.getThumbnailSize(context);
 
 		if(hasThumbnail && hasThumbnail(post)) {
-			downloadThumbnail(context, thumbnailWidth, cm, listId);
+
+			downloadThumbnail(context, thumbnailSize, cm, listId);
 		}
 
 		lastChange = timestamp;

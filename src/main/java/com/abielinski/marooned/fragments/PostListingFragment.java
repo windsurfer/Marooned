@@ -812,6 +812,11 @@ public class PostListingFragment extends RRFragment
 						== PrefsUtility.AppearanceThumbnailsShow.WIFIONLY
 						&& isConnectionWifi);
 
+				final int thumbnailSize
+						= PrefsUtility.pref_appearance_thumbnails_size(
+						activity,
+						mSharedPreferences);
+
 				final boolean showNsfwThumbnails
 						= PrefsUtility.appearance_thumbnails_nsfw_show(
 						activity,
@@ -939,7 +944,8 @@ public class PostListingFragment extends RRFragment
 								parsedPost,
 								timestamp,
 								showSubredditName,
-								downloadThisThumbnail);
+								downloadThisThumbnail,
+								thumbnailSize);
 
 						// Skip adding this post (go to next iteration) if it
 						// has been clicked on AND user preference
