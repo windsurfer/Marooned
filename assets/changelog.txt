@@ -1,3 +1,21 @@
+98/1.18
+Add preference for thumbnail size
+Handle inline images that fail to download
+Add 'Gallery' tag for posts linking to a Reddit gallery
+Fix posts resizing as inline images load
+Fix autocorrect in search
+Fix some theme bugs and tweak margins
+Fix a crash relating to posts that are under 1 second old
+In the case that the cache is running low on storage, automatically delete the oldest cache entries
+Added a new preference to show/hide NSFW images from showing inline
+Fix how post listing limits were being applied
+
+97/1.17
+Added an in-memory cache for inline images. This improves scrolling performance
+Added an option to hide duplicate posts (disabled by default)
+Added a duration overlay on top of thumbnails for videos and gifs
+Fix some translations
+
 96/1.16
 First fork from RedReader and birth of Marooned!
 New inline images (when available)
