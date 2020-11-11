@@ -20,10 +20,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-	<CheckBoxPreference android:title="@string/pref_appearance_inline_images_show"
-			android:key="@string/pref_appearance_inline_images_show_key"
-			android:defaultValue="true"/>
-
 	<CheckBoxPreference android:title="@string/pref_behaviour_video_playback_controls_title"
 						android:key="@string/pref_behaviour_video_playback_controls_key"
 						android:defaultValue="true"/>
@@ -74,6 +70,16 @@
 						android:key="@string/pref_appearance_show_aspect_ratio_indicator_key"
 						android:summary="@string/pref_appearance_show_aspect_ratio_indicator_summary"
 						android:defaultValue="false"/>
+
+	<CheckBoxPreference android:title="@string/pref_appearance_inline_images_show"
+			android:key="@string/pref_appearance_inline_images_show_key"
+			android:defaultValue="true"/>
+
+	<CheckBoxPreference android:title="@string/pref_appearance_inline_images_nsfw_show"
+			android:key="@string/pref_appearance_inline_images_show_nsfw_key"
+			android:defaultValue="false"
+			android:dependency="@string/pref_appearance_inline_images_show_key"/>
+
 
 	<PreferenceCategory android:title="@string/pref_appearance_thumbnails_header">
 

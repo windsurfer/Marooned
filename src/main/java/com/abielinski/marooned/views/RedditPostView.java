@@ -63,6 +63,8 @@ public final class RedditPostView extends FlingableItemView
 	private final float dpScale;
 	private final int thumbnailSize;
 	private final boolean displayInlineImages;
+	private final boolean displayNSFWInlineImages;
+	private boolean displayInline;
 
 	private RedditPreparedPost post = null;
 	private final TextView title, subtitle, title_alternate;
@@ -272,6 +274,9 @@ public final class RedditPostView extends FlingableItemView
 		displayInlineImages = PrefsUtility.appearance_inline_images_show(
 				context,
 				PreferenceManager.getDefaultSharedPreferences(context));
+		displayNSFWInlineImages = PrefsUtility.appearance_inline_images_nsfw_show(
+				context,
+				PreferenceManager.getDefaultSharedPreferences(context));
 
 		final View rootView =
 				LayoutInflater.from(context).inflate(R.layout.reddit_post, this, true);
@@ -451,9 +456,10 @@ public final class RedditPostView extends FlingableItemView
 				thumbnailOverlay.setVisibility(GONE);
 			}
 
-			if (data.mIsProbablyDisplayableInline && displayInlineImages){
+			if (data.mIsProbablyDisplayableInline && displayInlineImages
+			&& (!data.src.isNsfw() || displayNSFWInlineImages)){
 
-
+				displayInline = true;
 				thumbnailView.setVisibility(GONE);
 				postImageView.setVisibility(VISIBLE);
 				title.setVisibility(GONE);
@@ -464,6 +470,7 @@ public final class RedditPostView extends FlingableItemView
 
 			}else{
 
+				displayInline = false;
 				postImageView.setVisibility(GONE);
 				postImageView.setImageResource(android.R.color.transparent);
 
@@ -537,7 +544,7 @@ public final class RedditPostView extends FlingableItemView
 		}
 
 
-		if (post.mIsProbablyDisplayableInline && displayInlineImages){
+		if (displayInline){
 
 
 			if (!mImageIsRendering || post.failToShowInline){

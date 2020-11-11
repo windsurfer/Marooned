@@ -149,6 +149,14 @@ public final class PrefsUtility {
 					sharedPreferences);
 	}
 
+	public static boolean appearance_inline_images_nsfw_show(Context context, SharedPreferences sharedPreferences) {
+		return getBoolean(
+				R.string.pref_appearance_inline_images_show_nsfw_key,
+				false,
+				context,
+				sharedPreferences);
+	}
+
 	///////////////////////////////
 	// pref_appearance
 	///////////////////////////////

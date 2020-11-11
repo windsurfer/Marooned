@@ -1330,5 +1330,7 @@
 	<string name="pref_behavior_prevent_duplicates_key" translatable="false">pref_behavior_prevent_duplicates</string>
 	<string name="pref_behavior_prevent_duplicates">Hide duplicate posts</string>
 	<string name="pref_behavior_prevent_duplicates_summary">Only the first post linking to the same URL would be displayed</string>
+	<string name="pref_appearance_inline_images_show_nsfw_key" translatable="false">pref_appearance_inline_images_nsfw_show</string>
+	<string name="pref_appearance_inline_images_nsfw_show">Show NSFW inline images</string>
 
 </resources>
