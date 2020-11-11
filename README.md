@@ -1,20 +1,20 @@
 Marooned
 =========
 
-An unofficial, open source Android client for reddit forked from RedReader.
+An unofficial and open source Android client for reddit forked from RedReader.
 
-![CI](https://github.com/QuantumBadger/RedReader/workflows/CI/badge.svg?branch=master)
-[![Translation status](https://hosted.weblate.org/widgets/redreader/-/svg-badge.svg)](https://hosted.weblate.org/engage/redreader/?utm_source=widget)
+![CI](https://github.com/windsurfer/Marooned/workflows/CI/badge.svg?branch=master)
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
       alt="Get it on Google Play"
-      height="80">](https://play.google.com/store/apps/details?id=org.quantumbadger.redreader)
+      height="80">](https://play.google.com/store/apps/details?id=com.abielinski.marooned)
 
 Features
 --------
 
 * Free and open-source Software - no ads/tracking
 * Lightweight and fast
+* Inline image viewing
 * Swipe posts left and right to perform customizable actions, such as upvote/downvote, or save/hide
 * Advanced cache management - automatically stores past versions of posts and comments
 * Support for multiple accounts
@@ -22,39 +22,25 @@ Features
 * Image and comment precaching (optional: always, never, or Wi-Fi only)
 * Built-in image viewer, and GIF/video player
 * Multiple themes, including night mode, and ultra black for AMOLED displays
-* Support for Android 4.0+
+* Support for Android 4.3+
 
 
 Downloading
 -----------
 
-RedReader is available for free on the Google Play store:
+Marooned is available for free on the Google Play store:
 
 https://play.google.com/store/apps/details?id=org.quantumbadger.redreader
 
-RedReader can also be found for free on F-Droid:
-
-https://f-droid.org/app/org.quantumbadger.redreader
-
 The Google Play APKs are also available here:
 
-https://github.com/QuantumBadger/RedReader/releases
-
-
-Translating
------------
-
-Please help us translate RedReader into new languages, or improve the translations for existing languages!
-
-https://hosted.weblate.org/projects/redreader/strings/
-
-[![Translation status](https://hosted.weblate.org/widgets/redreader/-/287x66-grey.png)](https://hosted.weblate.org/engage/redreader/?utm_source=widget)
+https://github.com/windsurfer/Marooned/releases
 
 
 Building
 --------
 
-RedReader is built using Gradle. On Linux, simply run:
+Marooned is built using Gradle. On Linux, simply run:
 
     ./gradlew installDebug
 
@@ -62,11 +48,5 @@ RedReader is built using Gradle. On Linux, simply run:
 License
 -------
 
-RedReader is licensed under the GPL, version 3. A copy of the license is
+Marooned is licensed under the GPL, version 3. A copy of the license is
 included in [LICENSE.txt](LICENSE.txt).
-
-
-Thanks
-------
-
-A full list of contributors is included in the [changelog](assets/changelog.txt).
