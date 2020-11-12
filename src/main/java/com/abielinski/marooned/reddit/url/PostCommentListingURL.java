@@ -248,7 +248,7 @@ public class PostCommentListingURL extends CommentListingURL {
 
 	public enum Sort {
 
-		BEST("confidence"),
+		BEST("best"),
 		HOT("hot"),
 		NEW("new"),
 		OLD("old"),
@@ -265,10 +265,6 @@ public class PostCommentListingURL extends CommentListingURL {
 		public static Sort lookup(String name) {
 
 			name = StringUtils.asciiUppercase(name);
-
-			if(name.equals("CONFIDENCE")) {
-				return BEST; // oh, reddit...
-			}
 
 			try {
 				return Sort.valueOf(name);
