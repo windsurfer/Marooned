@@ -53,6 +53,7 @@ public class BodyElementBullet extends BodyElement {
 		if(textSize != null) {
 			bullet.setTextSize(textSize);
 		}
+		bullet.setPadding(0,0,0, paddingPx);
 
 		bulletItem.addView(bullet);
 

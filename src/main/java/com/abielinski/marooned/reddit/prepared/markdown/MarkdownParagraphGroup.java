@@ -46,7 +46,7 @@ public final class MarkdownParagraphGroup {
 
 		final float dpScale = activity.getResources().getDisplayMetrics().density;
 
-		final int paragraphSpacing = (int)(dpScale * 6);
+		final int paragraphSpacing = (int)(dpScale * 12);
 		final int codeLineSpacing = (int)(dpScale * 3);
 		final int quoteBarWidth = (int)(dpScale * 3);
 		final int maxQuoteLevel = 5;

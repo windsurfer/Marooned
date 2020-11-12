@@ -57,6 +57,7 @@ public class BodyElementNumberedListElement extends BodyElement {
 		if(textSize != null) {
 			number.setTextSize(textSize);
 		}
+		number.setPadding(0,0,0, paddingPx);
 
 		outerLayout.addView(number);
 

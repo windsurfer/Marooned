@@ -519,6 +519,7 @@ public class CommentListingFragment extends RRFragment
 		mCommentListingManager.setLoadingVisible(true);
 	}
 
+	@SuppressLint("SetTextI18n")
 	@Override
 	public void onCommentListingRequestPostDownloaded(final RedditPreparedPost post) {
 
@@ -554,7 +555,7 @@ public class CommentListingFragment extends RRFragment
 							ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 				}
 
-				final int paddingPx = General.dpToPixels(activity, 10);
+				final int paddingPx = General.dpToPixels(activity, 20);
 				final FrameLayout paddingLayout = new FrameLayout(activity);
 				final TextView collapsedView = new TextView(activity);
 				collapsedView.setText("[ + ]  "

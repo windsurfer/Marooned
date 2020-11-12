@@ -46,7 +46,7 @@ public class BodyElementVerticalSequence extends BodyElement {
 		result.setOrientation(LinearLayout.VERTICAL);
 
 		final float dpScale = activity.getResources().getDisplayMetrics().density;
-		final int paragraphSpacing = (int)(dpScale * 6);
+		final int paragraphSpacing = (int)(dpScale * 12);
 
 		@Nullable BlockType lastBlock = null;
 
