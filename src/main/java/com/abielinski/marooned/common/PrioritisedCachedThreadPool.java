@@ -17,6 +17,8 @@
 
 package com.abielinski.marooned.common;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class PrioritisedCachedThreadPool {
@@ -39,12 +41,16 @@ public class PrioritisedCachedThreadPool {
 
 		synchronized(mTasks) {
 			mTasks.add(task);
-			mTasks.notifyAll();
 
 			if(mIdleThreads < 1 && mRunningThreads < mMaxThreads) {
 				mRunningThreads++;
+				//Log.d("Executor", "Starting another thread with " + mIdleThreads + " idle threads and " + mRunningThreads + " running");
 				new Thread(mExecutor, mThreadName + " " + (mThreadNameCount++)).start();
+			}else {
+				//Log.d("Executor", "No need to start a thread because there are " + mIdleThreads + " idle threads and " + mRunningThreads + " running");
 			}
+			//Log.d("Executor", "Added a task, now there are " + mTasks.size());
+			mTasks.notifyAll();
 		}
 	}
 
@@ -78,7 +84,8 @@ public class PrioritisedCachedThreadPool {
 						mIdleThreads++;
 
 						try {
-							mTasks.wait(30000);
+							//Log.d("Executor", "Waiting for more work with " + mIdleThreads + " idle threads");
+							mTasks.wait(15000);
 						} catch(final InterruptedException e) {
 							throw new RuntimeException(e);
 						} finally {
@@ -86,7 +93,9 @@ public class PrioritisedCachedThreadPool {
 						}
 
 						if(mTasks.isEmpty()) {
+							int oldRunning = mRunningThreads;
 							mRunningThreads--;
+							//Log.d("Executor", "Quitting thread (from " + oldRunning + ") leaving only " + mRunningThreads + " running");
 							return;
 						}
 					}
@@ -99,7 +108,9 @@ public class PrioritisedCachedThreadPool {
 							taskIndex = i;
 						}
 					}
-
+					if (taskIndex == -1){
+						Log.w("Executor", "Something happened to our task!");
+					}
 					mTasks.remove(taskIndex);
 				}
 
