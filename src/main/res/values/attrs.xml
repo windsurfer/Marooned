@@ -67,7 +67,15 @@
 
 	<attr name="rrThemedButtonSelector" format="reference" />
 
-    <!-- icons -->
+	<attr name="indentRed" format="color" />
+	<attr name="indentOrange" format="color" />
+	<attr name="indentBlue" format="color" />
+	<attr name="indentGreen" format="color" />
+	<attr name="indentPurple" format="color" />
+	<attr name="indentYellow" format="color" />
+
+
+	<!-- icons -->
 
     <attr name="rrIconComments" format="reference" />
     <attr name="rrIconPerson" format="reference" />

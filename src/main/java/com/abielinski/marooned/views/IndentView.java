@@ -44,6 +44,9 @@ class IndentView extends View {
 
 	private float[] mLineBuffer;
 
+	private final int[] indentColors;
+	private final static int MAX_COLORS = 6;
+
 	public IndentView(final Context context) {
 		this(context, null);
 	}
@@ -69,11 +72,24 @@ class IndentView extends View {
 		{
 			final TypedArray attr = context.obtainStyledAttributes(new int[] {
 					R.attr.rrIndentBackgroundCol,
-					R.attr.rrIndentLineCol
+					R.attr.rrIndentLineCol,
+					R.attr.indentRed,
+					R.attr.indentOrange,
+					R.attr.indentBlue,
+					R.attr.indentGreen,
+					R.attr.indentPurple,
+					R.attr.indentYellow
 			});
 
 			rrIndentBackgroundCol = attr.getColor(0, General.COLOR_INVALID);
 			rrIndentLineCol = attr.getColor(1, General.COLOR_INVALID);
+			indentColors = new int[MAX_COLORS];
+			indentColors[0] = attr.getColor(2, General.COLOR_INVALID);
+			indentColors[1] = attr.getColor(3, General.COLOR_INVALID);
+			indentColors[2] = attr.getColor(4, General.COLOR_INVALID);
+			indentColors[3] = attr.getColor(5, General.COLOR_INVALID);
+			indentColors[4] = attr.getColor(6, General.COLOR_INVALID);
+			indentColors[5] = attr.getColor(7, General.COLOR_INVALID);
 
 			attr.recycle();
 		}
@@ -87,6 +103,10 @@ class IndentView extends View {
 				PreferenceManager.getDefaultSharedPreferences(context));
 	}
 
+	private int getColor(final int indent){
+		return indentColors[indent % MAX_COLORS];
+	}
+
 	@Override
 	protected void onDraw(final Canvas canvas) {
 
@@ -94,19 +114,18 @@ class IndentView extends View {
 
 		final int height = getMeasuredHeight();
 
+
 		if(mPrefDrawLines) {
 			// i keeps track of indentation, and
 			// l is to populate the float[] with line co-ordinates
-			for(int i = 0, l = 0; i < mIndent; ++l) {
+			for (int i = 0, l = 0; i < mIndent; ++l) {
+				mPaint.setColor(getColor(i));
 				final float x = (mPixelsPerIndent * ++i) - mHalfALine;
-				mLineBuffer[l] = x;      // start-x
-				mLineBuffer[++l] = 0;      // start-y
-				mLineBuffer[++l] = x;      // stop-x
-				mLineBuffer[++l] = height; // stop-y
+				canvas.drawLine(x, 0, x, height, mPaint);
 			}
-			canvas.drawLines(mLineBuffer, mPaint);
 
 		} else {
+			mPaint.setColor(getColor(mIndent));
 			final float rightLine = getWidth() - mHalfALine;
 			canvas.drawLine(rightLine, 0, rightLine, getHeight(), mPaint);
 		}

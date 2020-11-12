@@ -73,6 +73,14 @@
         <item name="rrGoldBackCol">#B0923C</item>
         <item name="rrGoldTextCol">#000000</item>
 
+		<item name="indentRed">#910011</item>
+		<item name="indentOrange" >#805100</item>
+		<item name="indentBlue" >#0A3881</item>
+		<item name="indentGreen" >#1C8500</item>
+		<item name="indentPurple" >#580293</item>
+		<item name="indentYellow" >#839100</item>
+
+
 		<item name="rrPostToolbarCol">#181818</item>
 
 		<item name="rrThemedButtonSelector">@drawable/rr_themed_button_selector_dark</item>
@@ -358,6 +366,13 @@
         <item name="rrFlairTextCol">#444444</item>
         <item name="rrGoldBackCol">#FFDF52</item>
         <item name="rrGoldTextCol">#000000</item>
+
+		<item name="indentRed">#BC0016</item>
+		<item name="indentOrange" >#CA8000</item>
+		<item name="indentBlue" >#1455BF</item>
+		<item name="indentGreen" >#23AE00</item>
+		<item name="indentPurple" >#6A0AAB</item>
+		<item name="indentYellow" >#FFFA00</item>
 
 		<item name="rrPostToolbarCol">#F2FBFB</item>
 

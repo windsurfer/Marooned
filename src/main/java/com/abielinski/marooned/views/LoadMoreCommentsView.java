@@ -51,28 +51,27 @@ public class LoadMoreCommentsView extends LinearLayout {
 		mCommentListingURL = commentListingURL;
 
 		setOrientation(VERTICAL);
-/*
-		final View divider = new View(context);
-		addView(divider);
-
-		divider.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
-		divider.getLayoutParams().height = 1;
- */
 
 		final LinearLayout layout = new LinearLayout(context);
 		layout.setOrientation(HORIZONTAL);
 		addView(layout);
-		final int marginPx = General.dpToPixels(context, 8);
-
-		final int marginBottom = General.dpToPixels(context, 2);
-
 		layout.setGravity(Gravity.CENTER_VERTICAL);
+		layout.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
 
 		mIndentView = new IndentView(context);
 		layout.addView(mIndentView);
 		mIndentView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
 
-		MarginLayoutParams params = (MarginLayoutParams) layout.getLayoutParams();
+
+		final LinearLayout inner = new LinearLayout(context);
+		inner.setOrientation(HORIZONTAL);
+		layout.addView(inner);
+		inner.setGravity(Gravity.CENTER_VERTICAL);
+		inner.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+		inner.setWeightSum(1);
+
+		final int marginBottom = General.dpToPixels(context, 1);
+		MarginLayoutParams params = (MarginLayoutParams) inner.getLayoutParams();
 		params.bottomMargin = marginBottom;
 
 		final ImageView icon;
@@ -86,9 +85,7 @@ public class LoadMoreCommentsView extends LinearLayout {
 			icon = new ImageView(context);
 			icon.setImageDrawable(appearance.getDrawable(0));
 
-			layout.setBackgroundColor(appearance.getColor(1, General.COLOR_INVALID));
-
-			//divider.setBackgroundColor(appearance.getColor(2, General.COLOR_INVALID));
+			inner.setBackgroundColor(appearance.getColor(1, General.COLOR_INVALID));
 
 			appearance.recycle();
 		}
@@ -96,7 +93,9 @@ public class LoadMoreCommentsView extends LinearLayout {
 		icon.setScaleX(0.75f);
 		icon.setScaleY(0.75f);
 
-		layout.addView(icon);
+		final int marginPx = General.dpToPixels(context, 8);
+
+		inner.addView(icon);
 		((LinearLayout.LayoutParams)icon.getLayoutParams()).setMargins(
 				marginPx,
 				marginPx,
@@ -105,7 +104,7 @@ public class LoadMoreCommentsView extends LinearLayout {
 
 		final LinearLayout textLayout = new LinearLayout(context);
 		textLayout.setOrientation(VERTICAL);
-		layout.addView(textLayout);
+		inner.addView(textLayout);
 		((LinearLayout.LayoutParams)textLayout.getLayoutParams()).setMargins(
 				0,
 				marginPx,
