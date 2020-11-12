@@ -123,7 +123,6 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 	public void setIsCached(boolean newCached, final Activity activity){
 		if (cached != newCached) {
 			cached = newCached;
-			postListDescription = rebuildSubtitle(activity);
 			activity.runOnUiThread(() -> {
 				if(mBoundView != null) {
 					mBoundView.updateAppearance();
@@ -1145,17 +1144,6 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 
 		if(mPostSubtitleItems.contains(PrefsUtility.AppearancePostSubtitleItem.DOMAIN)) {
 			postListDescSb.append("(" + src.getDomain() + ")", 0);
-		}
-
-		if(isCached()) {
-			postListDescSb.append(
-				" cached ",
-				BetterSSB.BOLD
-						| BetterSSB.FOREGROUND_COLOR
-						| BetterSSB.BACKGROUND_COLOR,
-				Color.WHITE,
-				Color.rgb(15, 100, 130),
-				1f);
 		}
 
 		return postListDescSb.get();

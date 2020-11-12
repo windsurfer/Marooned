@@ -91,7 +91,8 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:scaleType="center"
-						tools:ignore="ContentDescription"/>
+						tools:ignore="ContentDescription"
+						tools:src="@drawable/abc_vector_test"/>
 
 				<ImageView
 						android:id="@+id/reddit_post_overlay_icon"
@@ -120,6 +121,19 @@
 						tools:minWidth="64dp"
 						tools:minHeight="64dp"
 						tools:text="0:00:00"/>
+
+				<ImageView
+						android:id="@+id/reddit_post_cached_icon"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="right|bottom"
+						android:layout_gravity="right|top"
+						android:visibility="gone"
+						android:layout_marginRight="2dp"
+						android:layout_marginTop="2dp"
+						android:src="@drawable/ic_cached"
+						tools:visibility="visible" />
+
 
 			</FrameLayout>
 

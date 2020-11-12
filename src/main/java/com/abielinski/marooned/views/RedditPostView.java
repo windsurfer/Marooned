@@ -69,7 +69,7 @@ public final class RedditPostView extends FlingableItemView
 	private RedditPreparedPost post = null;
 	private final TextView title, subtitle, title_alternate;
 
-	private final ImageView thumbnailView, overlayIcon, postImageView;
+	private final ImageView thumbnailView, overlayIcon, postImageView, cachedIcon;
 	private final TextView thumbnailOverlay;
 
 	private final LinearLayout mOuterView;
@@ -291,6 +291,7 @@ public final class RedditPostView extends FlingableItemView
 		overlayIcon = rootView.findViewById(R.id.reddit_post_overlay_icon);
 		postImageView = rootView.findViewById(R.id.reddit_post_image_view);
 		thumbnailOverlay = rootView.findViewById(R.id.reddit_post_thumbnail_overlay);
+		cachedIcon = rootView.findViewById(R.id.reddit_post_cached_icon);
 
 		title = rootView.findViewById(R.id.reddit_post_title);
 		title_alternate = rootView.findViewById(R.id.reddit_post_title_alternate);
@@ -439,6 +440,8 @@ public final class RedditPostView extends FlingableItemView
 			overlayIcon.setMinimumHeight(thumbnailSize);
 			overlayIcon.setMinimumWidth(thumbnailSize);
 
+			cachedIcon.setVisibility(GONE);
+
 			int durationSeconds = data.src.getDuration();
 			if (durationSeconds != 0){
 				int minutes = durationSeconds / 60;
@@ -512,6 +515,7 @@ public final class RedditPostView extends FlingableItemView
 			title_alternate.setTextColor(rrPostTitleCol);
 		}
 
+
 		subtitle.setText(post.postListDescription);
 
 		boolean overlayVisible = true;
@@ -529,6 +533,7 @@ public final class RedditPostView extends FlingableItemView
 			overlayIcon.setImageResource(R.drawable.arrow_down_bold_periwinkle);
 
 		} else if(thumbnailView.getVisibility() == View.INVISIBLE && !post.mIsProbablyDisplayableInline){
+
 			if (post.isSelf()){
 				overlayIcon.setImageResource(R.drawable.ic_action_comments_dark);
 			}else {
@@ -642,10 +647,18 @@ public final class RedditPostView extends FlingableItemView
 					}
 				}
 			}
+		}else {
+
+			if (post.isCached()) {
+				cachedIcon.setVisibility(VISIBLE);
+			} else {
+				cachedIcon.setVisibility(GONE);
+			}
 		}
 
 		if(overlayVisible) {
 			overlayIcon.setVisibility(VISIBLE);
+
 		} else {
 			overlayIcon.setVisibility(GONE);
 		}
