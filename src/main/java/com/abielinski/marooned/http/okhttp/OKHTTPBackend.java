@@ -97,8 +97,9 @@ public class OKHTTPBackend extends HTTPBackend {
 		builder.followRedirects(true);
 		builder.followSslRedirects(true);
 
-		builder.connectTimeout(12, TimeUnit.SECONDS);
-		builder.readTimeout(10, TimeUnit.SECONDS);
+		builder.connectTimeout(8, TimeUnit.SECONDS);
+		builder.readTimeout(5, TimeUnit.SECONDS);
+		builder.writeTimeout(5, TimeUnit.SECONDS);
 
 		if (mConnectionPool == null){
 			mConnectionPool = new ConnectionPool(5, 10, TimeUnit.SECONDS);
@@ -176,7 +177,7 @@ public class OKHTTPBackend extends HTTPBackend {
 
 					final ResponseBody body = response.body();
 
-					@SuppressWarnings("PMD.CloseResource") final InputStream bodyStream;
+					final InputStream bodyStream;
 
 					final Long bodyBytes;
 
@@ -193,6 +194,8 @@ public class OKHTTPBackend extends HTTPBackend {
 					final String contentType = response.header("Content-Type");
 
 					listener.onSuccess(contentType, bodyBytes, bodyStream);
+
+					response.close();
 
 				} else {
 
