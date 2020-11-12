@@ -276,6 +276,14 @@
 		<item name="rrGoldBackCol">#B0923C</item>
 		<item name="rrGoldTextCol">#000000</item>
 
+
+		<item name="indentRed">#2C0005</item>
+		<item name="indentOrange" >#221500</item>
+		<item name="indentBlue" >#021025</item>
+		<item name="indentGreen" >#072200</item>
+		<item name="indentPurple" >#1F0033</item>
+		<item name="indentYellow" >#202300</item>
+
 		<item name="rrPostToolbarCol">#000000</item>
 
 		<!-- Comment -->
