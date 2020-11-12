@@ -639,6 +639,16 @@ public final class PrefsUtility {
 				sharedPreferences);
 	}
 
+	public static boolean pref_appearance_indent_colors(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return getBoolean(
+				R.string.pref_appearance_indent_colors_key,
+				false,
+				context,
+				sharedPreferences);
+	}
+
 	public static boolean pref_appearance_left_handed(
 			final Context context,
 			final SharedPreferences sharedPreferences) {
