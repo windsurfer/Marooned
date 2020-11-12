@@ -195,8 +195,6 @@ public class OKHTTPBackend extends HTTPBackend {
 
 					listener.onSuccess(contentType, bodyBytes, bodyStream);
 
-					response.close();
-
 				} else {
 
 					Log.e("OK", String.format(
