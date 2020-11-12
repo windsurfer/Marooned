@@ -97,8 +97,8 @@ public class OKHTTPBackend extends HTTPBackend {
 		builder.followRedirects(true);
 		builder.followSslRedirects(true);
 
-		builder.connectTimeout(6000, TimeUnit.SECONDS);
-		builder.readTimeout(4000, TimeUnit.SECONDS);
+		builder.connectTimeout(12, TimeUnit.SECONDS);
+		builder.readTimeout(10, TimeUnit.SECONDS);
 
 		if (mConnectionPool == null){
 			mConnectionPool = new ConnectionPool(5, 10, TimeUnit.SECONDS);
