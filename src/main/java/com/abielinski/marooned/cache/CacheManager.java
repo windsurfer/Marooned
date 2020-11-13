@@ -66,7 +66,7 @@ public final class CacheManager {
 
 	private final PrioritisedDownloadQueue downloadQueue;
 	private final PrioritisedCachedThreadPool mDiskCacheThreadPool
-			= new PrioritisedCachedThreadPool(2, "Disk Cache");
+			= new PrioritisedCachedThreadPool(3, "Disk Cache");
 
 	private final Context context;
 
@@ -151,18 +151,22 @@ public final class CacheManager {
 
 		dirs.add(context.getCacheDir());
 
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			for(final File dir : context.getExternalCacheDirs()) {
-				if(dir != null) {
-					dirs.add(dir);
+		try {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+				for (final File dir : context.getExternalCacheDirs()) {
+					if (dir != null) {
+						dirs.add(dir);
+					}
+				}
+
+			} else {
+				final File extDir = context.getExternalCacheDir();
+				if (extDir != null) {
+					dirs.add(extDir);
 				}
 			}
-
-		} else {
-			final File extDir = context.getExternalCacheDir();
-			if(extDir != null) {
-				dirs.add(extDir);
-			}
+		}catch (IllegalStateException e){
+			// do nothing, it could just be a non-formatted SD card
 		}
 
 
