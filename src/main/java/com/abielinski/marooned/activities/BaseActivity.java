@@ -132,6 +132,16 @@ public abstract class BaseActivity extends AppCompatActivity
 
 		super.onCreate(savedInstanceState);
 
+		// do NOT enable in prod
+		/*
+		try {
+			Class.forName("dalvik.system.CloseGuard")
+					.getMethod("setEnabled", boolean.class)
+					.invoke(null, true);
+		} catch (ReflectiveOperationException e) {
+			throw new RuntimeException(e);
+		}*/
+
 		mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 		if(PrefsUtility.pref_appearance_hide_android_status(this, mSharedPreferences)) {
