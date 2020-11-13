@@ -78,6 +78,7 @@ import com.abielinski.marooned.views.RedditPostView;
 import com.abielinski.marooned.views.bezelmenu.SideToolbarOverlay;
 import com.abielinski.marooned.views.bezelmenu.VerticalToolbar;
 
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -1232,10 +1233,14 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 						final BitmapFactory.Options justDecodeBounds =
 								new BitmapFactory.Options();
 						justDecodeBounds.inJustDecodeBounds = true;
+
+						InputStream inputStream = cacheFile.getInputStream();
 						BitmapFactory.decodeStream(
-								cacheFile.getInputStream(),
+								inputStream,
 								null,
 								justDecodeBounds);
+						inputStream.close();
+
 						final int width = justDecodeBounds.outWidth;
 						final int height = justDecodeBounds.outHeight;
 
@@ -1249,11 +1254,14 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 						final BitmapFactory.Options scaledOptions = new BitmapFactory.Options();
 						scaledOptions.inSampleSize = factor;
 
+						inputStream = cacheFile.getInputStream();
 						final Bitmap data =
 								BitmapFactory.decodeStream(
-										cacheFile.getInputStream(),
+										inputStream,
 										null,
 										scaledOptions);
+
+						inputStream.close();
 
 						if(data == null) {
 							return;
