@@ -115,6 +115,8 @@ public final class PrefsUtility {
 				|| key.equals(context.getString(
 				R.string.pref_appearance_hide_headertoolbar_postlist_key))
 				|| key.equals(context.getString(
+				R.string.pref_appearance_comment_spacing_key))
+				|| key.equals(context.getString(
 				R.string.pref_behavior_prevent_duplicates_key));
 	}
 
@@ -368,6 +370,16 @@ public final class PrefsUtility {
 				false,
 				context,
 				sharedPreferences);
+	}
+
+	public static float pref_appearance_comment_spacing(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return Float.valueOf(getString(
+				R.string.pref_appearance_comment_spacing_key,
+				"1.2",
+				context,
+				sharedPreferences));
 	}
 
 	public static float appearance_fontscale_global(

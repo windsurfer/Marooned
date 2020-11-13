@@ -17,12 +17,14 @@
 
 package com.abielinski.marooned.reddit.prepared.bodytext;
 
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.abielinski.marooned.activities.BaseActivity;
 import com.abielinski.marooned.common.General;
+import com.abielinski.marooned.common.PrefsUtility;
 
 import java.util.ArrayList;
 
@@ -42,11 +44,15 @@ public class BodyElementVerticalSequence extends BodyElement {
 			@Nullable final Float textSize,
 			final boolean showLinkButtons) {
 
+		float lineHeight = PrefsUtility.pref_appearance_comment_spacing(
+				activity,
+				PreferenceManager.getDefaultSharedPreferences(activity));
+
 		final LinearLayout result = new LinearLayout(activity);
 		result.setOrientation(LinearLayout.VERTICAL);
 
 		final float dpScale = activity.getResources().getDisplayMetrics().density;
-		final int paragraphSpacing = (int)(dpScale * 12);
+		final int paragraphSpacing = (int)(dpScale * 8.0f * lineHeight * lineHeight);
 
 		@Nullable BlockType lastBlock = null;
 

@@ -1339,4 +1339,7 @@
 	<string name="pref_appearance_indent_colors_key" translatable="false">pref_appearance_indent_colors</string>
 	<string name="pref_appearance_indent_colors_title">Indents use colors</string>
 
+	<string name="pref_appearance_comment_spacing_key" translatable="false">pref_appearance_comment_spacing</string>
+	<string name="pref_appearance_comment_spacing_title">Comment line height</string>
+
 </resources>

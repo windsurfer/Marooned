@@ -1087,5 +1087,25 @@
 		<item>128</item>
 	</string-array>
 
+
+	<!-- Constants. Do not change. -->
+	<string-array name="pref_appearance_comment_spacing_items">
+		<item>Cramped</item>
+		<item>RedReader</item>
+		<item>Narrow</item>
+		<item>Normal</item>
+		<item>Wide</item>
+		<item>Huge</item>
+	</string-array>
+
+	<string-array name="pref_appearance_comment_spacing_returns">
+		<item>0.9</item>
+		<item>1.0</item>
+		<item>1.1</item>
+		<item>1.2</item>
+		<item>1.3</item>
+		<item>1.4</item>
+	</string-array>
+
 	<string name="mainmenu_search">Search</string>
 </resources>

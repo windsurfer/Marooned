@@ -33,7 +33,10 @@ public class LinkifiedTextView extends AppCompatTextView {
 
 	public LinkifiedTextView(final AppCompatActivity activity) {
 		super(activity);
-		this.setLineSpacing(0, 1.2f);
+		float lineHeight = PrefsUtility.pref_appearance_comment_spacing(
+				activity,
+				PreferenceManager.getDefaultSharedPreferences(activity));
+		this.setLineSpacing(0, lineHeight);
 		mActivity = activity;
 	}
 
