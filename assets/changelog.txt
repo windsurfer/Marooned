@@ -1,3 +1,10 @@
+100/1.20
+Add new option for line spacing in comments
+Posts that are cached will now have small checkmarks on the thumbnail
+Increase padding between some comment elements like paragraphs
+Added option for colors to indents (enable in appearance settings)
+Fixed possible thread issues
+
 99/1.19
 Update icons
 
