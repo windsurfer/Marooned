@@ -1,3 +1,11 @@
+101/1.21
+Add new "Hide read until refresh" button in toolbar. Using it will hide posts you've read until the next refresh
+Add option to mark inline images as read when you scroll past them (enabled by default)
+Changed the layout of thumbnails on posts
+Files now save to your Downloads location
+Fixed some thumbnail rendering issues
+Pulled in some changes from RedReader (thanks QuantumBadger!)
+
 100/1.20
 Add new option for line spacing in comments
 Posts that are cached will now have small checkmarks on the thumbnail
