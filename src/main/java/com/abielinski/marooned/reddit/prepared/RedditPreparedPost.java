@@ -214,7 +214,8 @@ public final class RedditPreparedPost implements RedditChangeDataManager.Listene
 
 		if(hasThumbnail && hasThumbnail(post)) {
 
-			downloadThumbnail(context, thumbnailSize, cm, listId);
+			final float dpScale = context.getResources().getDisplayMetrics().density;
+			downloadThumbnail(context, (int)(thumbnailSize * dpScale), cm, listId);
 		}
 
 		lastChange = timestamp;

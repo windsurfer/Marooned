@@ -36,12 +36,24 @@ public final class ThumbnailScaler {
 				Math.round(scaleFactor * src.getHeight()),
 				true);
 
-		final Bitmap result = Bitmap.createBitmap(
-				scaled,
-				0,
-				0,
-				newWidth,
-				Math.round((float)h * scaleFactor));
+		final Bitmap result;
+		if (scaled.getWidth() >= scaled.getHeight()) {
+			// center horizontally
+			result = Bitmap.createBitmap(
+					scaled,
+					scaled.getWidth()/2 - scaled.getHeight()/2,
+					0,
+					newWidth,
+					Math.round((float) h * scaleFactor));
+		}else{
+			// taller than wide, so stay at the top
+			result = Bitmap.createBitmap(
+					scaled,
+					0,
+					0,
+					newWidth,
+					Math.round((float) h * scaleFactor));
+		}
 
 		if(result != scaled) {
 			scaled.recycle();
