@@ -635,6 +635,7 @@
         <item>@string/action_reply</item>
         <item>@string/pin_subreddit</item>
         <item>@string/block_subreddit</item>
+		<item>@string/action_hide_read</item>
     </string-array>
 
     <!-- Constants. Do not change. -->
@@ -648,6 +649,7 @@
         <item>reply</item>
         <item>pin</item>
         <item>block</item>
+		<item>hide_read</item>
     </string-array>
 
     <!-- Constants. Do not change. -->
@@ -660,6 +662,7 @@
         <item>reply</item>
         <item>pin</item>
         <item>block</item>
+		<item>hide_read</item>
     </string-array>
 
     <!-- 2015-07-05 -->
@@ -1107,5 +1110,4 @@
 		<item>1.4</item>
 	</string-array>
 
-	<string name="mainmenu_search">Search</string>
 </resources>

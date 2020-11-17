@@ -20,6 +20,8 @@ package com.abielinski.marooned.adapters;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.abielinski.marooned.reddit.RedditPostListItem;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -295,6 +297,36 @@ public class GroupedRecyclerViewAdapter extends RecyclerView.Adapter {
 				if(!isHidden) {
 					position++;
 				}
+			}
+		}
+	}
+
+	public void hideReadItems() {
+
+		for(int groupId = 0; groupId < mItems.length; groupId++) {
+
+			final ArrayList<Item> group = mItems[groupId];
+			final ArrayList<Item> toBeRemoved = new ArrayList<Item>();
+
+			for(int positionInGroup = 0;
+				positionInGroup < group.size();
+				positionInGroup++) {
+
+				final Item item = group.get(positionInGroup);
+
+				if (item instanceof RedditPostListItem){
+					RedditPostListItem post = (RedditPostListItem)item;
+					if(!item.mCurrentlyHidden) {
+						// animate it?
+					}
+					if (post.getIsRead()){
+						toBeRemoved.add(item);
+					}
+				}
+			}
+			// TODO: Make more efficient
+			for (Item item : toBeRemoved) {
+				removeFromGroup(groupId, item);
 			}
 		}
 	}

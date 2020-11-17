@@ -1341,5 +1341,11 @@
 
 	<string name="pref_appearance_comment_spacing_key" translatable="false">pref_appearance_comment_spacing</string>
 	<string name="pref_appearance_comment_spacing_title">Comment line height</string>
+	<string name="action_hide_read">Hide read</string>
+
+	<string name="mainmenu_search">Search</string>
+
+	<string name="pref_menus_appbar_hide_read_key">pref_menus_appbar_hide_read</string>
+	<string name="pref_menus_appbar_hide_read_title">Hide Read</string>
 
 </resources>

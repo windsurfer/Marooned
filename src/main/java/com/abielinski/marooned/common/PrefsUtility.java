@@ -1763,7 +1763,11 @@ public final class PrefsUtility {
 				new AppbarItemInfo(
 						OptionsMenuUtility.AppbarItemsPref.SEARCH,
 						R.string.pref_menus_appbar_search_key,
-						MenuItem.SHOW_AS_ACTION_IF_ROOM)
+						OptionsMenuUtility.DO_NOT_SHOW),
+				new AppbarItemInfo(
+						OptionsMenuUtility.AppbarItemsPref.HIDE_READ,
+						R.string.pref_menus_appbar_hide_read_key,
+						MenuItem.SHOW_AS_ACTION_ALWAYS)
 		};
 
 

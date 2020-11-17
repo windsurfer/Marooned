@@ -125,6 +125,7 @@ public class PostListingFragment extends RRFragment
 	private String mAfter = null, mLastAfter = null;
 	private CacheRequest mRequest;
 	private boolean mReadyToDownloadMore = false;
+	private boolean mHideReadUntilRefresh = false;
 	private long mTimestamp;
 
 	private int mPostCount = 0;
@@ -663,6 +664,12 @@ public class PostListingFragment extends RRFragment
 		}
 	}
 
+	public void setHideReadUntilRefresh() {
+		mHideReadUntilRefresh = true;
+		Log.i(TAG, "Hiding read items until refreshed");
+		mPostListingManager.getAdapter().hideReadItems();
+	}
+
 	private class PostListingRequest extends CacheRequest {
 
 		private final boolean firstDownload;
@@ -955,7 +962,7 @@ public class PostListingFragment extends RRFragment
 						// Skip adding this post (go to next iteration) if it
 						// has been clicked on AND user preference
 						// "hideReadPosts" is true
-						if(hideReadPosts && preparedPost.isRead()) {
+						if((hideReadPosts || mHideReadUntilRefresh) && preparedPost.isRead()) {
 							continue;
 						}
 

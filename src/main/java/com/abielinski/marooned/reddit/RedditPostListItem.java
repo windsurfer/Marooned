@@ -34,8 +34,6 @@ public class RedditPostListItem extends GroupedRecyclerViewAdapter.Item {
 	private final RedditPreparedPost mPost;
 	private final boolean mLeftHandedMode;
 
-	private boolean oldCached = false;
-
 	public RedditPostListItem(
 			final RedditPreparedPost post,
 			final PostListingFragment fragment,
@@ -68,7 +66,7 @@ public class RedditPostListItem extends GroupedRecyclerViewAdapter.Item {
 
 	@Override
 	public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder) {
-		((RedditPostView)viewHolder.itemView).reset(mPost, oldCached);
+		((RedditPostView)viewHolder.itemView).reset(mPost);
 	}
 
 	@Override
@@ -78,7 +76,10 @@ public class RedditPostListItem extends GroupedRecyclerViewAdapter.Item {
 
 	public void setCached(boolean cached, final Activity activity) {
 		mPost.setIsCached(cached, activity);
-		oldCached = cached;
+	}
+
+	public boolean getIsRead(){
+		return mPost.isRead();
 	}
 
 }

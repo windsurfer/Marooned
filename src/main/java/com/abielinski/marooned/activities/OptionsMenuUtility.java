@@ -60,7 +60,8 @@ public final class OptionsMenuUtility {
 		SETTINGS,
 		CLOSE_ALL,
 		REPLY,
-		SEARCH
+		SEARCH,
+		HIDE_READ
 	}
 
 	public static final int DO_NOT_SHOW = -1;
@@ -87,7 +88,8 @@ public final class OptionsMenuUtility {
 		PIN,
 		UNPIN,
 		BLOCK,
-		UNBLOCK
+		UNBLOCK,
+		HIDE_READ
 	}
 
 	public static <E extends BaseActivity & OptionsMenuListener> void prepare(
@@ -161,6 +163,12 @@ public final class OptionsMenuUtility {
 					menu,
 					Option.SEARCH,
 					getOrThrow(appbarItemsPrefs, AppbarItemsPref.SEARCH),
+					false);
+			add(
+					activity,
+					menu,
+					Option.HIDE_READ,
+					getOrThrow(appbarItemsPrefs, AppbarItemsPref.HIDE_READ),
 					false);
 
 			if(subredditPinned != null) {
@@ -1050,6 +1058,27 @@ public final class OptionsMenuUtility {
 
 				break;
 			}
+			case HIDE_READ: {
+				final MenuItem hide_read = menu.add(
+						Menu.NONE,
+						AppbarItemsPref.HIDE_READ.ordinal(),
+						Menu.NONE,
+						R.string.action_hide_read)
+						.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+							@Override
+							public boolean onMenuItemClick(final MenuItem item) {
+								if (activity instanceof  OptionsMenuPostsListener) {
+									((OptionsMenuPostsListener) activity).onHideRead();
+								}
+								return true;
+							}
+						});
+
+				hide_read.setShowAsAction(showAsAction);
+				hide_read.setIcon(R.drawable.ic_baseline_clear_all_24);
+
+				break;
+			}
 			default:
 				BugReportActivity.handleGlobalError(
 						activity,
@@ -1366,6 +1395,8 @@ public final class OptionsMenuUtility {
 		void onBlock();
 
 		void onUnblock();
+
+		void onHideRead();
 	}
 
 	public interface OptionsMenuCommentsListener extends OptionsMenuListener {

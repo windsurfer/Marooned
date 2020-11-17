@@ -1311,6 +1311,9 @@ public class MainActivity extends RefreshableActivity
 	}
 
 	@Override
+	public void onHideRead() {}
+
+	@Override
 	public void onRefreshSubreddits() {
 		requestRefresh(RefreshableFragment.MAIN, true);
 	}

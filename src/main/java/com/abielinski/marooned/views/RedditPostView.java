@@ -400,7 +400,7 @@ public final class RedditPostView extends FlingableItemView
 	}
 
 	@UiThread
-	public void reset(final RedditPreparedPost data, boolean oldCached) {
+	public void reset(final RedditPreparedPost data) {
 
 		if(data != post) {
 
@@ -430,9 +430,6 @@ public final class RedditPostView extends FlingableItemView
 			thumbnailView.setMinimumHeight(thumbnailSize);
 			if(data.hasThumbnail) {
 				thumbnailView.setVisibility(VISIBLE);
-				thumbnailView.getLayoutParams().height =
-						ViewGroup.LayoutParams.MATCH_PARENT;
-				thumbnailView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 			} else {
 				thumbnailView.setVisibility(INVISIBLE);
 			}
@@ -480,7 +477,6 @@ public final class RedditPostView extends FlingableItemView
 			post.unbind(this);
 		}
 		data.bind(this);
-		data.cached = oldCached;
 
 		this.post = data;
 

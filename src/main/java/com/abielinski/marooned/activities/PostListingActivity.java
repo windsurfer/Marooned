@@ -482,6 +482,17 @@ public class PostListingActivity extends RefreshableActivity
 	}
 
 	@Override
+	public void onHideRead() {
+		if(fragment == null) {
+			return;
+		}
+
+		fragment.setHideReadUntilRefresh();
+
+		invalidateOptionsMenu();
+	}
+
+	@Override
 	public void onSessionSelected(final UUID session, final SessionChangeType type) {
 		controller.setSession(session);
 		requestRefresh(RefreshableFragment.POSTS, false);
