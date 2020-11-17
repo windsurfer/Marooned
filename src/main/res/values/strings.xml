@@ -1347,5 +1347,10 @@
 
 	<string name="pref_menus_appbar_hide_read_key">pref_menus_appbar_hide_read</string>
 	<string name="pref_menus_appbar_hide_read_title">Hide Read</string>
+	<string name="pref_menus_appbar_hide_read_summary">Note: you can temporarily hide read posts in the menu</string>
+
+	<string name="pref_behavior_mark_inline_read_key">pref_behavior_mark_inline_read</string>
+	<string name="pref_behavior_mark_inline_read_title">Consider images as "read" when viewed</string>
+	<string name="pref_behavior_mark_inline_read_subtitle">Inline images needs to be enabled for this</string>
 
 </resources>

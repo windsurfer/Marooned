@@ -89,6 +89,7 @@ public final class RedditPostView extends FlingableItemView
 	private final boolean mCommentsButtonPref;
 
 	private boolean mImageIsRendering = false;
+	private boolean mImageIsRendered = false;
 	private long mImageStartRender = -1;
 
 	private final int
@@ -415,6 +416,7 @@ public final class RedditPostView extends FlingableItemView
 			postImageView.setVisibility(GONE);
 			postImageView.setImageResource(android.R.color.transparent);
 			mImageIsRendering = false;
+			mImageIsRendered = false;
 
 			title.setVisibility(VISIBLE);
 			title_alternate.setVisibility(GONE);
@@ -599,6 +601,7 @@ public final class RedditPostView extends FlingableItemView
 									postImageView.setImageDrawable(result);
 									post.renderedImageHeight = result.getIntrinsicHeight();
 									postImageView.setMinimumHeight(post.renderedImageHeight);
+									mImageIsRendered = true;
 
 									long totalMilis = System.currentTimeMillis() - mImageStartRender;
 									//Log.i("ImageRender", "Took " + totalMilis + "ms to render");
@@ -674,5 +677,18 @@ public final class RedditPostView extends FlingableItemView
 		void onPostSelected(RedditPreparedPost post);
 
 		void onPostCommentsSelected(RedditPreparedPost post);
+	}
+
+	public void markAsReadIfInline(){
+		if (!post.isRead() && post.mIsProbablyDisplayableInline && mImageIsRendered){
+
+			new Thread() {
+				@Override
+				public void run() {
+					post.markAsRead(mActivity);
+				}
+			}.start();
+
+		}
 	}
 }

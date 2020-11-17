@@ -156,7 +156,14 @@
 
 		<CheckBoxPreference android:title="@string/pref_behaviour_hide_read_posts_title"
 				android:key="@string/pref_behaviour_hide_read_posts_key"
+				android:summary="@string/pref_menus_appbar_hide_read_summary"
 				android:defaultValue="false"/>
+
+
+		<CheckBoxPreference android:title="@string/pref_behavior_mark_inline_read_title"
+				android:key="@string/pref_behavior_mark_inline_read_key"
+				android:summary="@string/pref_behavior_mark_inline_read_subtitle"
+				android:defaultValue="true"/>
 
         <ListPreference android:title="@string/pref_behaviour_postcount_title"
                         android:key="@string/pref_behaviour_postcount_key"

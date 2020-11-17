@@ -1278,6 +1278,17 @@ public final class PrefsUtility {
 	}
 
 
+	public static boolean pref_behavior_mark_inline_read(
+			final Context context,
+			final SharedPreferences sharedPreferences) {
+		return getBoolean(
+				R.string.pref_behavior_mark_inline_read_key,
+				true,
+				context,
+				sharedPreferences);
+	}
+
+
 	//Show Visited Posts? True hides them.
 	// See strings.xml, prefs_behaviour.xml, PostListingFragment.java
 	public static boolean pref_behaviour_hide_read_posts(

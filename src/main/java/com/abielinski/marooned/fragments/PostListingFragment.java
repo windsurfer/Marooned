@@ -241,6 +241,24 @@ public class PostListingFragment extends RRFragment
 			}
 		});
 
+		mRecyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+			@Override
+			public void onChildViewAttachedToWindow(@NonNull View view) {
+				//nothing?
+			}
+
+			@Override
+			public void onChildViewDetachedFromWindow(@NonNull View view) {
+				if (view != null && view instanceof RedditPostView){
+					if (PrefsUtility.pref_behavior_mark_inline_read(
+							context,
+							mSharedPreferences)){
+						((RedditPostView)view).markAsReadIfInline();
+					}
+				}
+			}
+		});
+
 		mRecyclerView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
 
 		int limit = 25;
