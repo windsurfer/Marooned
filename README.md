@@ -30,7 +30,7 @@ Downloading
 
 Marooned is available for free on the Google Play store:
 
-https://play.google.com/store/apps/details?id=org.quantumbadger.redreader
+https://play.google.com/store/apps/details?id=com.abielinski.marooned
 
 The Google Play APKs are also available here:
 
