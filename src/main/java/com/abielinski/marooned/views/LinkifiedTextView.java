@@ -25,6 +25,8 @@ import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
+
+import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 
 public class LinkifiedTextView extends AppCompatTextView {
@@ -35,7 +37,7 @@ public class LinkifiedTextView extends AppCompatTextView {
 		super(activity);
 		float lineHeight = PrefsUtility.pref_appearance_comment_spacing(
 				activity,
-				PreferenceManager.getDefaultSharedPreferences(activity));
+				General.getSharedPrefs(activity));
 		this.setLineSpacing(0, lineHeight);
 		mActivity = activity;
 	}
@@ -54,7 +56,7 @@ public class LinkifiedTextView extends AppCompatTextView {
 
 		if(!PrefsUtility.pref_appearance_link_text_clickable(
 				mActivity,
-				PreferenceManager.getDefaultSharedPreferences(mActivity))) {
+				General.getSharedPrefs(mActivity))) {
 
 			return false;
 		}

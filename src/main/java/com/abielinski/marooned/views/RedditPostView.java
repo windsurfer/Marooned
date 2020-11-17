@@ -261,7 +261,7 @@ public final class RedditPostView extends FlingableItemView
 				thumbnailView.setImageBitmap((Bitmap)msg.obj);
 			}
 		};
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = General.getSharedPrefs(context);
 
 		dpScale = context.getResources().getDisplayMetrics().density; // TODO xml?
 		thumbnailSize = General.getThumbnailSize(context, prefs);
@@ -298,7 +298,7 @@ public final class RedditPostView extends FlingableItemView
 		subtitle = rootView.findViewById(R.id.reddit_post_subtitle);
 
 		final SharedPreferences sharedPreferences =
-				PreferenceManager.getDefaultSharedPreferences(context);
+				General.getSharedPrefs(context);
 
 		mCommentsButtonPref =
 				PrefsUtility.appearance_post_show_comments_button(context, sharedPreferences);
@@ -621,7 +621,7 @@ public final class RedditPostView extends FlingableItemView
 					final PrefsUtility.CachePrecacheImages imagePrecachePref
 							= PrefsUtility.cache_precache_images(
 							mActivity,
-							PreferenceManager.getDefaultSharedPreferences(getContext()));
+							General.getSharedPrefs(getContext()));
 					final boolean precacheImages
 							= (imagePrecachePref == PrefsUtility.CachePrecacheImages.ALWAYS
 							|| (imagePrecachePref == PrefsUtility.CachePrecacheImages.WIFIONLY

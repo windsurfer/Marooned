@@ -167,7 +167,7 @@ public class PostListingFragment extends RRFragment
 		mSession = session;
 
 		final Context context = getContext();
-		mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		mSharedPreferences = General.getSharedPrefs(context);
 
 		// TODO output failed URL
 		if(mPostListingURL == null) {

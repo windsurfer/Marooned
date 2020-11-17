@@ -38,6 +38,7 @@ import com.abielinski.marooned.cache.CacheManager;
 import com.abielinski.marooned.cache.CacheRequest;
 import com.abielinski.marooned.cache.downloadstrategy.DownloadStrategyAlways;
 import com.abielinski.marooned.common.Constants;
+import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.jsonwrap.JsonBufferedArray;
 import com.abielinski.marooned.jsonwrap.JsonBufferedObject;
@@ -71,7 +72,7 @@ public class NewMessageChecker extends BroadcastReceiver {
 
 		final boolean notificationsEnabled = PrefsUtility.pref_behaviour_notifications(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				General.getSharedPrefs(context));
 		if(!notificationsEnabled) {
 			return;
 		}
@@ -206,7 +207,7 @@ public class NewMessageChecker extends BroadcastReceiver {
 					// Check if the previously saved message is the same as the one we just received
 
 					final SharedPreferences prefs
-							= PreferenceManager.getDefaultSharedPreferences(context);
+							= General.getSharedPrefs(context);
 					final String oldMessageId = prefs.getString(
 							PREFS_SAVED_MESSAGE_ID,
 							"");

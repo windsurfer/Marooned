@@ -22,6 +22,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.fragments.PostListingFragment;
 import com.abielinski.marooned.reddit.PostSort;
@@ -114,19 +116,19 @@ public class PostListingController {
 	private PostSort defaultSubredditOrder(final Context context) {
 		return PrefsUtility.pref_behaviour_postsort(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				General.getSharedPrefs(context));
 	}
 
 	private PostSort defaultUserOrder(final Context context) {
 		return PrefsUtility.pref_behaviour_user_postsort(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				General.getSharedPrefs(context));
 	}
 
 	private PostSort defaultMultiredditOrder(final Context context) {
 		return PrefsUtility.pref_behaviour_multi_postsort(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				General.getSharedPrefs(context));
 	}
 
 	public final PostSort getSort() {

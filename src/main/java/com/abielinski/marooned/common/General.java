@@ -36,6 +36,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.abielinski.marooned.R;
@@ -59,6 +61,7 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -75,6 +78,8 @@ public final class General {
 	public static boolean onBackPressed() {
 		return true;
 	}
+
+	private static final AtomicReference<SharedPreferences> mPrefs = new AtomicReference<>();
 
 	private static Typeface monoTypeface;
 
@@ -95,6 +100,23 @@ public final class General {
 		msg.obj = obj;
 		return msg;
 	}
+
+	@NonNull
+	public static SharedPreferences getSharedPrefs(@NonNull final Context context) {
+
+		SharedPreferences prefs = mPrefs.get();
+
+		if(prefs == null) {
+			prefs = context.getSharedPreferences(
+					context.getPackageName() + "_preferences",
+					Context.MODE_PRIVATE);
+
+			mPrefs.set(prefs);
+		}
+
+		return prefs;
+	}
+
 
 	/**
 	 * Takes a size in bytes and converts it into a human-readable String with units.

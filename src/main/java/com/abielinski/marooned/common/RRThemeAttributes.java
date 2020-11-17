@@ -77,7 +77,7 @@ public class RRThemeAttributes {
 
 		appearance.recycle();
 
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+		final SharedPreferences prefs = General.getSharedPrefs(
 				context);
 
 		mCommentHeaderItems = PrefsUtility.appearance_comment_header_items(

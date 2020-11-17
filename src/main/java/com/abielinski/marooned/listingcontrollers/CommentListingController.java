@@ -71,13 +71,13 @@ public class CommentListingController {
 	private PostCommentListingURL.Sort defaultOrder(final Context context) {
 		return PrefsUtility.pref_behaviour_commentsort(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				General.getSharedPrefs(context));
 	}
 
 	private UserCommentListingURL.Sort defaultUserOrder(final Context context) {
 		return PrefsUtility.pref_behaviour_user_commentsort(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				General.getSharedPrefs(context));
 	}
 
 	public void setSort(final PostCommentListingURL.Sort s) {

@@ -123,7 +123,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<VH3TextIcon> {
 		final PrefsUtility.AppearanceThumbnailsShow thumbnailsPref
 				= PrefsUtility.appearance_thumbnails_show(
 				activity,
-				PreferenceManager.getDefaultSharedPreferences(activity));
+				General.getSharedPrefs(activity));
 
 		final boolean downloadThumbnails = thumbnailsPref
 				== PrefsUtility.AppearanceThumbnailsShow.ALWAYS

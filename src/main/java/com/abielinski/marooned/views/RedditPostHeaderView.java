@@ -50,7 +50,7 @@ public class RedditPostHeaderView extends LinearLayout {
 		super(activity);
 
 		final SharedPreferences sharedPreferences =
-				PreferenceManager.getDefaultSharedPreferences(activity);
+				General.getSharedPrefs(activity);
 
 		final float dpScale = activity.getResources().getDisplayMetrics().density;
 

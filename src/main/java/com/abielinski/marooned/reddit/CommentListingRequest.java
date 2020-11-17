@@ -267,7 +267,7 @@ public class CommentListingRequest {
 
 			final Integer minimumCommentScore = PrefsUtility.pref_behaviour_comment_min(
 					mContext,
-					PreferenceManager.getDefaultSharedPreferences(context));
+					General.getSharedPrefs(context));
 
 			if(fromCache) {
 				notifyListener(Event.EVENT_CACHED_COPY, timestamp);

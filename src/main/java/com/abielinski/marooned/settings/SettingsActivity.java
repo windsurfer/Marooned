@@ -24,6 +24,7 @@ import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.Window;
 import com.abielinski.marooned.R;
+import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public final class SettingsActivity
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		PrefsUtility.applySettingsTheme(this);
 		super.onCreate(savedInstanceState);
-		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		sharedPreferences = General.getSharedPrefs(this);
 		sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 		setOrientationFromPrefs();
 

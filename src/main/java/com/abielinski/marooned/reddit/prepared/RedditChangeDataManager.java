@@ -23,6 +23,7 @@ import android.util.Log;
 import com.abielinski.marooned.account.RedditAccount;
 import com.abielinski.marooned.account.RedditAccountManager;
 import com.abielinski.marooned.common.AndroidCommon;
+import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.collections.WeakReferenceListHashMapManager;
 import com.abielinski.marooned.common.collections.WeakReferenceListManager;
@@ -593,7 +594,7 @@ public final class RedditChangeDataManager {
 
 		final long now = System.currentTimeMillis();
 		final long timestampBoundary = now - PrefsUtility.pref_cache_maxage_entry(
-				context, PreferenceManager.getDefaultSharedPreferences(context));
+				context, General.getSharedPrefs(context));
 
 		synchronized(mLock) {
 			final Iterator<Map.Entry<String, Entry>> iterator =

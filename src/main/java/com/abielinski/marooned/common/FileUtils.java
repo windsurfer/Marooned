@@ -192,7 +192,7 @@ public class FileUtils {
 	public static boolean isCacheDiskFull(final Context context) {
 		final long space = getFreeSpaceAvailable(PrefsUtility.pref_cache_location(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context)));
+				General.getSharedPrefs(context)));
 		return space < 128 * 1024 * 1024;
 	}
 
@@ -256,7 +256,7 @@ public class FileUtils {
 
 			if(PrefsUtility.pref_behaviour_sharing_dialog(
 					activity,
-					PreferenceManager.getDefaultSharedPreferences(activity))) {
+					General.getSharedPrefs(activity))) {
 				ShareOrderDialog.newInstance(shareIntent)
 						.show(activity.getSupportFragmentManager(), null);
 

@@ -46,7 +46,7 @@ public class BodyElementVerticalSequence extends BodyElement {
 
 		float lineHeight = PrefsUtility.pref_appearance_comment_spacing(
 				activity,
-				PreferenceManager.getDefaultSharedPreferences(activity));
+				General.getSharedPrefs(activity));
 
 		final LinearLayout result = new LinearLayout(activity);
 		result.setOrientation(LinearLayout.VERTICAL);

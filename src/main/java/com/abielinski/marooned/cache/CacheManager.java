@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import com.abielinski.marooned.account.RedditAccount;
 import com.abielinski.marooned.activities.BugReportActivity;
 import com.abielinski.marooned.common.FileUtils;
+import com.abielinski.marooned.common.General;
 import com.abielinski.marooned.common.Optional;
 import com.abielinski.marooned.common.PrefsUtility;
 import com.abielinski.marooned.common.PrioritisedCachedThreadPool;
@@ -195,7 +196,7 @@ public final class CacheManager {
 				getCacheFileList(dir, currentFiles);
 			}
 
-			final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+			final SharedPreferences prefs = General.getSharedPrefs(
 					context);
 			final HashMap<Integer, Long> maxAge = PrefsUtility.pref_cache_maxage(
 					context,
@@ -248,7 +249,7 @@ public final class CacheManager {
 		return new File(
 				PrefsUtility.pref_cache_location(
 						context,
-						PreferenceManager.getDefaultSharedPreferences(context)));
+						General.getSharedPrefs(context)));
 	}
 
 	@NonNull

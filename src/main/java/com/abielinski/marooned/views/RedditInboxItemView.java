@@ -91,7 +91,7 @@ public class RedditInboxItemView extends LinearLayout {
 
 		showLinkButtons = PrefsUtility.pref_appearance_linkbuttons(
 				activity,
-				PreferenceManager.getDefaultSharedPreferences(activity));
+				General.getSharedPrefs(activity));
 
 		setOnClickListener(v -> handleInboxClick(mActivity));
 

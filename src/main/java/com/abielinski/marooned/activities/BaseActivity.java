@@ -142,7 +142,7 @@ public abstract class BaseActivity extends AppCompatActivity
 			throw new RuntimeException(e);
 		}*/
 
-		mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		mSharedPreferences = General.getSharedPrefs(this);
 
 		if(PrefsUtility.pref_appearance_hide_android_status(this, mSharedPreferences)) {
 			getWindow().setFlags(

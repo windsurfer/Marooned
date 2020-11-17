@@ -259,7 +259,7 @@ public final class SettingsFragment extends PreferenceFragment {
 			});
 			updateStorageLocationText(PrefsUtility.pref_cache_location(
 					context,
-					PreferenceManager.getDefaultSharedPreferences(context)));
+					General.getSharedPrefs(context)));
 		}
 
 		//This disables the "Show NSFW thumbnails" setting when Show thumbnails is set to Never
@@ -288,7 +288,7 @@ public final class SettingsFragment extends PreferenceFragment {
 	private void showChooseStorageLocationDialog() {
 		final Context context = getActivity();
 		final SharedPreferences prefs =
-				PreferenceManager.getDefaultSharedPreferences(context);
+				General.getSharedPrefs(context);
 		final String currentStorage = PrefsUtility.pref_cache_location(context, prefs);
 
 		final List<File> checkPaths = CacheManager.getCacheDirs(context);

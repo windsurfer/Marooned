@@ -152,7 +152,7 @@ public class CommentListingFragment extends RRFragment
 
 		final Context context = getActivity();
 
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+		final SharedPreferences prefs = General.getSharedPrefs(
 				context);
 
 		mSelfTextFontScale = PrefsUtility.appearance_fontscale_bodytext(context, prefs);
@@ -432,7 +432,7 @@ public class CommentListingFragment extends RRFragment
 	public void onCommentClicked(final RedditCommentView view) {
 		switch(PrefsUtility.pref_behaviour_actions_comment_tap(
 				getActivity(),
-				PreferenceManager.getDefaultSharedPreferences(getActivity()))) {
+				General.getSharedPrefs(getActivity()))) {
 
 			case COLLAPSE:
 				handleCommentVisibilityToggle(view);
@@ -458,7 +458,7 @@ public class CommentListingFragment extends RRFragment
 	public void onCommentLongClicked(final RedditCommentView view) {
 		switch(PrefsUtility.pref_behaviour_actions_comment_longclick(
 				getActivity(),
-				PreferenceManager.getDefaultSharedPreferences(getActivity()))) {
+				General.getSharedPrefs(getActivity()))) {
 
 			case ACTION_MENU: {
 				final RedditCommentListItem item = view.getComment();
@@ -569,7 +569,7 @@ public class CommentListingFragment extends RRFragment
 				final PrefsUtility.SelfpostAction actionOnClick
 						= PrefsUtility.pref_behaviour_self_post_tap_actions(
 								activity,
-								PreferenceManager.getDefaultSharedPreferences(activity));
+								General.getSharedPrefs(activity));
 				if(actionOnClick == PrefsUtility.SelfpostAction.COLLAPSE) {
 					paddingLayout.setOnClickListener(new View.OnClickListener() {
 						@Override
@@ -597,7 +597,7 @@ public class CommentListingFragment extends RRFragment
 
 			if(!General.isTablet(
 					activity,
-					PreferenceManager.getDefaultSharedPreferences(activity))) {
+					General.getSharedPrefs(activity))) {
 				activity.setTitle(post.src.getTitle());
 			}
 
@@ -706,7 +706,7 @@ public class CommentListingFragment extends RRFragment
 		final Map<OptionsMenuUtility.AppbarItemsPref, Integer> appbarItemsPrefs =
 				PrefsUtility.pref_menus_appbar_items(
 						getActivity(),
-						PreferenceManager.getDefaultSharedPreferences(getActivity()));
+						General.getSharedPrefs(getActivity()));
 		final int replyShowAsAction = OptionsMenuUtility.getOrThrow(
 				appbarItemsPrefs,
 				OptionsMenuUtility.AppbarItemsPref.REPLY);

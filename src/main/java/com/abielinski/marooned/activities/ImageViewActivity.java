@@ -138,7 +138,7 @@ public class ImageViewActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 
 		final SharedPreferences sharedPreferences
-				= PreferenceManager.getDefaultSharedPreferences(this);
+				= General.getSharedPrefs(this);
 
 		final int gallerySwipeLengthDp
 				= PrefsUtility.pref_behaviour_gallery_swipe_length_dp(
@@ -327,7 +327,7 @@ public class ImageViewActivity extends BaseActivity
 
 		if(PrefsUtility.pref_appearance_image_viewer_show_floating_toolbar(
 				this,
-				PreferenceManager.getDefaultSharedPreferences(this))) {
+				General.getSharedPrefs(this))) {
 
 			mFloatingToolbar = (LinearLayout)LayoutInflater.from(this)
 					.inflate(
@@ -435,7 +435,7 @@ public class ImageViewActivity extends BaseActivity
 				final PrefsUtility.VideoViewMode videoViewMode
 						= PrefsUtility.pref_behaviour_videoview_mode(
 						this,
-						PreferenceManager.getDefaultSharedPreferences(this));
+						General.getSharedPrefs(this));
 
 				if(videoViewMode == PrefsUtility.VideoViewMode.INTERNAL_BROWSER) {
 					revertToWeb();
@@ -516,7 +516,7 @@ public class ImageViewActivity extends BaseActivity
 						final boolean muteByDefault
 								= PrefsUtility.pref_behaviour_video_mute_default(
 								this,
-								PreferenceManager.getDefaultSharedPreferences(this));
+								General.getSharedPrefs(this));
 
 						mVideoPlayerWrapper.setMuted(muteByDefault);
 
@@ -560,7 +560,7 @@ public class ImageViewActivity extends BaseActivity
 			final PrefsUtility.GifViewMode gifViewMode
 					= PrefsUtility.pref_behaviour_gifview_mode(
 					this,
-					PreferenceManager.getDefaultSharedPreferences(this));
+					General.getSharedPrefs(this));
 
 			if(gifViewMode == PrefsUtility.GifViewMode.INTERNAL_BROWSER) {
 				revertToWeb();
@@ -681,7 +681,7 @@ public class ImageViewActivity extends BaseActivity
 			final PrefsUtility.ImageViewMode imageViewMode
 					= PrefsUtility.pref_behaviour_imageview_mode(
 					this,
-					PreferenceManager.getDefaultSharedPreferences(this));
+					General.getSharedPrefs(this));
 
 			if(imageViewMode == PrefsUtility.ImageViewMode.INTERNAL_BROWSER) {
 				revertToWeb();
@@ -853,7 +853,7 @@ public class ImageViewActivity extends BaseActivity
 	public void onSingleTap() {
 		if(PrefsUtility.pref_behaviour_video_playback_controls(
 				this,
-				PreferenceManager.getDefaultSharedPreferences(this))
+				General.getSharedPrefs(this))
 				&& mVideoPlayerWrapper != null) {
 
 			mVideoPlayerWrapper.handleTap();
@@ -980,7 +980,7 @@ public class ImageViewActivity extends BaseActivity
 				final PrefsUtility.ImageViewMode imageViewMode
 						= PrefsUtility.pref_behaviour_imageview_mode(
 						this,
-						PreferenceManager.getDefaultSharedPreferences(this));
+						General.getSharedPrefs(this));
 
 				if(imageViewMode == PrefsUtility.ImageViewMode.EXTERNAL_BROWSER) {
 					openInExternalBrowser();
@@ -997,7 +997,7 @@ public class ImageViewActivity extends BaseActivity
 				final PrefsUtility.GifViewMode gifViewMode
 						= PrefsUtility.pref_behaviour_gifview_mode(
 						this,
-						PreferenceManager.getDefaultSharedPreferences(this));
+						General.getSharedPrefs(this));
 
 				if(gifViewMode == PrefsUtility.GifViewMode.EXTERNAL_BROWSER) {
 					openInExternalBrowser();
@@ -1013,7 +1013,7 @@ public class ImageViewActivity extends BaseActivity
 				final PrefsUtility.VideoViewMode videoViewMode
 						= PrefsUtility.pref_behaviour_videoview_mode(
 						this,
-						PreferenceManager.getDefaultSharedPreferences(this));
+						General.getSharedPrefs(this));
 
 				if(videoViewMode == PrefsUtility.VideoViewMode.EXTERNAL_BROWSER) {
 					openInExternalBrowser();
@@ -1035,7 +1035,7 @@ public class ImageViewActivity extends BaseActivity
 		findAspectRatio:
 		if(PrefsUtility.pref_appearance_show_aspect_ratio_indicator(
 				this,
-				PreferenceManager.getDefaultSharedPreferences(this))) {
+				General.getSharedPrefs(this))) {
 
 			// TODO Get width and height of loading media when not available from API
 

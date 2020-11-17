@@ -102,11 +102,11 @@ class IndentView extends View {
 
 		mPrefDrawLines = PrefsUtility.pref_appearance_indentlines(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				General.getSharedPrefs(context));
 
 		mPrefDrawColors = PrefsUtility.pref_appearance_indent_colors(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context));
+				General.getSharedPrefs(context));
 	}
 
 	private int getColor(final int indent){

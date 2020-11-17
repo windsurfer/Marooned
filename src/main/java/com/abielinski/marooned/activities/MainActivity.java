@@ -144,7 +144,7 @@ public class MainActivity extends RefreshableActivity
 			return;
 		}
 
-		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		sharedPreferences = General.getSharedPrefs(this);
 		twoPane = General.isTablet(this, sharedPreferences);
 
 		doRefresh(RefreshableFragment.MAIN_RELAYOUT, false, null);

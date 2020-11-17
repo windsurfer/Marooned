@@ -229,12 +229,12 @@ public class PostListingActivity extends RefreshableActivity
 			try {
 				subredditPinState = PrefsUtility.pref_pinned_subreddits_check(
 						this,
-						PreferenceManager.getDefaultSharedPreferences(this),
+						General.getSharedPrefs(this),
 						fragment.getSubreddit().getCanonicalId());
 
 				subredditBlockedState = PrefsUtility.pref_blocked_subreddits_check(
 						this,
-						PreferenceManager.getDefaultSharedPreferences(this),
+						General.getSharedPrefs(this),
 						fragment.getSubreddit().getCanonicalId());
 
 			} catch(final InvalidSubredditNameException e) {
@@ -413,7 +413,7 @@ public class PostListingActivity extends RefreshableActivity
 		try {
 			PrefsUtility.pref_pinned_subreddits_add(
 					this,
-					PreferenceManager.getDefaultSharedPreferences(this),
+					General.getSharedPrefs(this),
 					fragment.getSubreddit().getCanonicalId());
 
 		} catch(final InvalidSubredditNameException e) {
@@ -433,7 +433,7 @@ public class PostListingActivity extends RefreshableActivity
 		try {
 			PrefsUtility.pref_pinned_subreddits_remove(
 					this,
-					PreferenceManager.getDefaultSharedPreferences(this),
+					General.getSharedPrefs(this),
 					fragment.getSubreddit().getCanonicalId());
 
 		} catch(final InvalidSubredditNameException e) {
@@ -452,7 +452,7 @@ public class PostListingActivity extends RefreshableActivity
 		try {
 			PrefsUtility.pref_blocked_subreddits_add(
 					this,
-					PreferenceManager.getDefaultSharedPreferences(this),
+					General.getSharedPrefs(this),
 					fragment.getSubreddit().getCanonicalId());
 
 		} catch(final InvalidSubredditNameException e) {
@@ -471,7 +471,7 @@ public class PostListingActivity extends RefreshableActivity
 		try {
 			PrefsUtility.pref_blocked_subreddits_remove(
 					this,
-					PreferenceManager.getDefaultSharedPreferences(this),
+					General.getSharedPrefs(this),
 					fragment.getSubreddit().getCanonicalId());
 
 		} catch(final InvalidSubredditNameException e) {
@@ -515,7 +515,7 @@ public class PostListingActivity extends RefreshableActivity
 	public void onBackPressed() {
 
 		if(PrefsUtility.pref_behaviour_back_again(this,
-			PreferenceManager.getDefaultSharedPreferences(this)) &&
+			General.getSharedPrefs(this)) &&
 			(lastBackPress < SystemClock.uptimeMillis() - 2000)) {
 
 			lastBackPress = SystemClock.uptimeMillis();

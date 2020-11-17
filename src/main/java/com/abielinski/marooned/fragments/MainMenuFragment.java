@@ -115,7 +115,7 @@ public class MainMenuFragment extends RRFragment implements
 		if(parent instanceof OptionsMenuUtility.OptionsMenuSubredditsListener
 				&& PrefsUtility.pref_behaviour_enable_swipe_refresh(
 				context,
-				PreferenceManager.getDefaultSharedPreferences(context))) {
+				General.getSharedPrefs(context))) {
 
 			recyclerViewManager.enablePullToRefresh(
 					((OptionsMenuUtility.OptionsMenuSubredditsListener)parent)
