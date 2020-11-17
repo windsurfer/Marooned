@@ -18,6 +18,9 @@
 package com.abielinski.marooned.common;
 
 import android.Manifest;
+import android.annotation.TargetApi;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,9 +28,12 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.StatFs;
-import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.abielinski.marooned.R;
 import com.abielinski.marooned.account.RedditAccount;
 import com.abielinski.marooned.account.RedditAccountManager;
@@ -239,8 +245,8 @@ public class FileUtils {
 
 				for(final ResolveInfo resolveInfo
 						: activity.getPackageManager().queryIntentActivities(
-								shareIntent,
-								PackageManager.MATCH_DEFAULT_ONLY)) {
+						shareIntent,
+						PackageManager.MATCH_DEFAULT_ONLY)) {
 
 					Log.i(TAG, "Legacy OS: granting permission to "
 							+ resolveInfo.activityInfo.packageName
@@ -268,67 +274,165 @@ public class FileUtils {
 		});
 	}
 
+	private interface FileDataSource {
+		void writeTo(@NonNull OutputStream outputStream) throws IOException;
+	}
+
+	private static class CacheFileDataSource implements FileDataSource {
+
+		@NonNull private final CacheManager.ReadableCacheFile mCacheFile;
+
+		private CacheFileDataSource(
+				@NonNull final CacheManager.ReadableCacheFile cacheFile) {
+
+			mCacheFile = cacheFile;
+		}
+
+		@Override
+		public void writeTo(@NonNull final OutputStream outputStream) throws IOException {
+
+			try(InputStream inputStream = mCacheFile.getInputStream()) {
+				General.copyStream(inputStream, outputStream);
+				outputStream.flush();
+			}
+		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.Q)
+	private static void mediaStoreDownloadsInsertFile(
+			@NonNull final BaseActivity activity,
+			@NonNull final String name,
+			@Nullable final String mimetype,
+			final long fileSize,
+			@NonNull final FileDataSource source,
+			@NonNull final Runnable onSuccess) {
+
+		final Uri downloads = MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL);
+
+		Log.i(TAG, "Got downloads URI: " + downloads.toString());
+
+		final ContentValues fileMetadata = new ContentValues();
+		fileMetadata.put(MediaStore.Downloads.DISPLAY_NAME, name);
+		fileMetadata.put(MediaStore.Downloads.SIZE, fileSize);
+
+		if(mimetype != null) {
+			fileMetadata.put(MediaStore.Downloads.MIME_TYPE, mimetype);
+		}
+
+		fileMetadata.put(MediaStore.Downloads.IS_PENDING, true);
+
+		final ContentResolver resolver = activity.getContentResolver();
+
+		final Uri fileUri = resolver.insert(downloads, fileMetadata);
+
+		Log.i(TAG, "Got file URI: " + fileUri.toString());
+
+		new Thread(() -> {
+
+			try(OutputStream os = resolver.openOutputStream(fileUri)) {
+				source.writeTo(os);
+				os.flush();
+
+			} catch(final IOException e) {
+
+				showUnexpectedStorageErrorDialog(
+						activity,
+						e,
+						fileUri.toString());
+
+				resolver.delete(fileUri, null, null);
+
+				return;
+			}
+
+			fileMetadata.put(MediaStore.Downloads.IS_PENDING, false);
+			resolver.update(fileUri, fileMetadata, null, null);
+
+			onSuccess.run();
+
+		}).start();
+	}
+
+	private static void createSAFDocumentWithIntent(
+			@NonNull final BaseActivity activity,
+			@NonNull final String filename,
+			@Nullable final String mimetype,
+			@NonNull final FileDataSource source,
+			@NonNull final Runnable onSuccess) {
+
+		final Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+				.setType(mimetype)
+				.putExtra(Intent.EXTRA_TITLE, filename)
+				.addCategory(Intent.CATEGORY_OPENABLE);
+
+		activity.startActivityForResultWithCallback(
+				intent,
+				(resultCode, data) -> {
+
+					if(data == null || data.getData() == null) {
+						return;
+					}
+
+					new Thread(() -> {
+
+						try(OutputStream outputStream = activity.getContentResolver()
+								.openOutputStream(data.getData())) {
+
+							source.writeTo(outputStream);
+
+							onSuccess.run();
+
+						} catch(final IOException e) {
+							showUnexpectedStorageErrorDialog(
+									activity,
+									e,
+									data.getData().toString());
+						}
+
+					}).start();
+				});
+	}
+
 	public static void saveImageAtUri(
 			@NonNull final BaseActivity activity,
 			@NonNull final String uri) {
 
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
-			downloadImageToSave(activity, uri, (info, cacheFile, mimetype) -> {
+			Log.i(TAG, "Android version Lollipop or higher, saving to Downloads");
 
-				final String filename = General.filenameFromString(info.urlOriginal);
+			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-				final Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
-						.setType(mimetype)
-						.putExtra(Intent.EXTRA_TITLE, filename)
-						.addCategory(Intent.CATEGORY_OPENABLE);
+				Log.i(TAG, "Android version Q or higher, saving with MediaStore");
 
-				activity.startActivityForResultWithCallback(
-						intent,
-						(resultCode, data) -> {
+				downloadImageToSave(activity, uri, (info, cacheFile, mimetype) -> {
 
-							if(data == null || data.getData() == null) {
-								return;
-							}
+					final String filename = General.filenameFromString(info.urlOriginal);
 
-							new Thread(() -> {
+					mediaStoreDownloadsInsertFile(
+							activity,
+							filename,
+							mimetype,
+							cacheFile.getFile().map(File::length).orElse(0L),
+							new CacheFileDataSource(cacheFile),
+							() -> General.quickToast(
+									activity,
+									R.string.action_save_image_success_no_path));
+				});
 
-								try(InputStream inputStream = cacheFile.getInputStream()) {
+			} else {
+				Log.i(TAG, "Android version below Q, saving with legacy method");
 
-									try(OutputStream outputStream = activity.getContentResolver()
-											.openOutputStream(data.getData())) {
+				activity.requestPermissionWithCallback(
+						Manifest.permission.WRITE_EXTERNAL_STORAGE,
+						new LegacySaveImageCallback(activity, uri));
+			}
 
-										General.copyStream(inputStream, outputStream);
-										outputStream.flush();
-
-										General.quickToast(
-												activity,
-												R.string.action_save_image_success_no_path);
-
-									} catch(final IOException e) {
-										showUnexpectedStorageErrorDialog(
-												activity,
-												e,
-												data.getData().toString());
-									}
-
-								} catch(final IOException e) {
-
-									final Uri cacheFileUri = cacheFile.getUri();
-
-									showUnexpectedStorageErrorDialog(
-											activity,
-											e,
-											cacheFileUri != null
-													? cacheFileUri.toString()
-													: "null");
-								}
-
-							}).start();
-						});
-			});
 
 		} else {
+
+			Log.i(TAG, "Android version before Lollipop, using legacy save method");
+
 			activity.requestPermissionWithCallback(
 					Manifest.permission.WRITE_EXTERNAL_STORAGE,
 					new LegacySaveImageCallback(activity, uri));
@@ -410,12 +514,12 @@ public class FileUtils {
 							protected void onDownloadNecessary() {
 								General.quickToast(
 										context,
-										R.string.download_downloading);
+										R.string.download_downloading,
+										Toast.LENGTH_SHORT);
 							}
 
 							@Override
-							protected void onDownloadStarted() {
-							}
+							protected void onDownloadStarted() {}
 
 							@Override
 							protected void onFailure(
