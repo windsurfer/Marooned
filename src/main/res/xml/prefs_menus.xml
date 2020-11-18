@@ -120,7 +120,13 @@
 						android:key="@string/pref_menus_appbar_search_key"
 						android:entries="@array/pref_menus_appbar_items"
 						android:entryValues="@array/pref_menus_appbar_items_return"
-						android:defaultValue="1"/>
+						android:defaultValue="0"/>
+
+		<ListPreference android:title="@string/action_hide_read"
+						android:key="@string/pref_menus_appbar_hide_read_key"
+						android:entries="@array/pref_menus_appbar_items"
+						android:entryValues="@array/pref_menus_appbar_items_return"
+						android:defaultValue="2"/>
 
 	</PreferenceScreen>
 
