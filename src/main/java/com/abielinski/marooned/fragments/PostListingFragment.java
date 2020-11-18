@@ -249,7 +249,8 @@ public class PostListingFragment extends RRFragment
 
 			@Override
 			public void onChildViewDetachedFromWindow(@NonNull View view) {
-				if (view != null && view instanceof RedditPostView){
+				// TODO: Find out half of the screen size
+				if (view != null && view instanceof RedditPostView && view.getBottom() < 200){
 					if (PrefsUtility.pref_behavior_mark_inline_read(
 							context,
 							mSharedPreferences)){
