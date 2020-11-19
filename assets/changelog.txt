@@ -1,3 +1,9 @@
+102/1.22
+Added a short message when read posts are hidden
+Fixed an issue with marking inline images as read
+Fixed skipping to frontpage multiple times
+Fix the "Hide Read" button default setting
+
 101/1.21
 Add new "Hide read until refresh" button in toolbar. Using it will hide posts you've read until the next refresh
 Add option to mark inline images as read when you scroll past them (enabled by default)
