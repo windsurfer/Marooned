@@ -93,6 +93,7 @@ public class MainActivity extends RefreshableActivity
 		RedditSubredditSubscriptionManager.SubredditSubscriptionStateChangeListener {
 
 	private static final String TAG = "MainActivity";
+	private static boolean skippedToFront = false;
 
 	private boolean twoPane;
 
@@ -149,9 +150,10 @@ public class MainActivity extends RefreshableActivity
 
 		doRefresh(RefreshableFragment.MAIN_RELAYOUT, false, null);
 
-		if(savedInstanceState == null) {
+		if(savedInstanceState == null && !skippedToFront) {
 			if(PrefsUtility.pref_behaviour_skiptofrontpage(this, sharedPreferences)) {
 				onSelected(SubredditPostListURL.getFrontPage());
+				skippedToFront = true;
 			}
 		}
 
