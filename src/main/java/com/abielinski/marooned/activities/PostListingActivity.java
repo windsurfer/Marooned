@@ -490,6 +490,8 @@ public class PostListingActivity extends RefreshableActivity
 		fragment.setHideReadUntilRefresh();
 
 		invalidateOptionsMenu();
+
+		General.quickToast(this, getString(R.string.hide_read_message));
 	}
 
 	@Override

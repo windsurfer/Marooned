@@ -1353,4 +1353,6 @@
 	<string name="pref_behavior_mark_inline_read_title">Consider images as "read" when viewed</string>
 	<string name="pref_behavior_mark_inline_read_subtitle">Inline images needs to be enabled for this</string>
 
+    <string name="hide_read_message">Hiding read posts until the next refresh</string>
+
 </resources>
